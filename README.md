@@ -1,5 +1,7 @@
 # Orbit / 01
 
+This project was inspired by [the news about season 2 of Netflix's *3 Body Problem*](https://www.netflix.com/tudum/articles/3-body-problem-renewed).
+
 A small C++ / OpenGL project for learning graphics through a Newtonian three-body
 simulation: one star, two planets, mutual gravity, eclipse shadows, and orbital
 diagnostics. A companion Three.js viewer replays exported simulation data in a browser.
