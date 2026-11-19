@@ -1,0 +1,2535 @@
+{
+  "model": "planetary equilibrium tide, constant time lag, with evolving spins",
+  "gravity": 0.00856736493150118,
+  "masses": [
+    1000,
+    2,
+    4
+  ],
+  "love_number": 0.3,
+  "inertia_factor": 0.33,
+  "primary_contact_radius": 1.0,
+  "executable_sha256": "6e5fc4392a7c3339102362447c426bfe314bb966d3711c0540db1489d65b5e16",
+  "diagnostic_interval": 0.5,
+  "window_seconds": 16384,
+  "sources_sha256": {
+    "src/physics.hpp": "b30af01721f71b908602358a48ed197a43c2ffece29df123f053cbc5b288f34c",
+    "src/scene.hpp": "7d087ae5ebee5001d9c9dd02b8ce4d400215915af184f8ee8e38d364ee55ab1c",
+    "src/math.hpp": "a6b7337a76dcae9c72c1badb4bfd49bfe7a79df7fbf676ac7563652f2ce67bc6",
+    "src/orbit_diagnostics.hpp": "784b89ab9dce240115d7cc58b80014b62115757c8b7779acecef220f3ff12ab8",
+    "src/tides.hpp": "5528aeaa135622b51d925c51fe8b7033cd61c233e191151e73c9eee200c97653",
+    "src/tidal_experiment.cpp": "b5b823d64ac282720ac55a4c5c6d9b264af6de836d1399f9fba4fc597ded5810",
+    "tools/run-tidal-study.py": "5549980e007a2c5376d7efb9cf5910a7d8b132a4a07fa35dd5b655d4e71ce7e8"
+  },
+  "runs": [
+    {
+      "initial": {
+        "time": 0.0,
+        "period_ratio": 2.04999989710413,
+        "a_azure": 5.0,
+        "a_ember": 8.0741081237793,
+        "e_azure": 5.55111512312578e-17,
+        "e_ember": 5.55111512312578e-17,
+        "phi_azure_turns": null,
+        "phi_ember_turns": null,
+        "segment_azure": 0.0,
+        "segment_ember": 0.0,
+        "spin_over_n_azure": 0.953976158904155,
+        "spin_over_n_ember": 1.95565102759331,
+        "mechanical_energy": -3.83223355784636,
+        "heat": 0.0,
+        "energy_budget_error": 0.0,
+        "angular_momentum_error": 0.0,
+        "net_momentum": 4.44089209850063e-16,
+        "lag_phase_bound": 0.0
+      },
+      "final": {
+        "time": 4194304.0,
+        "period_ratio": 2.09168240885452,
+        "a_azure": 4.95734402788141,
+        "a_ember": 8.11337504697933,
+        "e_azure": 0.100124447597857,
+        "e_ember": 0.00629237120772084,
+        "phi_azure_turns": -3.10025400425718,
+        "phi_ember_turns": -9.77069054525425,
+        "segment_azure": 197.0,
+        "segment_ember": 1147.0,
+        "spin_over_n_azure": 0.941794398764819,
+        "spin_over_n_ember": 1.96993477665409,
+        "mechanical_energy": -3.83224207843831,
+        "heat": 0.0,
+        "energy_budget_error": -2.22340100896489e-06,
+        "angular_momentum_error": 3.62792653639012e-13,
+        "net_momentum": 7.5734983743097e-12,
+        "lag_phase_bound": 0.0
+      },
+      "sampled_maxima": {
+        "energy_budget_error": 2.56968669182633e-06,
+        "angular_momentum_error": 4.85970564756311e-13,
+        "net_momentum": 9.79096703634951e-12,
+        "lag_phase_bound": 0.0
+      },
+      "overall_phases": {
+        "azure": {
+          "valid_fraction": 0.9999771119037174,
+          "segments": 197,
+          "span_turns": null,
+          "net_turns": null,
+          "largest_segment_span_turns": 40.57646798640925,
+          "largest_segment_abs_net_turns": 40.428963921209636
+        },
+        "ember": {
+          "valid_fraction": 0.9998779301531595,
+          "segments": 1147,
+          "span_turns": null,
+          "net_turns": null,
+          "largest_segment_span_turns": 555.2203239417672,
+          "largest_segment_abs_net_turns": 555.2101022211812
+        }
+      },
+      "dissipated_fraction": 0.0,
+      "name": "circular-none",
+      "settings": {
+        "preset": "circular",
+        "tides": "none",
+        "duration": 4194304,
+        "step": 0.03125,
+        "interval": 16.0,
+        "lag_inner": 0.1,
+        "lag_outer": 0.1,
+        "radius_inner": 0.15,
+        "radius_outer": 0.18898815748423098
+      },
+      "console": "circular/none: 4194304 seconds, step 0.03125; heat 0; max |E+heat-E0|/|E0| 2.570293488e-06; max relative total L error 4.868898029e-13; max net momentum 9.793942389e-12; max lag bound 0",
+      "window_count": 256,
+      "first_window": {
+        "start": 0.0,
+        "end": 16384.0,
+        "samples": 1025,
+        "period_ratio": {
+          "mean": 2.09825859647768,
+          "min": 2.03698428539094,
+          "max": 2.1538270418509
+        },
+        "a_azure": {
+          "mean": 4.971384816171376,
+          "min": 4.93127052244359,
+          "max": 5.0382875579521
+        },
+        "a_ember": {
+          "mean": 8.152907858343486,
+          "min": 8.05090104736169,
+          "max": 8.24419622335887
+        },
+        "e_azure": {
+          "mean": 0.06993514684426468,
+          "min": 5.55111512312578e-17,
+          "max": 0.112907120633396
+        },
+        "e_ember": {
+          "mean": 0.006880274615597553,
+          "min": 5.55111512312578e-17,
+          "max": 0.0162453517053391
+        },
+        "spin_over_n_azure": {
+          "mean": 0.9458067456008292,
+          "min": 0.934374024711826,
+          "max": 0.964954734485019
+        },
+        "spin_over_n_ember": {
+          "mean": 1.9843786712263378,
+          "min": 1.94722551833132,
+          "max": 2.01777157262307
+        },
+        "phi_azure": {
+          "valid_fraction": 0.9990243902439024,
+          "segments": 2,
+          "span_turns": null,
+          "net_turns": null,
+          "largest_segment_span_turns": 5.521734077220908,
+          "largest_segment_abs_net_turns": 5.432004184473167
+        },
+        "phi_ember": {
+          "valid_fraction": 0.9970731707317073,
+          "segments": 5,
+          "span_turns": null,
+          "net_turns": null,
+          "largest_segment_span_turns": 103.27840280242397,
+          "largest_segment_abs_net_turns": 103.26849994884097
+        }
+      },
+      "last_window": {
+        "start": 4177936.0,
+        "end": 4194304.0,
+        "samples": 1024,
+        "period_ratio": {
+          "mean": 2.098677166267341,
+          "min": 2.03684846897864,
+          "max": 2.15385664430978
+        },
+        "a_azure": {
+          "mean": 4.970961050120774,
+          "min": 4.93124951538743,
+          "max": 5.03488905738521
+        },
+        "a_ember": {
+          "mean": 8.153296467305829,
+          "min": 8.05065227213307,
+          "max": 8.24412693727723
+        },
+        "e_azure": {
+          "mean": 0.07042752444234242,
+          "min": 0.000600864521403882,
+          "max": 0.112849130765746
+        },
+        "e_ember": {
+          "mean": 0.0068980263882739415,
+          "min": 0.000198974614365176,
+          "max": 0.0163005681103472
+        },
+        "spin_over_n_azure": {
+          "mean": 0.9456857864008503,
+          "min": 0.934368054112582,
+          "max": 0.963978555745217
+        },
+        "spin_over_n_ember": {
+          "mean": 1.9845205820732104,
+          "min": 1.94713526426005,
+          "max": 2.01774613596647
+        },
+        "phi_azure": {
+          "valid_fraction": 1.0,
+          "segments": 2,
+          "span_turns": null,
+          "net_turns": null,
+          "largest_segment_span_turns": 3.517340639722148,
+          "largest_segment_abs_net_turns": 3.370905956711398
+        },
+        "phi_ember": {
+          "valid_fraction": 1.0,
+          "segments": 7,
+          "span_turns": null,
+          "net_turns": null,
+          "largest_segment_span_turns": 175.23972540421698,
+          "largest_segment_abs_net_turns": 175.23972540421698
+        }
+      }
+    },
+    {
+      "initial": {
+        "time": 0.0,
+        "period_ratio": 2.04999989710413,
+        "a_azure": 5.0,
+        "a_ember": 8.0741081237793,
+        "e_azure": 5.55111512312578e-17,
+        "e_ember": 5.55111512312578e-17,
+        "phi_azure_turns": null,
+        "phi_ember_turns": null,
+        "segment_azure": 0.0,
+        "segment_ember": 0.0,
+        "spin_over_n_azure": 0.953976158904155,
+        "spin_over_n_ember": 1.95565102759331,
+        "mechanical_energy": -3.83223980345539,
+        "heat": 0.0,
+        "energy_budget_error": 0.0,
+        "angular_momentum_error": 0.0,
+        "net_momentum": 4.44089209850063e-16,
+        "lag_phase_bound": 0.102412211283598
+      },
+      "final": {
+        "time": 4194304.0,
+        "period_ratio": 2.13320697190751,
+        "a_azure": 4.90454995548089,
+        "a_ember": 8.13285736724403,
+        "e_azure": 0.0469700594633003,
+        "e_ember": 0.006713497646642,
+        "phi_azure_turns": -0.100627210364151,
+        "phi_ember_turns": -85.6997075887347,
+        "segment_azure": 77.0,
+        "segment_ember": 1277.0,
+        "spin_over_n_azure": 1.01007759437133,
+        "spin_over_n_ember": 1.97703452186696,
+        "mechanical_energy": -3.84826118995364,
+        "heat": 0.0160213535384239,
+        "energy_budget_error": -8.6006692060546e-09,
+        "angular_momentum_error": 1.01100875057594e-12,
+        "net_momentum": 9.53338561723267e-12,
+        "lag_phase_bound": 0.107295477443263
+      },
+      "sampled_maxima": {
+        "energy_budget_error": 2.55730595316869e-06,
+        "angular_momentum_error": 1.26839543052254e-12,
+        "net_momentum": 1.09672644215436e-11,
+        "lag_phase_bound": 0.121605067811661
+      },
+      "overall_phases": {
+        "azure": {
+          "valid_fraction": 0.9999771119037174,
+          "segments": 77,
+          "span_turns": null,
+          "net_turns": null,
+          "largest_segment_span_turns": 424.53417638995955,
+          "largest_segment_abs_net_turns": 424.4981865012476
+        },
+        "ember": {
+          "valid_fraction": 0.999870300787732,
+          "segments": 1277,
+          "span_turns": null,
+          "net_turns": null,
+          "largest_segment_span_turns": 426.56764997536163,
+          "largest_segment_abs_net_turns": 426.56764997536163
+        }
+      },
+      "dissipated_fraction": 0.004180676147661227,
+      "name": "circular-inner",
+      "settings": {
+        "preset": "circular",
+        "tides": "inner",
+        "duration": 4194304,
+        "step": 0.03125,
+        "interval": 16.0,
+        "lag_inner": 0.1,
+        "lag_outer": 0.1,
+        "radius_inner": 0.15,
+        "radius_outer": 0.18898815748423098
+      },
+      "console": "circular/inner: 4194304 seconds, step 0.03125; heat 0.01602135354; max |E+heat-E0|/|E0| 2.557305953e-06; max relative total L error 1.26885505e-12; max net momentum 1.096871257e-11; max lag bound 0.1216205752",
+      "window_count": 256,
+      "first_window": {
+        "start": 0.0,
+        "end": 16384.0,
+        "samples": 1025,
+        "period_ratio": {
+          "mean": 2.098586323808277,
+          "min": 2.03804520902877,
+          "max": 2.15374384606372
+        },
+        "a_azure": {
+          "mean": 4.970926155860031,
+          "min": 4.93098522182928,
+          "max": 5.03828920225719
+        },
+        "a_ember": {
+          "mean": 8.153007442054623,
+          "min": 8.05172157508546,
+          "max": 8.24402656865933
+        },
+        "e_azure": {
+          "mean": 0.06988578609740892,
+          "min": 5.55111512312578e-17,
+          "max": 0.112543733082704
+        },
+        "e_ember": {
+          "mean": 0.006863822043208215,
+          "min": 5.55111512312578e-17,
+          "max": 0.0162370433450054
+        },
+        "spin_over_n_azure": {
+          "mean": 1.0159371748867136,
+          "min": 0.939388226403835,
+          "max": 1.0497237123797
+        },
+        "spin_over_n_ember": {
+          "mean": 1.9844149349959217,
+          "min": 1.94752321045706,
+          "max": 2.01770928832159
+        },
+        "phi_azure": {
+          "valid_fraction": 0.9990243902439024,
+          "segments": 1,
+          "span_turns": null,
+          "net_turns": null,
+          "largest_segment_span_turns": 8.508162256488244,
+          "largest_segment_abs_net_turns": 8.103527321519044
+        },
+        "phi_ember": {
+          "valid_fraction": 0.9990243902439024,
+          "segments": 7,
+          "span_turns": null,
+          "net_turns": null,
+          "largest_segment_span_turns": 101.25131112157774,
+          "largest_segment_abs_net_turns": 101.10829195250874
+        }
+      },
+      "last_window": {
+        "start": 4177936.0,
+        "end": 4194304.0,
+        "samples": 1024,
+        "period_ratio": {
+          "mean": 2.153783130253634,
+          "min": 2.11452099813303,
+          "max": 2.18650390595061
+        },
+        "a_azure": {
+          "mean": 4.903462212816292,
+          "min": 4.88348591767813,
+          "max": 4.94331045142602
+        },
+        "a_ember": {
+          "mean": 8.18311970809599,
+          "min": 8.10677585155889,
+          "max": 8.24579945597135
+        },
+        "e_azure": {
+          "mean": 0.04023440881392125,
+          "min": 0.0071512908609539,
+          "max": 0.0623969084491694
+        },
+        "e_ember": {
+          "mean": 0.0058994380273622955,
+          "min": 0.000387127126160386,
+          "max": 0.0128380269838386
+        },
+        "spin_over_n_azure": {
+          "mean": 1.0096833139273607,
+          "min": 1.00350040900176,
+          "max": 1.02192923119809
+        },
+        "spin_over_n_ember": {
+          "mean": 1.99541143189693,
+          "min": 1.96753182954532,
+          "max": 2.01836018933675
+        },
+        "phi_azure": {
+          "valid_fraction": 1.0,
+          "segments": 1,
+          "span_turns": 0.33875556165492404,
+          "net_turns": -0.259468602646327,
+          "largest_segment_span_turns": 0.33875556165492404,
+          "largest_segment_abs_net_turns": 0.259468602646327
+        },
+        "phi_ember": {
+          "valid_fraction": 1.0,
+          "segments": 4,
+          "span_turns": null,
+          "net_turns": null,
+          "largest_segment_span_turns": 108.72237734474797,
+          "largest_segment_abs_net_turns": 108.72237734474797
+        }
+      }
+    },
+    {
+      "initial": {
+        "time": 0.0,
+        "period_ratio": 2.04999989710413,
+        "a_azure": 5.0,
+        "a_ember": 8.0741081237793,
+        "e_azure": 5.55111512312578e-17,
+        "e_ember": 5.55111512312578e-17,
+        "phi_azure_turns": null,
+        "phi_ember_turns": null,
+        "segment_azure": 0.0,
+        "segment_ember": 0.0,
+        "spin_over_n_azure": 0.953976158904155,
+        "spin_over_n_ember": 1.95565102759331,
+        "mechanical_energy": -3.8322409217188,
+        "heat": 0.0,
+        "energy_budget_error": 0.0,
+        "angular_momentum_error": 0.0,
+        "net_momentum": 4.44089209850063e-16,
+        "lag_phase_bound": 0.102412211283598
+      },
+      "final": {
+        "time": 4194304.0,
+        "period_ratio": 2.12559952911161,
+        "a_azure": 4.90884372166751,
+        "a_ember": 8.12061336049636,
+        "e_azure": 0.045704433428453,
+        "e_ember": 0.00630596835421565,
+        "phi_azure_turns": -0.110152108484064,
+        "phi_ember_turns": -83.8204057702202,
+        "segment_azure": 61.0,
+        "segment_ember": 1216.0,
+        "spin_over_n_azure": 1.01116814497445,
+        "spin_over_n_ember": 0.993504328369191,
+        "mechanical_energy": -3.84849972140722,
+        "heat": 0.0162555301351734,
+        "energy_budget_error": -8.53170067632164e-07,
+        "angular_momentum_error": 1.80645615669662e-12,
+        "net_momentum": 4.4420977488483e-12,
+        "lag_phase_bound": 0.112535875828887
+      },
+      "sampled_maxima": {
+        "energy_budget_error": 2.55427342934271e-06,
+        "angular_momentum_error": 2.38189923400579e-12,
+        "net_momentum": 8.64929322811354e-12,
+        "lag_phase_bound": 0.121590303614259
+      },
+      "overall_phases": {
+        "azure": {
+          "valid_fraction": 0.9999961853172863,
+          "segments": 61,
+          "span_turns": null,
+          "net_turns": null,
+          "largest_segment_span_turns": 787.6223370096873,
+          "largest_segment_abs_net_turns": 787.6223370096873
+        },
+        "ember": {
+          "valid_fraction": 0.9998817448358733,
+          "segments": 1216,
+          "span_turns": null,
+          "net_turns": null,
+          "largest_segment_span_turns": 519.8539614879762,
+          "largest_segment_abs_net_turns": 519.8539614879762
+        }
+      },
+      "dissipated_fraction": 0.004241781888776091,
+      "name": "circular-both",
+      "settings": {
+        "preset": "circular",
+        "tides": "both",
+        "duration": 4194304,
+        "step": 0.03125,
+        "interval": 16.0,
+        "lag_inner": 0.1,
+        "lag_outer": 0.1,
+        "radius_inner": 0.15,
+        "radius_outer": 0.18898815748423098
+      },
+      "console": "circular/both: 4194304 seconds, step 0.03125; heat 0.01625553014; max |E+heat-E0|/|E0| 2.55584558e-06; max relative total L error 2.384197329e-12; max net momentum 8.658148345e-12; max lag bound 0.1215903036",
+      "window_count": 256,
+      "first_window": {
+        "start": 0.0,
+        "end": 16384.0,
+        "samples": 1025,
+        "period_ratio": {
+          "mean": 2.098699468331594,
+          "min": 2.03805242945374,
+          "max": 2.15375799701743
+        },
+        "a_azure": {
+          "mean": 4.970924742157297,
+          "min": 4.93105793649125,
+          "max": 5.03828946967979
+        },
+        "a_ember": {
+          "mean": 8.153298214827569,
+          "min": 8.05174050258865,
+          "max": 8.24407253084658
+        },
+        "e_azure": {
+          "mean": 0.0698858669809474,
+          "min": 5.55111512312578e-17,
+          "max": 0.112769286572796
+        },
+        "e_ember": {
+          "mean": 0.006866228488077131,
+          "min": 5.55111512312578e-17,
+          "max": 0.0162313640367556
+        },
+        "spin_over_n_azure": {
+          "mean": 1.0159182600705217,
+          "min": 0.939387500189028,
+          "max": 1.04962899820302
+        },
+        "spin_over_n_ember": {
+          "mean": 1.8828481350509285,
+          "min": 1.76051865272949,
+          "max": 2.01149161117511
+        },
+        "phi_azure": {
+          "valid_fraction": 0.9990243902439024,
+          "segments": 1,
+          "span_turns": null,
+          "net_turns": null,
+          "largest_segment_span_turns": 8.196992243138528,
+          "largest_segment_abs_net_turns": 8.120022436044414
+        },
+        "phi_ember": {
+          "valid_fraction": 0.9990243902439024,
+          "segments": 5,
+          "span_turns": null,
+          "net_turns": null,
+          "largest_segment_span_turns": 186.2307153101896,
+          "largest_segment_abs_net_turns": 186.2307153101896
+        }
+      },
+      "last_window": {
+        "start": 4177936.0,
+        "end": 4194304.0,
+        "samples": 1024,
+        "period_ratio": {
+          "mean": 2.1541447044008986,
+          "min": 2.11919506404039,
+          "max": 2.18375694281832
+        },
+        "a_azure": {
+          "mean": 4.904242239464886,
+          "min": 4.88566854164075,
+          "max": 4.9478594240804
+        },
+        "a_ember": {
+          "mean": 8.185330079301137,
+          "min": 8.11469991129024,
+          "max": 8.24751983362405
+        },
+        "e_azure": {
+          "mean": 0.04014491450929092,
+          "min": 0.00732601750620697,
+          "max": 0.0639565109529519
+        },
+        "e_ember": {
+          "mean": 0.005493519746346413,
+          "min": 6.3903088163248e-05,
+          "max": 0.0132622417548124
+        },
+        "spin_over_n_azure": {
+          "mean": 1.0096229282945166,
+          "min": 1.00401613719791,
+          "max": 1.02310542325172
+        },
+        "spin_over_n_ember": {
+          "mean": 1.0054247292226908,
+          "min": 0.99243624443302,
+          "max": 1.01689961652157
+        },
+        "phi_azure": {
+          "valid_fraction": 1.0,
+          "segments": 1,
+          "span_turns": 0.333132034366197,
+          "net_turns": -0.255263523273689,
+          "largest_segment_span_turns": 0.333132034366197,
+          "largest_segment_abs_net_turns": 0.255263523273689
+        },
+        "phi_ember": {
+          "valid_fraction": 0.9990234375,
+          "segments": 7,
+          "span_turns": null,
+          "net_turns": null,
+          "largest_segment_span_turns": 84.14573992089224,
+          "largest_segment_abs_net_turns": 84.14573992089224
+        }
+      }
+    },
+    {
+      "initial": {
+        "time": 0.0,
+        "period_ratio": 2.04999989710413,
+        "a_azure": 5.0,
+        "a_ember": 8.0741081237793,
+        "e_azure": 0.3,
+        "e_ember": 0.120000000000001,
+        "phi_azure_turns": 2.14981936802627e-16,
+        "phi_ember_turns": -8.68762621325671e-17,
+        "segment_azure": 1.0,
+        "segment_ember": 1.0,
+        "spin_over_n_azure": 0.953976158904154,
+        "spin_over_n_ember": 1.95565102759331,
+        "mechanical_energy": -3.86552328585917,
+        "heat": 0.0,
+        "energy_budget_error": 0.0,
+        "angular_momentum_error": 0.0,
+        "net_momentum": 1.04738230666885e-15,
+        "lag_phase_bound": 0.0
+      },
+      "final": {
+        "time": 4194304.0,
+        "period_ratio": 2.00742871969302,
+        "a_azure": 4.99443796179792,
+        "a_ember": 7.95308044744453,
+        "e_azure": 0.284448433610098,
+        "e_ember": 0.127250830528756,
+        "phi_azure_turns": 0.00581513446783568,
+        "phi_ember_turns": -0.115367442466294,
+        "segment_azure": 1.0,
+        "segment_ember": 1.0,
+        "spin_over_n_azure": 0.952384786121299,
+        "spin_over_n_ember": 1.91184457185859,
+        "mechanical_energy": -3.86548500762909,
+        "heat": 0.0,
+        "energy_budget_error": 9.90247044225456e-06,
+        "angular_momentum_error": 1.18050993150747e-12,
+        "net_momentum": 5.23755713295512e-12,
+        "lag_phase_bound": 0.0
+      },
+      "sampled_maxima": {
+        "energy_budget_error": 1.22800311141014e-05,
+        "angular_momentum_error": 1.38428936464513e-12,
+        "net_momentum": 6.39482256084367e-12,
+        "lag_phase_bound": 0.0
+      },
+      "overall_phases": {
+        "azure": {
+          "valid_fraction": 1.0,
+          "segments": 1,
+          "span_turns": 0.1990373647198871,
+          "net_turns": 0.005815134467835465,
+          "largest_segment_span_turns": 0.1990373647198871,
+          "largest_segment_abs_net_turns": 0.005815134467835465
+        },
+        "ember": {
+          "valid_fraction": 1.0,
+          "segments": 1,
+          "span_turns": 0.44969609195862303,
+          "net_turns": -0.11536744246629392,
+          "largest_segment_span_turns": 0.44969609195862303,
+          "largest_segment_abs_net_turns": 0.11536744246629392
+        }
+      },
+      "dissipated_fraction": 0.0,
+      "name": "resonance-none",
+      "settings": {
+        "preset": "resonance",
+        "tides": "none",
+        "duration": 4194304,
+        "step": 0.03125,
+        "interval": 16.0,
+        "lag_inner": 0.1,
+        "lag_outer": 0.1,
+        "radius_inner": 0.15,
+        "radius_outer": 0.18898815748423098
+      },
+      "console": "resonance/none: 4194304 seconds, step 0.03125; heat 0; max |E+heat-E0|/|E0| 1.228012235e-05; max relative total L error 1.384602871e-12; max net momentum 6.404834918e-12; max lag bound 0",
+      "window_count": 256,
+      "first_window": {
+        "start": 0.0,
+        "end": 16384.0,
+        "samples": 1025,
+        "period_ratio": {
+          "mean": 2.0145176529595332,
+          "min": 1.9558948331704,
+          "max": 2.060444378864
+        },
+        "a_azure": {
+          "mean": 5.002472499573259,
+          "min": 4.97298743899209,
+          "max": 5.04887384610494
+        },
+        "a_ember": {
+          "mean": 7.984329430369538,
+          "min": 7.88140800899037,
+          "max": 8.08154572595559
+        },
+        "e_azure": {
+          "mean": 0.3014822504162477,
+          "min": 0.270692307967674,
+          "max": 0.34686546874736
+        },
+        "e_ember": {
+          "mean": 0.09353376413873904,
+          "min": 0.00784567512674568,
+          "max": 0.13383391412615
+        },
+        "spin_over_n_azure": {
+          "mean": 0.9546872861189134,
+          "min": 0.946255808004878,
+          "max": 0.967997629383663
+        },
+        "spin_over_n_ember": {
+          "mean": 1.923147041880093,
+          "min": 1.88605883129224,
+          "max": 1.95835387166171
+        },
+        "phi_azure": {
+          "valid_fraction": 1.0,
+          "segments": 1,
+          "span_turns": 0.1927368028431924,
+          "net_turns": -0.028498848674781713,
+          "largest_segment_span_turns": 0.1927368028431924,
+          "largest_segment_abs_net_turns": 0.028498848674781713
+        },
+        "phi_ember": {
+          "valid_fraction": 1.0,
+          "segments": 1,
+          "span_turns": 0.44698873903249303,
+          "net_turns": 0.19933776176693807,
+          "largest_segment_span_turns": 0.44698873903249303,
+          "largest_segment_abs_net_turns": 0.19933776176693807
+        }
+      },
+      "last_window": {
+        "start": 4177936.0,
+        "end": 4194304.0,
+        "samples": 1024,
+        "period_ratio": {
+          "mean": 2.0142630973050717,
+          "min": 1.95569506944881,
+          "max": 2.06014389600642
+        },
+        "a_azure": {
+          "mean": 5.0029222083876155,
+          "min": 4.9730449524692,
+          "max": 5.04154881052853
+        },
+        "a_ember": {
+          "mean": 7.984384449057003,
+          "min": 7.87861638520517,
+          "max": 8.07564763383371
+        },
+        "e_azure": {
+          "mean": 0.29988309372278227,
+          "min": 0.270522597976355,
+          "max": 0.345059490227253
+        },
+        "e_ember": {
+          "mean": 0.0965472013248665,
+          "min": 0.0090708310411245,
+          "max": 0.130707480951243
+        },
+        "spin_over_n_azure": {
+          "mean": 0.9548161657208959,
+          "min": 0.94627222347539,
+          "max": 0.965891799988424
+        },
+        "spin_over_n_ember": {
+          "mean": 1.9231661881956368,
+          "min": 1.88505684654063,
+          "max": 1.95621038744192
+        },
+        "phi_azure": {
+          "valid_fraction": 1.0,
+          "segments": 1,
+          "span_turns": 0.1965117805749627,
+          "net_turns": 0.03188070487477058,
+          "largest_segment_span_turns": 0.1965117805749627,
+          "largest_segment_abs_net_turns": 0.03188070487477058
+        },
+        "phi_ember": {
+          "valid_fraction": 1.0,
+          "segments": 1,
+          "span_turns": 0.433569201204744,
+          "net_turns": -0.0389461310061469,
+          "largest_segment_span_turns": 0.433569201204744,
+          "largest_segment_abs_net_turns": 0.0389461310061469
+        }
+      }
+    },
+    {
+      "initial": {
+        "time": 0.0,
+        "period_ratio": 2.04999989710413,
+        "a_azure": 5.0,
+        "a_ember": 8.0741081237793,
+        "e_azure": 0.3,
+        "e_ember": 0.120000000000001,
+        "phi_azure_turns": 2.14981936802627e-16,
+        "phi_ember_turns": -8.68762621325671e-17,
+        "segment_azure": 1.0,
+        "segment_ember": 1.0,
+        "spin_over_n_azure": 0.953976158904154,
+        "spin_over_n_ember": 1.95565102759331,
+        "mechanical_energy": -3.86556272956337,
+        "heat": 0.0,
+        "energy_budget_error": 0.0,
+        "angular_momentum_error": 0.0,
+        "net_momentum": 1.04738230666885e-15,
+        "lag_phase_bound": 0.142417484941917
+      },
+      "final": {
+        "time": 4194304.0,
+        "period_ratio": 2.22326719211518,
+        "a_azure": 4.62789840865118,
+        "a_ember": 7.88860577929814,
+        "e_azure": 0.0835143597894506,
+        "e_ember": 0.024064288437604,
+        "phi_azure_turns": -5803.24775025741,
+        "phi_ember_turns": -5426.78825535613,
+        "segment_azure": 3.0,
+        "segment_ember": 12.0,
+        "spin_over_n_azure": 1.03608521443583,
+        "spin_over_n_ember": 1.88864311266124,
+        "mechanical_energy": -4.03296358301545,
+        "heat": 0.167436652652486,
+        "energy_budget_error": 9.26105793776013e-06,
+        "angular_momentum_error": 4.68379189396403e-13,
+        "net_momentum": 1.05548391840983e-12,
+        "lag_phase_bound": 0.115583732796281
+      },
+      "sampled_maxima": {
+        "energy_budget_error": 1.22547942065798e-05,
+        "angular_momentum_error": 8.96629505805699e-13,
+        "net_momentum": 6.54561882820325e-12,
+        "lag_phase_bound": 0.195521624062277
+      },
+      "overall_phases": {
+        "azure": {
+          "valid_fraction": 1.0,
+          "segments": 3,
+          "span_turns": null,
+          "net_turns": null,
+          "largest_segment_span_turns": 5803.573642195787,
+          "largest_segment_abs_net_turns": 5803.561943052907
+        },
+        "ember": {
+          "valid_fraction": 1.0,
+          "segments": 12,
+          "span_turns": null,
+          "net_turns": null,
+          "largest_segment_span_turns": 5426.6023342100225,
+          "largest_segment_abs_net_turns": 5426.584378931208
+        }
+      },
+      "dissipated_fraction": 0.043314949042722845,
+      "name": "resonance-inner",
+      "settings": {
+        "preset": "resonance",
+        "tides": "inner",
+        "duration": 4194304,
+        "step": 0.03125,
+        "interval": 16.0,
+        "lag_inner": 0.1,
+        "lag_outer": 0.1,
+        "radius_inner": 0.15,
+        "radius_outer": 0.18898815748423098
+      },
+      "console": "resonance/inner: 4194304 seconds, step 0.03125; heat 0.1674366527; max |E+heat-E0|/|E0| 1.227095669e-05; max relative total L error 8.980402865e-13; max net momentum 6.549627275e-12; max lag bound 0.1981435554",
+      "window_count": 256,
+      "first_window": {
+        "start": 0.0,
+        "end": 16384.0,
+        "samples": 1025,
+        "period_ratio": {
+          "mean": 2.0143858555758647,
+          "min": 1.95574463642103,
+          "max": 2.06039265448789
+        },
+        "a_azure": {
+          "mean": 4.999714310860955,
+          "min": 4.96790382783369,
+          "max": 5.04559679159876
+        },
+        "a_ember": {
+          "mean": 7.979577160091121,
+          "min": 7.8756746805801,
+          "max": 8.07585303578795
+        },
+        "e_azure": {
+          "mean": 0.29917735637681014,
+          "min": 0.267364582376467,
+          "max": 0.345154093269888
+        },
+        "e_ember": {
+          "mean": 0.09305460876214451,
+          "min": 0.00801278922180539,
+          "max": 0.133590806892177
+        },
+        "spin_over_n_azure": {
+          "mean": 1.4804361073079306,
+          "min": 0.950329565528496,
+          "max": 1.62458854267245
+        },
+        "spin_over_n_ember": {
+          "mean": 1.9214302287504477,
+          "min": 1.88400118603145,
+          "max": 1.95628502145451
+        },
+        "phi_azure": {
+          "valid_fraction": 1.0,
+          "segments": 1,
+          "span_turns": 0.1976944973759382,
+          "net_turns": -0.04285652183759781,
+          "largest_segment_span_turns": 0.1976944973759382,
+          "largest_segment_abs_net_turns": 0.04285652183759781
+        },
+        "phi_ember": {
+          "valid_fraction": 1.0,
+          "segments": 1,
+          "span_turns": 0.451687112558599,
+          "net_turns": 0.19796105555690208,
+          "largest_segment_span_turns": 0.451687112558599,
+          "largest_segment_abs_net_turns": 0.19796105555690208
+        }
+      },
+      "last_window": {
+        "start": 4177936.0,
+        "end": 4194304.0,
+        "samples": 1024,
+        "period_ratio": {
+          "mean": 2.200785761370669,
+          "min": 2.14702958829945,
+          "max": 2.24550193151272
+        },
+        "a_azure": {
+          "mean": 4.642659581435043,
+          "min": 4.61563842979769,
+          "max": 4.70529737877835
+        },
+        "a_ember": {
+          "mean": 7.86005074588778,
+          "min": 7.77240695939988,
+          "max": 7.93504803344297
+        },
+        "e_azure": {
+          "mean": 0.0805121213767254,
+          "min": 0.0459440407485599,
+          "max": 0.105932893571316
+        },
+        "e_ember": {
+          "mean": 0.015278810051972017,
+          "min": 0.00424944445139531,
+          "max": 0.0267436789710315
+        },
+        "spin_over_n_azure": {
+          "mean": 1.040293437769728,
+          "min": 1.03073653587884,
+          "max": 1.06152298360024
+        },
+        "spin_over_n_ember": {
+          "mean": 1.8784202285402147,
+          "min": 1.84706771393427,
+          "max": 1.90534602883891
+        },
+        "phi_azure": {
+          "valid_fraction": 1.0,
+          "segments": 1,
+          "span_turns": 68.03561801887008,
+          "net_turns": -68.03561801887008,
+          "largest_segment_span_turns": 68.03561801887008,
+          "largest_segment_abs_net_turns": 68.03561801887008
+        },
+        "phi_ember": {
+          "valid_fraction": 1.0,
+          "segments": 1,
+          "span_turns": 68.07464365342003,
+          "net_turns": -68.07464365342003,
+          "largest_segment_span_turns": 68.07464365342003,
+          "largest_segment_abs_net_turns": 68.07464365342003
+        }
+      }
+    },
+    {
+      "initial": {
+        "time": 0.0,
+        "period_ratio": 2.04999989710413,
+        "a_azure": 5.0,
+        "a_ember": 8.0741081237793,
+        "e_azure": 0.3,
+        "e_ember": 0.120000000000001,
+        "phi_azure_turns": 2.14981936802627e-16,
+        "phi_ember_turns": -8.68762621325671e-17,
+        "segment_azure": 1.0,
+        "segment_ember": 1.0,
+        "spin_over_n_azure": 0.953976158904154,
+        "spin_over_n_ember": 1.95565102759331,
+        "mechanical_energy": -3.86556509911916,
+        "heat": 0.0,
+        "energy_budget_error": 0.0,
+        "angular_momentum_error": 0.0,
+        "net_momentum": 1.04738230666885e-15,
+        "lag_phase_bound": 0.142417484941917
+      },
+      "final": {
+        "time": 4194304.0,
+        "period_ratio": 2.14376591667017,
+        "a_azure": 4.68785328129536,
+        "a_ember": 7.79915555557333,
+        "e_azure": 0.0517428847723107,
+        "e_ember": 0.0483999205078205,
+        "phi_azure_turns": -5343.56792118728,
+        "phi_ember_turns": -6242.37222992013,
+        "segment_azure": 3.0,
+        "segment_ember": 2.0,
+        "spin_over_n_azure": 1.04063689167418,
+        "spin_over_n_ember": 1.01049932410192,
+        "mechanical_energy": -4.02195256246154,
+        "heat": 0.156417734482418,
+        "energy_budget_error": 7.83097406728692e-06,
+        "angular_momentum_error": 2.9109108256664e-13,
+        "net_momentum": 1.31944688041585e-11,
+        "lag_phase_bound": 0.12171938327126
+      },
+      "sampled_maxima": {
+        "energy_budget_error": 1.22569668874254e-05,
+        "angular_momentum_error": 7.59470271963044e-13,
+        "net_momentum": 1.82879027865678e-11,
+        "lag_phase_bound": 0.195947563764233
+      },
+      "overall_phases": {
+        "azure": {
+          "valid_fraction": 1.0,
+          "segments": 3,
+          "span_turns": null,
+          "net_turns": null,
+          "largest_segment_span_turns": 5343.910532762429,
+          "largest_segment_abs_net_turns": 5343.910532762429
+        },
+        "ember": {
+          "valid_fraction": 1.0,
+          "segments": 2,
+          "span_turns": null,
+          "net_turns": null,
+          "largest_segment_span_turns": 6242.650059218641,
+          "largest_segment_abs_net_turns": 6242.448871582803
+        }
+      },
+      "dissipated_fraction": 0.04046439019176282,
+      "name": "resonance-both",
+      "settings": {
+        "preset": "resonance",
+        "tides": "both",
+        "duration": 4194304,
+        "step": 0.03125,
+        "interval": 16.0,
+        "lag_inner": 0.1,
+        "lag_outer": 0.1,
+        "radius_inner": 0.15,
+        "radius_outer": 0.18898815748423098
+      },
+      "console": "resonance/both: 4194304 seconds, step 0.03125; heat 0.1564177345; max |E+heat-E0|/|E0| 1.227097471e-05; max relative total L error 7.600972856e-13; max net momentum 1.829228381e-11; max lag bound 0.1977394781",
+      "window_count": 256,
+      "first_window": {
+        "start": 0.0,
+        "end": 16384.0,
+        "samples": 1025,
+        "period_ratio": {
+          "mean": 2.0143947096734527,
+          "min": 1.9547867149906,
+          "max": 2.06040201910921
+        },
+        "a_azure": {
+          "mean": 4.999818497041463,
+          "min": 4.96836454743854,
+          "max": 5.04573783494488
+        },
+        "a_ember": {
+          "mean": 7.979767325483821,
+          "min": 7.87369905658714,
+          "max": 8.07584962328586
+        },
+        "e_azure": {
+          "mean": 0.299171776961039,
+          "min": 0.267250364869349,
+          "max": 0.34515488873355
+        },
+        "e_ember": {
+          "mean": 0.09302600529798766,
+          "min": 0.0077599080599797,
+          "max": 0.133476714072106
+        },
+        "spin_over_n_azure": {
+          "mean": 1.480420241584293,
+          "min": 0.950329591230643,
+          "max": 1.6246292732265
+        },
+        "spin_over_n_ember": {
+          "mean": 1.8147751546061575,
+          "min": 1.69253230992076,
+          "max": 1.95565102759331
+        },
+        "phi_azure": {
+          "valid_fraction": 1.0,
+          "segments": 1,
+          "span_turns": 0.1979616277423806,
+          "net_turns": -0.04472100565164352,
+          "largest_segment_span_turns": 0.1979616277423806,
+          "largest_segment_abs_net_turns": 0.04472100565164352
+        },
+        "phi_ember": {
+          "valid_fraction": 1.0,
+          "segments": 1,
+          "span_turns": 0.452353791255504,
+          "net_turns": 0.1975142094074951,
+          "largest_segment_span_turns": 0.452353791255504,
+          "largest_segment_abs_net_turns": 0.1975142094074951
+        }
+      },
+      "last_window": {
+        "start": 4177936.0,
+        "end": 4194304.0,
+        "samples": 1024,
+        "period_ratio": {
+          "mean": 2.175603203966804,
+          "min": 2.1221957816855,
+          "max": 2.2231419198424
+        },
+        "a_azure": {
+          "mean": 4.675981717749643,
+          "min": 4.64480833453191,
+          "max": 4.73765680009825
+        },
+        "a_ember": {
+          "mean": 7.8559695573944035,
+          "min": 7.76739089857165,
+          "max": 7.93671787608198
+        },
+        "e_azure": {
+          "mean": 0.07068378242701757,
+          "min": 0.0073794709580025,
+          "max": 0.114746181159609
+        },
+        "e_ember": {
+          "mean": 0.05047248025723482,
+          "min": 0.0325873066602579,
+          "max": 0.0711387819025251
+        },
+        "spin_over_n_azure": {
+          "mean": 1.0324252923018045,
+          "min": 1.01794583288027,
+          "max": 1.05720044088108
+        },
+        "spin_over_n_ember": {
+          "mean": 1.0216723250173663,
+          "min": 1.00438016973438,
+          "max": 1.03741222972804
+        },
+        "phi_azure": {
+          "valid_fraction": 1.0,
+          "segments": 1,
+          "span_turns": 59.77763377077008,
+          "net_turns": -59.77763377077008,
+          "largest_segment_span_turns": 59.77763377077008,
+          "largest_segment_abs_net_turns": 59.77763377077008
+        },
+        "phi_ember": {
+          "valid_fraction": 1.0,
+          "segments": 1,
+          "span_turns": 56.613735974619885,
+          "net_turns": -56.613735974619885,
+          "largest_segment_span_turns": 56.613735974619885,
+          "largest_segment_abs_net_turns": 56.613735974619885
+        }
+      }
+    },
+    {
+      "initial": {
+        "time": 0.0,
+        "period_ratio": 2.04999989710413,
+        "a_azure": 5.0,
+        "a_ember": 8.0741081237793,
+        "e_azure": 0.3,
+        "e_ember": 0.120000000000001,
+        "phi_azure_turns": 2.14981936802627e-16,
+        "phi_ember_turns": -8.68762621325671e-17,
+        "segment_azure": 1.0,
+        "segment_ember": 1.0,
+        "spin_over_n_azure": 0.953976158904154,
+        "spin_over_n_ember": 1.95565102759331,
+        "mechanical_energy": -3.86556509911916,
+        "heat": 0.0,
+        "energy_budget_error": 0.0,
+        "angular_momentum_error": 0.0,
+        "net_momentum": 1.04738230666885e-15,
+        "lag_phase_bound": 0.0
+      },
+      "final": {
+        "time": 4194304.0,
+        "period_ratio": 2.02943835533502,
+        "a_azure": 4.98347766789672,
+        "a_ember": 7.99352657045606,
+        "e_azure": 0.291231365746383,
+        "e_ember": 0.116484407164024,
+        "phi_azure_turns": -0.0273092131296302,
+        "phi_ember_turns": 0.0365150994856103,
+        "segment_azure": 1.0,
+        "segment_ember": 1.0,
+        "spin_over_n_azure": 0.949251494136321,
+        "spin_over_n_ember": 1.92644739105932,
+        "mechanical_energy": -3.86551902975367,
+        "heat": 0.0,
+        "energy_budget_error": 1.19178863410775e-05,
+        "angular_momentum_error": 4.05050811713623e-13,
+        "net_momentum": 6.3163369709684e-12,
+        "lag_phase_bound": 0.0
+      },
+      "sampled_maxima": {
+        "energy_budget_error": 1.22355987458152e-05,
+        "angular_momentum_error": 7.01785017044076e-13,
+        "net_momentum": 7.18789029976822e-12,
+        "lag_phase_bound": 0.0
+      },
+      "overall_phases": {
+        "azure": {
+          "valid_fraction": 1.0,
+          "segments": 1,
+          "span_turns": 0.194786304274533,
+          "net_turns": -0.027309213129630416,
+          "largest_segment_span_turns": 0.194786304274533,
+          "largest_segment_abs_net_turns": 0.027309213129630416
+        },
+        "ember": {
+          "valid_fraction": 1.0,
+          "segments": 1,
+          "span_turns": 0.446951208465302,
+          "net_turns": 0.03651509948561039,
+          "largest_segment_span_turns": 0.446951208465302,
+          "largest_segment_abs_net_turns": 0.03651509948561039
+        }
+      },
+      "dissipated_fraction": 0.0,
+      "name": "resonance-elastic",
+      "settings": {
+        "preset": "resonance",
+        "tides": "elastic",
+        "duration": 4194304,
+        "step": 0.03125,
+        "interval": 16.0,
+        "lag_inner": 0.1,
+        "lag_outer": 0.1,
+        "radius_inner": 0.15,
+        "radius_outer": 0.18898815748423098
+      },
+      "console": "resonance/elastic: 4194304 seconds, step 0.03125; heat 0; max |E+heat-E0|/|E0| 1.22798741e-05; max relative total L error 7.020985239e-13; max net momentum 7.192284909e-12; max lag bound 0",
+      "window_count": 256,
+      "first_window": {
+        "start": 0.0,
+        "end": 16384.0,
+        "samples": 1025,
+        "period_ratio": {
+          "mean": 2.0143255284450157,
+          "min": 1.95466247038122,
+          "max": 2.06048902884532
+        },
+        "a_azure": {
+          "mean": 5.002665142122449,
+          "min": 4.97284369313479,
+          "max": 5.05051341291358
+        },
+        "a_ember": {
+          "mean": 7.984127003080005,
+          "min": 7.87988490436299,
+          "max": 8.07889687212093
+        },
+        "e_azure": {
+          "mean": 0.3010234989817629,
+          "min": 0.270383326466604,
+          "max": 0.34678988810395
+        },
+        "e_ember": {
+          "mean": 0.09406767832660283,
+          "min": 0.0111180211872399,
+          "max": 0.133769200568762
+        },
+        "spin_over_n_azure": {
+          "mean": 0.9547425098060509,
+          "min": 0.946214780542688,
+          "max": 0.968469187697504
+        },
+        "spin_over_n_ember": {
+          "mean": 1.92307395721742,
+          "min": 1.88551212831645,
+          "max": 1.95739112859508
+        },
+        "phi_azure": {
+          "valid_fraction": 1.0,
+          "segments": 1,
+          "span_turns": 0.1925361619333204,
+          "net_turns": -0.009257622650439295,
+          "largest_segment_span_turns": 0.1925361619333204,
+          "largest_segment_abs_net_turns": 0.009257622650439295
+        },
+        "phi_ember": {
+          "valid_fraction": 1.0,
+          "segments": 1,
+          "span_turns": 0.44268434705013604,
+          "net_turns": 0.2013349693008251,
+          "largest_segment_span_turns": 0.44268434705013604,
+          "largest_segment_abs_net_turns": 0.2013349693008251
+        }
+      },
+      "last_window": {
+        "start": 4177936.0,
+        "end": 4194304.0,
+        "samples": 1024,
+        "period_ratio": {
+          "mean": 2.0144596384301368,
+          "min": 1.9553767750205,
+          "max": 2.05968697862345
+        },
+        "a_azure": {
+          "mean": 5.002389185304084,
+          "min": 4.97284735225166,
+          "max": 5.04638867591153
+        },
+        "a_ember": {
+          "mean": 7.984039081334962,
+          "min": 7.88176606630256,
+          "max": 8.08169828361591
+        },
+        "e_azure": {
+          "mean": 0.30166424505993145,
+          "min": 0.270613771943321,
+          "max": 0.347462534351955
+        },
+        "e_ember": {
+          "mean": 0.09315575691533388,
+          "min": 0.0117908772470226,
+          "max": 0.133305720417682
+        },
+        "spin_over_n_azure": {
+          "mean": 0.954663468169562,
+          "min": 0.946215824908242,
+          "max": 0.967283011764754
+        },
+        "spin_over_n_ember": {
+          "mean": 1.9230422434707402,
+          "min": 1.88618736000659,
+          "max": 1.95840932453635
+        },
+        "phi_azure": {
+          "valid_fraction": 1.0,
+          "segments": 1,
+          "span_turns": 0.1929291927208308,
+          "net_turns": -0.0957290741126059,
+          "largest_segment_span_turns": 0.1929291927208308,
+          "largest_segment_abs_net_turns": 0.0957290741126059
+        },
+        "phi_ember": {
+          "valid_fraction": 1.0,
+          "segments": 1,
+          "span_turns": 0.44460107686322403,
+          "net_turns": 0.1968738838813923,
+          "largest_segment_span_turns": 0.44460107686322403,
+          "largest_segment_abs_net_turns": 0.1968738838813923
+        }
+      }
+    },
+    {
+      "initial": {
+        "time": 0.0,
+        "period_ratio": 2.04999989710413,
+        "a_azure": 5.0,
+        "a_ember": 8.0741081237793,
+        "e_azure": 0.3,
+        "e_ember": 0.120000000000001,
+        "phi_azure_turns": 2.14981936802627e-16,
+        "phi_ember_turns": -8.68762621325671e-17,
+        "segment_azure": 1.0,
+        "segment_ember": 1.0,
+        "spin_over_n_azure": 0.953976158904154,
+        "spin_over_n_ember": 1.95565102759331,
+        "mechanical_energy": -3.86556509911916,
+        "heat": 0.0,
+        "energy_budget_error": 0.0,
+        "angular_momentum_error": 0.0,
+        "net_momentum": 1.04738230666885e-15,
+        "lag_phase_bound": 0.0142417484941917
+      },
+      "final": {
+        "time": 4194304.0,
+        "period_ratio": 2.03169119556531,
+        "a_azure": 4.92333952464923,
+        "a_ember": 7.90290781773399,
+        "e_azure": 0.208214218436533,
+        "e_ember": 0.105752297886453,
+        "phi_azure_turns": -0.00805169863027615,
+        "phi_ember_turns": -344.105065896699,
+        "segment_azure": 1.0,
+        "segment_ember": 13.0,
+        "spin_over_n_azure": 1.3034186118171,
+        "spin_over_n_ember": 1.05180428587696,
+        "mechanical_energy": -3.91968004888635,
+        "heat": 0.0541562241219399,
+        "energy_budget_error": 1.06774439693605e-05,
+        "angular_momentum_error": 9.05094189951417e-13,
+        "net_momentum": 1.89064931787346e-11,
+        "lag_phase_bound": 0.0110573987412808
+      },
+      "sampled_maxima": {
+        "energy_budget_error": 1.22697614560541e-05,
+        "angular_momentum_error": 9.67325293763456e-13,
+        "net_momentum": 2.28367289899548e-11,
+        "lag_phase_bound": 0.0196152711277768
+      },
+      "overall_phases": {
+        "azure": {
+          "valid_fraction": 1.0,
+          "segments": 1,
+          "span_turns": 0.249616439385314,
+          "net_turns": -0.008051698630276365,
+          "largest_segment_span_turns": 0.249616439385314,
+          "largest_segment_abs_net_turns": 0.008051698630276365
+        },
+        "ember": {
+          "valid_fraction": 1.0,
+          "segments": 13,
+          "span_turns": null,
+          "net_turns": null,
+          "largest_segment_span_turns": 343.59698197374973,
+          "largest_segment_abs_net_turns": 343.59698197374973
+        }
+      },
+      "dissipated_fraction": 0.014009911289368892,
+      "name": "resonance-both-weak",
+      "settings": {
+        "preset": "resonance",
+        "tides": "both",
+        "duration": 4194304,
+        "step": 0.03125,
+        "interval": 16.0,
+        "lag_inner": 0.01,
+        "lag_outer": 0.01,
+        "radius_inner": 0.15,
+        "radius_outer": 0.18898815748423098
+      },
+      "console": "resonance/both: 4194304 seconds, step 0.03125; heat 0.05415622412; max |E+heat-E0|/|E0| 1.227554336e-05; max relative total L error 9.68579321e-13; max net momentum 2.284712902e-11; max lag bound 0.01963801061",
+      "window_count": 256,
+      "first_window": {
+        "start": 0.0,
+        "end": 16384.0,
+        "samples": 1025,
+        "period_ratio": {
+          "mean": 2.014264744612857,
+          "min": 1.95540944941611,
+          "max": 2.060715250365
+        },
+        "a_azure": {
+          "mean": 5.002101681547187,
+          "min": 4.97222054438745,
+          "max": 5.04782421921253
+        },
+        "a_ember": {
+          "mean": 7.98306662052555,
+          "min": 7.88009371112931,
+          "max": 8.07904980487198
+        },
+        "e_azure": {
+          "mean": 0.3007306624058897,
+          "min": 0.269727967860686,
+          "max": 0.346559628194893
+        },
+        "e_ember": {
+          "mean": 0.09389417120345993,
+          "min": 0.00860985468097125,
+          "max": 0.133827117040341
+        },
+        "spin_over_n_azure": {
+          "mean": 1.1457915172302064,
+          "min": 0.948890381092391,
+          "max": 1.31008710201183
+        },
+        "spin_over_n_ember": {
+          "mean": 1.9111394643462885,
+          "min": 1.86389787091793,
+          "max": 1.95565102759331
+        },
+        "phi_azure": {
+          "valid_fraction": 1.0,
+          "segments": 1,
+          "span_turns": 0.1927707731468858,
+          "net_turns": -0.014984225455345916,
+          "largest_segment_span_turns": 0.1927707731468858,
+          "largest_segment_abs_net_turns": 0.014984225455345916
+        },
+        "phi_ember": {
+          "valid_fraction": 1.0,
+          "segments": 1,
+          "span_turns": 0.443589210308326,
+          "net_turns": 0.21108742965742908,
+          "largest_segment_span_turns": 0.443589210308326,
+          "largest_segment_abs_net_turns": 0.21108742965742908
+        }
+      },
+      "last_window": {
+        "start": 4177936.0,
+        "end": 4194304.0,
+        "samples": 1024,
+        "period_ratio": {
+          "mean": 2.021229201467897,
+          "min": 1.96033958845619,
+          "max": 2.06789062579081
+        },
+        "a_azure": {
+          "mean": 4.928176267772654,
+          "min": 4.89530306654967,
+          "max": 4.97950022013877
+        },
+        "a_ember": {
+          "mean": 7.883212412978468,
+          "min": 7.78007531802128,
+          "max": 7.97327812294242
+        },
+        "e_azure": {
+          "mean": 0.2213421936438395,
+          "min": 0.186978986970319,
+          "max": 0.271691880642089
+        },
+        "e_ember": {
+          "mean": 0.0900160046498723,
+          "min": 0.0195723170796117,
+          "max": 0.123021883827313
+        },
+        "spin_over_n_azure": {
+          "mean": 1.3063162785711664,
+          "min": 1.29161167494901,
+          "max": 1.3263122722045
+        },
+        "spin_over_n_ember": {
+          "mean": 1.0477620283706435,
+          "min": 1.0272201790413,
+          "max": 1.0657076755924
+        },
+        "phi_azure": {
+          "valid_fraction": 1.0,
+          "segments": 1,
+          "span_turns": 0.231097502883186,
+          "net_turns": 0.026049106578476647,
+          "largest_segment_span_turns": 0.231097502883186,
+          "largest_segment_abs_net_turns": 0.026049106578476647
+        },
+        "phi_ember": {
+          "valid_fraction": 1.0,
+          "segments": 1,
+          "span_turns": 4.330699824535998,
+          "net_turns": -4.330699824535998,
+          "largest_segment_span_turns": 4.330699824535998,
+          "largest_segment_abs_net_turns": 4.330699824535998
+        }
+      }
+    },
+    {
+      "initial": {
+        "time": 0.0,
+        "period_ratio": 2.04999989710413,
+        "a_azure": 5.0,
+        "a_ember": 8.0741081237793,
+        "e_azure": 0.3,
+        "e_ember": 0.120000000000001,
+        "phi_azure_turns": 2.14981936802627e-16,
+        "phi_ember_turns": -8.68762621325671e-17,
+        "segment_azure": 1.0,
+        "segment_ember": 1.0,
+        "spin_over_n_azure": 0.953976158904154,
+        "spin_over_n_ember": 1.95565102759331,
+        "mechanical_energy": -3.86053668156742,
+        "heat": 0.0,
+        "energy_budget_error": 0.0,
+        "angular_momentum_error": 0.0,
+        "net_momentum": 1.04738230666885e-15,
+        "lag_phase_bound": 0.142417484941917
+      },
+      "final": {
+        "time": 4194304.0,
+        "period_ratio": 2.18653085496991,
+        "a_azure": 4.67097622261863,
+        "a_ember": 7.87408430733536,
+        "e_azure": 0.0844871992383045,
+        "e_ember": 0.00904404158502525,
+        "phi_azure_turns": -4685.86143291627,
+        "phi_ember_turns": -111.221021485516,
+        "segment_azure": 2.0,
+        "segment_ember": 122.0,
+        "spin_over_n_azure": 1.017567776336,
+        "spin_over_n_ember": 1.01477386308171,
+        "mechanical_energy": -4.02067659048105,
+        "heat": 0.160178754322326,
+        "energy_budget_error": 1.00621783717992e-05,
+        "angular_momentum_error": 4.40392121019155e-13,
+        "net_momentum": 1.61194278732385e-11,
+        "lag_phase_bound": 0.108301553623361
+      },
+      "sampled_maxima": {
+        "energy_budget_error": 1.22537629693306e-05,
+        "angular_momentum_error": 1.47590872990203e-12,
+        "net_momentum": 1.66307310255018e-11,
+        "lag_phase_bound": 0.194171857664172
+      },
+      "overall_phases": {
+        "azure": {
+          "valid_fraction": 1.0,
+          "segments": 2,
+          "span_turns": null,
+          "net_turns": null,
+          "largest_segment_span_turns": 4686.14649120213,
+          "largest_segment_abs_net_turns": 4686.14649120213
+        },
+        "ember": {
+          "valid_fraction": 0.9999885559518588,
+          "segments": 122,
+          "span_turns": null,
+          "net_turns": null,
+          "largest_segment_span_turns": 2005.053503234778,
+          "largest_segment_abs_net_turns": 2005.053503234778
+        }
+      },
+      "dissipated_fraction": 0.041491317797113035,
+      "name": "resonance-both-large-outer",
+      "settings": {
+        "preset": "resonance",
+        "tides": "both",
+        "duration": 4194304,
+        "step": 0.03125,
+        "interval": 16.0,
+        "lag_inner": 0.1,
+        "lag_outer": 0.1,
+        "radius_inner": 0.15,
+        "radius_outer": 0.4
+      },
+      "console": "resonance/both: 4194304 seconds, step 0.03125; heat 0.1601787543; max |E+heat-E0|/|E0| 1.228832044e-05; max relative total L error 1.476535177e-12; max net momentum 1.663973707e-11; max lag bound 0.1967243289",
+      "window_count": 256,
+      "first_window": {
+        "start": 0.0,
+        "end": 16384.0,
+        "samples": 1025,
+        "period_ratio": {
+          "mean": 2.014727746458944,
+          "min": 1.95542693389399,
+          "max": 2.061201291863
+        },
+        "a_azure": {
+          "mean": 5.001488649134822,
+          "min": 4.97145931545254,
+          "max": 5.03752398603514
+        },
+        "a_ember": {
+          "mean": 7.983310143345463,
+          "min": 7.87922203595513,
+          "max": 8.07768112242758
+        },
+        "e_azure": {
+          "mean": 0.2990929509595296,
+          "min": 0.267433018513209,
+          "max": 0.344848308787357
+        },
+        "e_ember": {
+          "mean": 0.09209316132763663,
+          "min": 0.00564772485551913,
+          "max": 0.132857570900329
+        },
+        "spin_over_n_azure": {
+          "mean": 1.480650137290122,
+          "min": 0.950330657447956,
+          "max": 1.62402515074912
+        },
+        "spin_over_n_ember": {
+          "mean": 1.3722806650962092,
+          "min": 1.1065287486215,
+          "max": 1.95565102759331
+        },
+        "phi_azure": {
+          "valid_fraction": 1.0,
+          "segments": 1,
+          "span_turns": 0.1947283894487624,
+          "net_turns": -0.08597438711815691,
+          "largest_segment_span_turns": 0.1947283894487624,
+          "largest_segment_abs_net_turns": 0.08597438711815691
+        },
+        "phi_ember": {
+          "valid_fraction": 1.0,
+          "segments": 1,
+          "span_turns": 0.459250172801564,
+          "net_turns": 0.1582589389021811,
+          "largest_segment_span_turns": 0.459250172801564,
+          "largest_segment_abs_net_turns": 0.1582589389021811
+        }
+      },
+      "last_window": {
+        "start": 4177936.0,
+        "end": 4194304.0,
+        "samples": 1024,
+        "period_ratio": {
+          "mean": 2.1530259221382404,
+          "min": 2.10196031512371,
+          "max": 2.19752465277154
+        },
+        "a_azure": {
+          "mean": 4.693538840961077,
+          "min": 4.66515614512119,
+          "max": 4.75336484482672
+        },
+        "a_ember": {
+          "mean": 7.830825841852023,
+          "min": 7.74485096610981,
+          "max": 7.90556160990777
+        },
+        "e_azure": {
+          "mean": 0.06182940435099161,
+          "min": 0.0138241592931875,
+          "max": 0.0960363807609014
+        },
+        "e_ember": {
+          "mean": 0.011893396951286387,
+          "min": 0.000719049333618433,
+          "max": 0.0256311833904562
+        },
+        "spin_over_n_azure": {
+          "mean": 1.0255503835233402,
+          "min": 1.01595427943951,
+          "max": 1.04533925440852
+        },
+        "spin_over_n_ember": {
+          "mean": 1.0063971612390976,
+          "min": 0.989828666130707,
+          "max": 1.02084782931635
+        },
+        "phi_azure": {
+          "valid_fraction": 1.0,
+          "segments": 1,
+          "span_turns": 52.75304302379027,
+          "net_turns": -52.75304302379027,
+          "largest_segment_span_turns": 52.75304302379027,
+          "largest_segment_abs_net_turns": 52.75304302379027
+        },
+        "phi_ember": {
+          "valid_fraction": 1.0,
+          "segments": 2,
+          "span_turns": null,
+          "net_turns": null,
+          "largest_segment_span_turns": 110.65074918600445,
+          "largest_segment_abs_net_turns": 110.65074918600445
+        }
+      }
+    },
+    {
+      "initial": {
+        "time": 0.0,
+        "period_ratio": 2.04999989710413,
+        "a_azure": 5.0,
+        "a_ember": 8.0741081237793,
+        "e_azure": 0.3,
+        "e_ember": 0.120000000000001,
+        "phi_azure_turns": 2.14981936802627e-16,
+        "phi_ember_turns": -8.68762621325671e-17,
+        "segment_azure": 1.0,
+        "segment_ember": 1.0,
+        "spin_over_n_azure": 0.953976158904154,
+        "spin_over_n_ember": 1.95565102759331,
+        "mechanical_energy": -3.86053668156742,
+        "heat": 0.0,
+        "energy_budget_error": 0.0,
+        "angular_momentum_error": 0.0,
+        "net_momentum": 1.04738230666885e-15,
+        "lag_phase_bound": 0.0826014262264082
+      },
+      "final": {
+        "time": 4194304.0,
+        "period_ratio": 2.04143818725856,
+        "a_azure": 4.89227989585919,
+        "a_ember": 7.87814764826466,
+        "e_azure": 0.216541930193818,
+        "e_ember": 0.0273778718900442,
+        "phi_azure_turns": 0.0672517593808542,
+        "phi_ember_turns": 0.124963716615501,
+        "segment_azure": 1.0,
+        "segment_ember": 1.0,
+        "spin_over_n_azure": 1.28236885318258,
+        "spin_over_n_ember": 1.01592174299257,
+        "mechanical_energy": -3.9406960034057,
+        "heat": 0.0802015796932293,
+        "energy_budget_error": 1.09461089048781e-05,
+        "angular_momentum_error": 5.48140975663955e-15,
+        "net_momentum": 1.08741104089634e-11,
+        "lag_phase_bound": 0.0536261984583217
+      },
+      "sampled_maxima": {
+        "energy_budget_error": 1.22883543245991e-05,
+        "angular_momentum_error": 7.90889122029421e-13,
+        "net_momentum": 1.58890102009588e-11,
+        "lag_phase_bound": 0.0826014262264082
+      },
+      "overall_phases": {
+        "azure": {
+          "valid_fraction": 1.0,
+          "segments": 1,
+          "span_turns": 0.1966988741973909,
+          "net_turns": 0.067251759380854,
+          "largest_segment_span_turns": 0.1966988741973909,
+          "largest_segment_abs_net_turns": 0.067251759380854
+        },
+        "ember": {
+          "valid_fraction": 1.0,
+          "segments": 1,
+          "span_turns": 0.454343867606682,
+          "net_turns": 0.12496371661550108,
+          "largest_segment_span_turns": 0.454343867606682,
+          "largest_segment_abs_net_turns": 0.12496371661550108
+        }
+      },
+      "dissipated_fraction": 0.02077472287108708,
+      "name": "resonance-outer-dominated",
+      "settings": {
+        "preset": "resonance",
+        "tides": "both",
+        "duration": 4194304,
+        "step": 0.03125,
+        "interval": 16.0,
+        "lag_inner": 0.01,
+        "lag_outer": 0.1,
+        "radius_inner": 0.15,
+        "radius_outer": 0.4
+      },
+      "console": "resonance/both: 4194304 seconds, step 0.03125; heat 0.08020157969; max |E+heat-E0|/|E0| 1.229275524e-05; max relative total L error 7.935515211e-13; max net momentum 1.589775272e-11; max lag bound 0.0826708886",
+      "window_count": 256,
+      "first_window": {
+        "start": 0.0,
+        "end": 16384.0,
+        "samples": 1025,
+        "period_ratio": {
+          "mean": 2.0144861419067834,
+          "min": 1.95592694738812,
+          "max": 2.0605463580755
+        },
+        "a_azure": {
+          "mean": 5.00403171967386,
+          "min": 4.97434180649968,
+          "max": 5.04448244588168
+        },
+        "a_ember": {
+          "mean": 7.98673332019987,
+          "min": 7.88265965215759,
+          "max": 8.08039605923177
+        },
+        "e_azure": {
+          "mean": 0.30088285847231044,
+          "min": 0.269409900902001,
+          "max": 0.346432542169907
+        },
+        "e_ember": {
+          "mean": 0.09264850303638518,
+          "min": 0.00718262333886076,
+          "max": 0.133427787956071
+        },
+        "spin_over_n_azure": {
+          "mean": 1.1457429233172458,
+          "min": 0.948890089830262,
+          "max": 1.30794665501737
+        },
+        "spin_over_n_ember": {
+          "mean": 1.3734382811435712,
+          "min": 1.11335857545135,
+          "max": 1.95565102759331
+        },
+        "phi_azure": {
+          "valid_fraction": 1.0,
+          "segments": 1,
+          "span_turns": 0.19545376781085322,
+          "net_turns": -0.07101866347839521,
+          "largest_segment_span_turns": 0.19545376781085322,
+          "largest_segment_abs_net_turns": 0.07101866347839521
+        },
+        "phi_ember": {
+          "valid_fraction": 1.0,
+          "segments": 1,
+          "span_turns": 0.451972503667807,
+          "net_turns": 0.16879618684946007,
+          "largest_segment_span_turns": 0.451972503667807,
+          "largest_segment_abs_net_turns": 0.16879618684946007
+        }
+      },
+      "last_window": {
+        "start": 4177936.0,
+        "end": 4194304.0,
+        "samples": 1024,
+        "period_ratio": {
+          "mean": 2.0217710634693047,
+          "min": 1.94904082090315,
+          "max": 2.08210622514345
+        },
+        "a_azure": {
+          "mean": 4.899654686426815,
+          "min": 4.85547217528255,
+          "max": 4.95453052681812
+        },
+        "a_ember": {
+          "mean": 7.838660219395734,
+          "min": 7.72296932019138,
+          "max": 7.94376122638536
+        },
+        "e_azure": {
+          "mean": 0.21644275814893754,
+          "min": 0.197686639031814,
+          "max": 0.237221253770262
+        },
+        "e_ember": {
+          "mean": 0.028173399738752658,
+          "min": 0.00743285692472079,
+          "max": 0.0445757891023717
+        },
+        "spin_over_n_azure": {
+          "mean": 1.2855622395737452,
+          "min": 1.26811483321795,
+          "max": 1.30740631155015
+        },
+        "spin_over_n_ember": {
+          "mean": 1.0083480649921976,
+          "min": 0.985827413637796,
+          "max": 1.02866234537475
+        },
+        "phi_azure": {
+          "valid_fraction": 1.0,
+          "segments": 1,
+          "span_turns": 0.1680998157313299,
+          "net_turns": 0.13898636887190802,
+          "largest_segment_span_turns": 0.1680998157313299,
+          "largest_segment_abs_net_turns": 0.13898636887190802
+        },
+        "phi_ember": {
+          "valid_fraction": 1.0,
+          "segments": 1,
+          "span_turns": 0.378297150607935,
+          "net_turns": 0.0771212819580952,
+          "largest_segment_span_turns": 0.378297150607935,
+          "largest_segment_abs_net_turns": 0.0771212819580952
+        }
+      }
+    },
+    {
+      "initial": {
+        "time": 0.0,
+        "period_ratio": 2.04999989710413,
+        "a_azure": 5.0,
+        "a_ember": 8.0741081237793,
+        "e_azure": 5.55111512312578e-17,
+        "e_ember": 5.55111512312578e-17,
+        "phi_azure_turns": null,
+        "phi_ember_turns": null,
+        "segment_azure": 0.0,
+        "segment_ember": 0.0,
+        "spin_over_n_azure": 0.953976158904155,
+        "spin_over_n_ember": 1.95565102759331,
+        "mechanical_energy": -3.8322409217188,
+        "heat": 0.0,
+        "energy_budget_error": 0.0,
+        "angular_momentum_error": 0.0,
+        "net_momentum": 4.44089209850063e-16,
+        "lag_phase_bound": 0.102412211283598
+      },
+      "final": {
+        "time": 4194304.0,
+        "period_ratio": 2.13445233268049,
+        "a_azure": 4.90866272614489,
+        "a_ember": 8.14284491513164,
+        "e_azure": 0.0218062475313004,
+        "e_ember": 0.00277831206348628,
+        "phi_azure_turns": -0.137932056201259,
+        "phi_ember_turns": -66.8040687972439,
+        "segment_azure": 62.0,
+        "segment_ember": 1256.0,
+        "spin_over_n_azure": 1.01112606838985,
+        "spin_over_n_ember": 0.997601320363128,
+        "mechanical_energy": -3.84848663487791,
+        "heat": 0.0162458371348557,
+        "energy_budget_error": 3.23507177313886e-08,
+        "angular_momentum_error": 2.15883077805207e-12,
+        "net_momentum": 2.77820030293076e-11,
+        "lag_phase_bound": 0.106212205471191
+      },
+      "sampled_maxima": {
+        "energy_budget_error": 6.37450736849549e-07,
+        "angular_momentum_error": 2.41376615628489e-12,
+        "net_momentum": 3.04155579551019e-11,
+        "lag_phase_bound": 0.121592492347068
+      },
+      "overall_phases": {
+        "azure": {
+          "valid_fraction": 0.9999961853172863,
+          "segments": 62,
+          "span_turns": null,
+          "net_turns": null,
+          "largest_segment_span_turns": 1140.570717303616,
+          "largest_segment_abs_net_turns": 1140.570717303616
+        },
+        "ember": {
+          "valid_fraction": 0.9998626714223044,
+          "segments": 1256,
+          "span_turns": null,
+          "net_turns": null,
+          "largest_segment_span_turns": 457.5972883640782,
+          "largest_segment_abs_net_turns": 457.4997820660622
+        }
+      },
+      "dissipated_fraction": 0.004239252559196949,
+      "name": "circular-both-fine",
+      "settings": {
+        "preset": "circular",
+        "tides": "both",
+        "duration": 4194304,
+        "step": 0.015625,
+        "interval": 16.0,
+        "lag_inner": 0.1,
+        "lag_outer": 0.1,
+        "radius_inner": 0.15,
+        "radius_outer": 0.18898815748423098
+      },
+      "console": "circular/both: 4194304 seconds, step 0.015625; heat 0.01624583713; max |E+heat-E0|/|E0| 6.390680709e-07; max relative total L error 2.415451426e-12; max net momentum 3.043596801e-11; max lag bound 0.1215924923",
+      "window_count": 256,
+      "first_window": {
+        "start": 0.0,
+        "end": 16384.0,
+        "samples": 1025,
+        "period_ratio": {
+          "mean": 2.0986854925980785,
+          "min": 2.03806606681732,
+          "max": 2.15369693741598
+        },
+        "a_azure": {
+          "mean": 4.970936003918176,
+          "min": 4.93109337650582,
+          "max": 5.03829184330645
+        },
+        "a_ember": {
+          "mean": 8.153280751305536,
+          "min": 8.05175369013642,
+          "max": 8.2440488700888
+        },
+        "e_azure": {
+          "mean": 0.0698739147104049,
+          "min": 5.55111512312578e-17,
+          "max": 0.11281360797819
+        },
+        "e_ember": {
+          "mean": 0.006864576439730745,
+          "min": 5.55111512312578e-17,
+          "max": 0.016199924223977
+        },
+        "spin_over_n_azure": {
+          "mean": 1.0159199237631065,
+          "min": 0.939394509521811,
+          "max": 1.0496009319711
+        },
+        "spin_over_n_ember": {
+          "mean": 1.8828396491288404,
+          "min": 1.76080176388338,
+          "max": 2.01148365688264
+        },
+        "phi_azure": {
+          "valid_fraction": 0.9990243902439024,
+          "segments": 1,
+          "span_turns": null,
+          "net_turns": null,
+          "largest_segment_span_turns": 6.560363911928998,
+          "largest_segment_abs_net_turns": 6.127367170935917
+        },
+        "phi_ember": {
+          "valid_fraction": 0.9990243902439024,
+          "segments": 8,
+          "span_turns": null,
+          "net_turns": null,
+          "largest_segment_span_turns": 119.34037731713504,
+          "largest_segment_abs_net_turns": 119.34037731713504
+        }
+      },
+      "last_window": {
+        "start": 4177936.0,
+        "end": 4194304.0,
+        "samples": 1024,
+        "period_ratio": {
+          "mean": 2.15417004214942,
+          "min": 2.11512189259113,
+          "max": 2.18650234964677
+        },
+        "a_azure": {
+          "mean": 4.904264155791176,
+          "min": 4.88437879729978,
+          "max": 4.94328579902827
+        },
+        "a_ember": {
+          "mean": 8.185438602769128,
+          "min": 8.1094753281968,
+          "max": 8.24823261396418
+        },
+        "e_azure": {
+          "mean": 0.04010957949165956,
+          "min": 0.00730504244949916,
+          "max": 0.0619284387724311
+        },
+        "e_ember": {
+          "mean": 0.0057915732133508955,
+          "min": 0.000658794791380411,
+          "max": 0.0124381625498225
+        },
+        "spin_over_n_azure": {
+          "mean": 1.00963492835038,
+          "min": 1.003521327462,
+          "max": 1.02177693251995
+        },
+        "spin_over_n_ember": {
+          "mean": 1.0054575636003467,
+          "min": 0.991489873371827,
+          "max": 1.01703406512937
+        },
+        "phi_azure": {
+          "valid_fraction": 1.0,
+          "segments": 1,
+          "span_turns": 0.33585377205144096,
+          "net_turns": -0.282143146728551,
+          "largest_segment_span_turns": 0.33585377205144096,
+          "largest_segment_abs_net_turns": 0.282143146728551
+        },
+        "phi_ember": {
+          "valid_fraction": 1.0,
+          "segments": 11,
+          "span_turns": null,
+          "net_turns": null,
+          "largest_segment_span_turns": 66.08196179465764,
+          "largest_segment_abs_net_turns": 66.08196179465764
+        }
+      }
+    },
+    {
+      "initial": {
+        "time": 0.0,
+        "period_ratio": 2.04999989710413,
+        "a_azure": 5.0,
+        "a_ember": 8.0741081237793,
+        "e_azure": 0.3,
+        "e_ember": 0.120000000000001,
+        "phi_azure_turns": 2.14981936802627e-16,
+        "phi_ember_turns": -8.68762621325671e-17,
+        "segment_azure": 1.0,
+        "segment_ember": 1.0,
+        "spin_over_n_azure": 0.953976158904154,
+        "spin_over_n_ember": 1.95565102759331,
+        "mechanical_energy": -3.86556509911916,
+        "heat": 0.0,
+        "energy_budget_error": 0.0,
+        "angular_momentum_error": 0.0,
+        "net_momentum": 1.04738230666885e-15,
+        "lag_phase_bound": 0.142417484941917
+      },
+      "final": {
+        "time": 4194304.0,
+        "period_ratio": 2.17904245677878,
+        "a_azure": 4.66284704008944,
+        "a_ember": 7.84242355985256,
+        "e_azure": 0.0837818979904985,
+        "e_ember": 0.0540228762800285,
+        "phi_azure_turns": -5552.90534204258,
+        "phi_ember_turns": -6355.60836481661,
+        "segment_azure": 2.0,
+        "segment_ember": 1.0,
+        "spin_over_n_azure": 1.03032541307786,
+        "spin_over_n_ember": 1.01882534387667,
+        "mechanical_energy": -4.02220834557353,
+        "heat": 0.156651906640026,
+        "energy_budget_error": 2.24034143414129e-06,
+        "angular_momentum_error": 8.50387249824461e-13,
+        "net_momentum": 3.2999435512621e-11,
+        "lag_phase_bound": 0.117761847992542
+      },
+      "sampled_maxima": {
+        "energy_budget_error": 3.06401308013608e-06,
+        "angular_momentum_error": 1.48570882098364e-12,
+        "net_momentum": 3.44639779722944e-11,
+        "lag_phase_bound": 0.195873503908568
+      },
+      "overall_phases": {
+        "azure": {
+          "valid_fraction": 1.0,
+          "segments": 2,
+          "span_turns": null,
+          "net_turns": null,
+          "largest_segment_span_turns": 5553.173736836817,
+          "largest_segment_abs_net_turns": 5553.106050537218
+        },
+        "ember": {
+          "valid_fraction": 1.0,
+          "segments": 1,
+          "span_turns": 6355.866873431887,
+          "net_turns": -6355.60836481661,
+          "largest_segment_span_turns": 6355.866873431887,
+          "largest_segment_abs_net_turns": 6355.60836481661
+        }
+      },
+      "dissipated_fraction": 0.04052496921490781,
+      "name": "resonance-both-fine",
+      "settings": {
+        "preset": "resonance",
+        "tides": "both",
+        "duration": 4194304,
+        "step": 0.015625,
+        "interval": 16.0,
+        "lag_inner": 0.1,
+        "lag_outer": 0.1,
+        "radius_inner": 0.15,
+        "radius_outer": 0.18898815748423098
+      },
+      "console": "resonance/both: 4194304 seconds, step 0.015625; heat 0.1566519066; max |E+heat-E0|/|E0| 3.067561409e-06; max relative total L error 1.486492588e-12; max net momentum 3.447252337e-11; max lag bound 0.1979765171",
+      "window_count": 256,
+      "first_window": {
+        "start": 0.0,
+        "end": 16384.0,
+        "samples": 1025,
+        "period_ratio": {
+          "mean": 2.014325461950393,
+          "min": 1.95480631440032,
+          "max": 2.06025196836096
+        },
+        "a_azure": {
+          "mean": 4.99985795429998,
+          "min": 4.96819799303985,
+          "max": 5.04584710846538
+        },
+        "a_ember": {
+          "mean": 7.979645907499212,
+          "min": 7.87378576863699,
+          "max": 8.07592267290534
+        },
+        "e_azure": {
+          "mean": 0.2990181875417419,
+          "min": 0.267433709143311,
+          "max": 0.345077907773777
+        },
+        "e_ember": {
+          "mean": 0.09314802584751522,
+          "min": 0.00715502897104682,
+          "max": 0.13368146276825
+        },
+        "spin_over_n_azure": {
+          "mean": 1.479996898513211,
+          "min": 0.950303696371496,
+          "max": 1.62488392057152
+        },
+        "spin_over_n_ember": {
+          "mean": 1.8147275071430087,
+          "min": 1.69269993706945,
+          "max": 1.95565102759331
+        },
+        "phi_azure": {
+          "valid_fraction": 1.0,
+          "segments": 1,
+          "span_turns": 0.1977258040308133,
+          "net_turns": -0.038337219786036415,
+          "largest_segment_span_turns": 0.1977258040308133,
+          "largest_segment_abs_net_turns": 0.038337219786036415
+        },
+        "phi_ember": {
+          "valid_fraction": 1.0,
+          "segments": 1,
+          "span_turns": 0.450633443603598,
+          "net_turns": 0.2023846257670251,
+          "largest_segment_span_turns": 0.450633443603598,
+          "largest_segment_abs_net_turns": 0.2023846257670251
+        }
+      },
+      "last_window": {
+        "start": 4177936.0,
+        "end": 4194304.0,
+        "samples": 1024,
+        "period_ratio": {
+          "mean": 2.175507144807671,
+          "min": 2.12166195440113,
+          "max": 2.22407553568769
+        },
+        "a_azure": {
+          "mean": 4.675743435856043,
+          "min": 4.64504655004096,
+          "max": 4.74078244274585
+        },
+        "a_ember": {
+          "mean": 7.855346481324943,
+          "min": 7.76634005005748,
+          "max": 7.93498147359773
+        },
+        "e_azure": {
+          "mean": 0.06897569494537269,
+          "min": 0.00610882162390359,
+          "max": 0.113896115347299
+        },
+        "e_ember": {
+          "mean": 0.05054456404877081,
+          "min": 0.0334136935181878,
+          "max": 0.0701619676589577
+        },
+        "spin_over_n_azure": {
+          "mean": 1.0315176775198394,
+          "min": 1.01683820803059,
+          "max": 1.05293133657195
+        },
+        "spin_over_n_ember": {
+          "mean": 1.0214689521266214,
+          "min": 1.00412775493555,
+          "max": 1.03699939888386
+        },
+        "phi_azure": {
+          "valid_fraction": 1.0,
+          "segments": 1,
+          "span_turns": 59.84329925255952,
+          "net_turns": -59.84329925255952,
+          "largest_segment_span_turns": 59.84329925255952,
+          "largest_segment_abs_net_turns": 59.84329925255952
+        },
+        "phi_ember": {
+          "valid_fraction": 1.0,
+          "segments": 1,
+          "span_turns": 56.587852957020004,
+          "net_turns": -56.587852957020004,
+          "largest_segment_span_turns": 56.587852957020004,
+          "largest_segment_abs_net_turns": 56.587852957020004
+        }
+      }
+    },
+    {
+      "initial": {
+        "time": 0.0,
+        "period_ratio": 2.04999989710413,
+        "a_azure": 5.0,
+        "a_ember": 8.0741081237793,
+        "e_azure": 0.3,
+        "e_ember": 0.120000000000001,
+        "phi_azure_turns": 2.14981936802627e-16,
+        "phi_ember_turns": -8.68762621325671e-17,
+        "segment_azure": 1.0,
+        "segment_ember": 1.0,
+        "spin_over_n_azure": 0.953976158904154,
+        "spin_over_n_ember": 1.95565102759331,
+        "mechanical_energy": -3.86053668156742,
+        "heat": 0.0,
+        "energy_budget_error": 0.0,
+        "angular_momentum_error": 0.0,
+        "net_momentum": 1.04738230666885e-15,
+        "lag_phase_bound": 0.0826014262264082
+      },
+      "final": {
+        "time": 4194304.0,
+        "period_ratio": 2.04566761601924,
+        "a_azure": 4.86953612183157,
+        "a_ember": 7.85234975707655,
+        "e_azure": 0.230924549028314,
+        "e_ember": 0.0202601783124115,
+        "phi_azure_turns": 0.0145446529375704,
+        "phi_ember_turns": -0.016382602154053,
+        "segment_azure": 1.0,
+        "segment_ember": 1.0,
+        "spin_over_n_azure": 1.27258830381776,
+        "spin_over_n_ember": 1.01116761096536,
+        "mechanical_energy": -3.94081624134884,
+        "heat": 0.080290217446105,
+        "energy_budget_error": 2.76066919247488e-06,
+        "angular_momentum_error": 2.00228067824676e-12,
+        "net_momentum": 1.69957809872173e-11,
+        "lag_phase_bound": 0.05300999597474
+      },
+      "sampled_maxima": {
+        "energy_budget_error": 3.07170604288243e-06,
+        "angular_momentum_error": 2.36530661584363e-12,
+        "net_momentum": 2.45132500092569e-11,
+        "lag_phase_bound": 0.0826014262264082
+      },
+      "overall_phases": {
+        "azure": {
+          "valid_fraction": 1.0,
+          "segments": 1,
+          "span_turns": 0.1968197299367474,
+          "net_turns": 0.014544652937570185,
+          "largest_segment_span_turns": 0.1968197299367474,
+          "largest_segment_abs_net_turns": 0.014544652937570185
+        },
+        "ember": {
+          "valid_fraction": 1.0,
+          "segments": 1,
+          "span_turns": 0.454435730564538,
+          "net_turns": -0.016382602154052912,
+          "largest_segment_span_turns": 0.454435730564538,
+          "largest_segment_abs_net_turns": 0.016382602154052912
+        }
+      },
+      "dissipated_fraction": 0.020797682827224502,
+      "name": "resonance-outer-dominated-fine",
+      "settings": {
+        "preset": "resonance",
+        "tides": "both",
+        "duration": 4194304,
+        "step": 0.015625,
+        "interval": 16.0,
+        "lag_inner": 0.01,
+        "lag_outer": 0.1,
+        "radius_inner": 0.15,
+        "radius_outer": 0.4
+      },
+      "console": "resonance/both: 4194304 seconds, step 0.015625; heat 0.08029021745; max |E+heat-E0|/|E0| 3.073010929e-06; max relative total L error 2.366246286e-12; max net momentum 2.452973929e-11; max lag bound 0.08267101481",
+      "window_count": 256,
+      "first_window": {
+        "start": 0.0,
+        "end": 16384.0,
+        "samples": 1025,
+        "period_ratio": {
+          "mean": 2.0144189007143143,
+          "min": 1.95604414771901,
+          "max": 2.06063092324956
+        },
+        "a_azure": {
+          "mean": 5.00405683019727,
+          "min": 4.97424633934613,
+          "max": 5.04419856350833
+        },
+        "a_ember": {
+          "mean": 7.986593824666778,
+          "min": 7.88287409036302,
+          "max": 8.0805709450582
+        },
+        "e_azure": {
+          "mean": 0.30075703466490306,
+          "min": 0.269242167839989,
+          "max": 0.346471553663684
+        },
+        "e_ember": {
+          "mean": 0.09272616744441317,
+          "min": 0.00686440286010179,
+          "max": 0.133518509939577
+        },
+        "spin_over_n_azure": {
+          "mean": 1.1455985692594688,
+          "min": 0.948863411446405,
+          "max": 1.30802270495577
+        },
+        "spin_over_n_ember": {
+          "mean": 1.3734298654100279,
+          "min": 1.11355732630878,
+          "max": 1.95565102759331
+        },
+        "phi_azure": {
+          "valid_fraction": 1.0,
+          "segments": 1,
+          "span_turns": 0.19606173363046397,
+          "net_turns": -0.06648985202346251,
+          "largest_segment_span_turns": 0.19606173363046397,
+          "largest_segment_abs_net_turns": 0.06648985202346251
+        },
+        "phi_ember": {
+          "valid_fraction": 1.0,
+          "segments": 1,
+          "span_turns": 0.451114792773415,
+          "net_turns": 0.17299698859708107,
+          "largest_segment_span_turns": 0.451114792773415,
+          "largest_segment_abs_net_turns": 0.17299698859708107
+        }
+      },
+      "last_window": {
+        "start": 4177936.0,
+        "end": 4194304.0,
+        "samples": 1024,
+        "period_ratio": {
+          "mean": 2.021943509799797,
+          "min": 1.95065579348467,
+          "max": 2.08125880350334
+        },
+        "a_azure": {
+          "mean": 4.899368718291289,
+          "min": 4.8557754439664,
+          "max": 4.95163383525199
+        },
+        "a_ember": {
+          "mean": 7.838666072483367,
+          "min": 7.72497052042293,
+          "max": 7.94267346313468
+        },
+        "e_azure": {
+          "mean": 0.21629309154761292,
+          "min": 0.197494396128722,
+          "max": 0.236902839392726
+        },
+        "e_ember": {
+          "mean": 0.028166588284889667,
+          "min": 0.00759467698568081,
+          "max": 0.0442850351316752
+        },
+        "spin_over_n_azure": {
+          "mean": 1.2847018846936018,
+          "min": 1.26729950864553,
+          "max": 1.30539991439455
+        },
+        "spin_over_n_ember": {
+          "mean": 1.008440728549363,
+          "min": 0.98639821519417,
+          "max": 1.02863257014821
+        },
+        "phi_azure": {
+          "valid_fraction": 1.0,
+          "segments": 1,
+          "span_turns": 0.1681131556062434,
+          "net_turns": 0.055488562240886004,
+          "largest_segment_span_turns": 0.1681131556062434,
+          "largest_segment_abs_net_turns": 0.055488562240886004
+        },
+        "phi_ember": {
+          "valid_fraction": 1.0,
+          "segments": 1,
+          "span_turns": 0.371832295403417,
+          "net_turns": 0.0667889517637869,
+          "largest_segment_span_turns": 0.371832295403417,
+          "largest_segment_abs_net_turns": 0.0667889517637869
+        }
+      }
+    }
+  ]
+}

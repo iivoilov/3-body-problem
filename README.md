@@ -95,10 +95,16 @@ their size. Trails show the actual simulated barycentric paths.
 
 The units are arbitrary but consistent: **G = 0.00856736493150118**, with masses
 **1000, 2, and 4** for Sol, Azure, and Ember. The initial semimajor axes are **5**
-and approximately **8.07411**. Spins are prescribed prograde animation; spin
-torques, tidal dissipation, gas drag, and general relativity are not modeled.
+and approximately **8.07411**. In the interactive app, spins are prescribed
+prograde animation; spin torques, tidal dissipation, gas drag, and general
+relativity are not modeled.
 Surface contact pauses the simulation. Eclipse shading approximates overlap of
 the sun's apparent disk with the other planet's disk, including partial shadows.
+
+The separate [tidal research study](doc/TIDAL_EXPERIMENTS.md) adds a
+Mignard–Hut constant time lag model to investigate how dissipation changes orbital
+resonance. See the [simulation results](doc/experiments/tides/RESULTS.md) for
+comparisons of resonance escape and quieter bounded motion.
 
 ## What do we observe about resonance?
 
@@ -130,6 +136,25 @@ relativity is not required to model those processes.
 [Resonance and dissipation study](https://doi.org/10.1051/0004-6361/201423676)
 
 ## Verification and reproducibility
+
+### Headless tidal experiments
+
+A separate command-line experiment tests the **Mignard–Hut constant time lag**
+tidal model, with evolving planet spins, orbital back reaction, and heat tracking.
+It compares gravity alone with tides from both existing starting presets.
+The first study finds resonance escape for the standard planet structure and
+bounded, modestly quieter angles when outer-planet dissipation dominates.
+
+```bash
+cmake -S . -B build-headless -DCMAKE_BUILD_TYPE=Release -DORBIT_BUILD_VIEWER=OFF
+cmake --build build-headless --parallel 2
+python3 tools/run-tidal-study.py --interval 16
+```
+
+This build needs no graphics libraries or display. See the
+[model, parameters, commands, and results](doc/TIDAL_EXPERIMENTS.md).
+
+### Tests and recordings
 
 ```bash
 ctest --test-dir build --output-on-failure
