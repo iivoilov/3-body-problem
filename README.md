@@ -7,7 +7,7 @@ diagnostics. A companion Three.js viewer replays exported simulation data in a b
 ![15-second recording of the native OpenGL app, including the orbital scene and diagnostic plots](doc/assets/orbit-lab.gif)
 
 [Download the 15-second MP4](doc/assets/orbit-lab.mp4) ·
-[WebGL viewer source](doc/index.html) ·
+[WebGL viewer](https://iivoilov.github.io/3-body-problem/doc/index.html) ·
 [Code walkthrough](doc/DEVELOPMENT.md)
 
 The GIF shows the native app's client area, with the circular preset at 1× playback.
