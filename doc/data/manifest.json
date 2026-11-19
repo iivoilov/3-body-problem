@@ -1,0 +1,26 @@
+{
+  "format":"orbit-lab-trajectory",
+  "version":1,
+  "encoding":"float32-le",
+  "fieldsPerFrame":14,
+  "frameCount":16385,
+  "duration":2048,
+  "sampleInterval":0.125,
+  "telemetryInterval":0.5,
+  "physicsStep":0.00390625,
+  "gravity":0.0085673649315011792,
+  "playbackScale":4,
+  "initialPeriodRatio":2.0499999999999998,
+  "coordinateSystem":"Barycentric; XZ orbital plane, Y up; prograde spin about -Y",
+  "fields":["sol.x","sol.y","sol.z","azure.x","azure.y","azure.z","ember.x","ember.y","ember.z","periodRatio","eccentricity.azure","eccentricity.ember","phaseTurns.azure","phaseTurns.ember"],
+  "bodies":[
+    {"name":"Sol","mass":1000,"radius":1.25,"spinRate":0.074999999999999997,"color":[1,0.69999998807907104,0.20000000298023224]},
+    {"name":"AZURE","mass":2,"radius":0.64999997615814209,"spinRate":0.25,"color":[0.18000000715255737,0.64999997615814209,0.94999998807907104]},
+    {"name":"EMBER","mass":4,"radius":0.85000002384185791,"spinRate":0.25,"color":[0.94999998807907104,0.37999999523162842,0.20000000298023224]}
+  ],
+  "presets":[
+    {"id":"circular","label":"Circular start","file":"circular.bin","description":"Near-circular initial orbits. Automatic capture or damping to a fixed lock is not established."},
+    {"id":"resonance","label":"Resonance candidate","file":"resonance.bin","description":"Chosen eccentricities and phases give bounded critical angles in a finite test; this is not spontaneous capture or proof of permanent resonance."}
+  ],
+  "missingTelemetry":"IEEE-754 NaN marks undefined period ratios or unreliable periapsis angles."
+}

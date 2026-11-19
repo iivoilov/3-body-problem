@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Explore a recorded Newtonian three-body simulation in WebGL, with eclipse shadows and orbital diagnostics.">
+  <title>Orbit / 01 — Three-body explorer</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="viewer.css">
+  <script type="importmap">
+    {"imports":{"three":"./vendor/three.module.js","three/addons/controls/OrbitControls.js":"./vendor/OrbitControls.js"}}
+  </script>
+  <script type="module" src="viewer.mjs"></script>
+</head>
+<body>
+  <header class="page-header">
+    <a class="wordmark" href="./" aria-label="Orbit 01 home">ORBIT <span>/ 01</span></a>
+    <div class="header-copy"><h1>Three-body explorer</h1><p>Native physics. Recorded trajectories. A different point of view.</p></div>
+    <span class="replay-tag">WebGL replay</span>
+  </header>
+  <main>
+    <section class="explorer" aria-label="Interactive orbital replay">
+      <div class="scene-wrap">
+        <div id="scene" aria-label="Three-dimensional view of Sol and two orbiting planets"></div>
+        <div class="scene-label"><span class="eyebrow">NEWTONIAN GRAVITY</span><strong>One star. Two planets.</strong></div>
+        <div class="scene-legend"><span><i class="sol"></i>Sol</span><span><i class="azure"></i>Azure</span><span><i class="ember"></i>Ember</span></div>
+        <p class="camera-hint">Drag to rotate · Scroll to zoom</p>
+        <p id="status" role="status" aria-live="polite">Loading recorded trajectories…</p>
+      </div>
+      <div class="transport">
+        <div class="transport-row">
+          <button id="play" type="button" disabled>Pause</button>
+          <button id="restart" type="button" class="secondary" disabled>Restart</button>
+          <label>Starting state<select id="preset" disabled><option value="circular">Circular start</option><option value="resonance">Resonance candidate</option></select></label>
+          <label>Playback speed<select id="speed"><option value="0.25">0.25×</option><option value="0.5">0.5×</option><option value="1" selected>1×</option><option value="2">2×</option><option value="4">4×</option><option value="8">8×</option><option value="16">16×</option></select></label>
+          <label class="check"><input type="checkbox" id="trails" checked> Trails</label>
+          <label class="check"><input type="checkbox" id="shadows" checked> Shadows</label>
+        </div>
+        <div class="timeline"><label for="time">Simulation time</label><output id="time-label" for="time">—</output><input id="time" type="range" min="0" max="2048" step="0.125" value="1000" disabled aria-label="Simulation time in seconds"></div>
+        <p id="preset-description" class="preset-description">The browser plays positions and measurements exported by the C++ solver.</p>
+      </div>
+    </section>
+
+    <section class="measurements" aria-label="Recorded orbital measurements">
+      <article class="measurement"><div class="measurement-top"><h2>Period ratio</h2><span>Ember / Azure</span></div><p class="metric" id="ratio">—</p><p class="metric-note" id="offset">Offset from 2:1</p><canvas id="ratio-chart" role="img" aria-label="Period ratio history, with a reference line at 2 to 1"></canvas></article>
+      <article class="measurement"><div class="measurement-top"><h2>Eccentricity</h2><span>0 means circular</span></div><p class="metric metric-pair"><span class="azure-text" id="azure-e">—</span><span class="ember-text" id="ember-e">—</span></p><p class="metric-note">Blue: Azure · Orange: Ember</p><canvas id="eccentricity-chart" role="img" aria-label="Eccentricity history for both planets"></canvas></article>
+      <article class="measurement"><div class="measurement-top"><h2>2:1 phase change</h2><span>Turns</span></div><p class="metric metric-pair"><span class="azure-text" id="azure-phase">—</span><span class="ember-text" id="ember-phase">—</span></p><p class="metric-note">Unwrapped; gaps reset phase tracking</p><canvas id="phase-chart" role="img" aria-label="Changes in the two critical resonance angles"></canvas></article>
+    </section>
+    <p class="history-note" id="history-label">Measurements use simulated time, not frame count.</p>
+
+    <section class="explanation">
+      <div><span class="eyebrow">WHAT THIS EXPERIMENT SHOWS</span><h2>Order is not the same as settling.</h2></div>
+      <div class="explanation-copy"><p>All three bodies attract each other. The initial period ratio is 2.05, and the total initial linear momentum is zero. The circular starting state develops perturbations; it has not demonstrated spontaneous capture into a permanent, motionless 2:1 lock.</p><p>The optional candidate starts with chosen eccentricities and phases. Its angles stayed bounded in a finite native test. Oscillation around a resonant configuration is called libration; it does not have to disappear for a phase relationship to remain bounded. These plots are diagnostic evidence, not a universal “resonance percentage.”</p><p>This viewer replays <strong id="data-duration">2048</strong> simulated seconds of exported data. Positions are interpolated between recorded samples. Changing speed or camera does not run a new physics calculation. To change masses or initial conditions, use the native application and regenerate the data.</p><p class="references"><a href="DEVELOPMENT.md">Native code walkthrough</a><a href="README.md">Viewer and data format</a><a href="vendor/LICENSE.three">Three.js license</a></p></div>
+    </section>
+  </main>
+  <footer>Orbit / 01 · An OpenGL learning project with a Three.js companion viewer.</footer>
+  <noscript><p class="error">JavaScript and WebGL 2 are required for this viewer. The native demo is available as a GIF and MP4 in the repository.</p></noscript>
+  <script>
+    if (location.protocol === 'file:') {
+      const status = document.getElementById('status');
+      status.classList.add('error');
+      status.textContent = 'Serve this directory over HTTP: python3 -m http.server 8000 --directory doc, then open http://localhost:8000.';
+    }
+  </script>
+</body>
+</html>
