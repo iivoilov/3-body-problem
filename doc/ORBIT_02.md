@@ -145,10 +145,9 @@ MESA_D3D12_DEFAULT_ADAPTER_NAME=NVIDIA python3 tools/check-orbit02.py --native .
 The browser check needs Python Playwright, Pillow, and Chromium, as does
 Orbit / 01's optional browser QA. A headless build also includes `orbit02_export`
 and all numerical/export/replay tests: configure with `-DORBIT_BUILD_VIEWER=OFF`.
-The native recording is [`assets/orbit-02.mp4`](assets/orbit-02.mp4), with a
-[`GIF preview`](assets/orbit-02.gif). Both capture the actual native client area.
+The native [GIF demo](assets/orbit-02.gif) captures the actual app's client area.
 The 15-second edit shows eight seconds of the surface followed by seven seconds
-of orbital view. Its MP4 is 1280 × 800 and its GIF is 960 × 600, matching Orbit / 01.
+of orbital view. Both Orbit / 01 and Orbit / 02 GIFs are 960 × 600.
 
 The separate `orbit-02-trajectory` version 1 contract has **18433 frames**,
 including endpoints, every **1/512 year**. Each little-endian float32 frame

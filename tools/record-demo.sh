@@ -9,7 +9,7 @@ if [[ "$version" != 01 && "$version" != 02 ]]; then
     exit 1
 fi
 # Both versions use the same output dimensions. Keep the more detailed terrain
-# preview at 10 fps to limit GIF size; the full MP4 remains 20 fps.
+# preview at 10 fps to limit GIF size; intermediate captures use 20 fps.
 gif_fps=15
 gif_colors=128
 gif_delay=7
@@ -66,22 +66,22 @@ record_segment() {
     ffmpeg -hide_banner -loglevel warning -y -f x11grab -framerate 20 -draw_mouse 0 \
         -window_id "$window_id" -video_size "$video_size" -i "${DISPLAY:-:0}" -t "$duration" -an \
         -vf 'scale=1280:800:flags=lanczos' -c:v libx264 -preset fast -crf 22 -pix_fmt yuv420p \
-        -movflags +faststart "$destination"
+        "$destination"
     stop_app
 }
 
 if [[ "$version" == 02 ]]; then
-    record_segment surface 0 8 "$record_tmp/surface.mp4"
+    record_segment surface 0 8 "$record_tmp/surface.mkv"
     # At 1x, eight real seconds correspond to 0.64 simulated year. Start the
     # orbital segment there with its actual integrated history already populated.
-    record_segment orbit 0.64 7 "$record_tmp/orbit.mp4"
-    printf '%s\n' "file 'surface.mp4'" "file 'orbit.mp4'" >"$record_tmp/segments.txt"
+    record_segment orbit 0.64 7 "$record_tmp/orbit.mkv"
+    printf '%s\n' "file 'surface.mkv'" "file 'orbit.mkv'" >"$record_tmp/segments.txt"
     ffmpeg -hide_banner -loglevel warning -y -f concat -safe 0 -i "$record_tmp/segments.txt" \
-        -c copy -movflags +faststart "$output_dir/orbit-02.mp4"
+        -c copy "$record_tmp/demo.mkv"
 else
-    record_segment orbit 1000 15 "$output_dir/orbit-01.mp4"
+    record_segment orbit 1000 15 "$record_tmp/demo.mkv"
 fi
-ffmpeg -hide_banner -loglevel warning -y -i "$output_dir/orbit-$version.mp4" \
+ffmpeg -hide_banner -loglevel warning -y -i "$record_tmp/demo.mkv" \
     -filter_complex "fps=$gif_fps,scale=960:-1:flags=lanczos,split[a][b];[a]palettegen=max_colors=$gif_colors:stats_mode=diff[p];[b][p]paletteuse=dither=sierra2_4a:diff_mode=rectangle" \
     -loop 0 -final_delay "$gif_delay" "$output_dir/orbit-$version.gif"
-printf 'Saved %s and %s\n' "$output_dir/orbit-$version.mp4" "$output_dir/orbit-$version.gif"
+printf 'Saved %s\n' "$output_dir/orbit-$version.gif"

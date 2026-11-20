@@ -21,7 +21,6 @@ The demo records 15 seconds of the native circular preset at 1× playback.
 
 ![Orbit / 01: native orbital simulation with eclipse shadows and diagnostics](doc/assets/orbit-01.gif)
 
-[Watch the MP4](doc/assets/orbit-01.mp4) ·
 [Open the browser viewer](https://iivoilov.github.io/3-body-problem/doc/index.html)
 
 ## Orbit / 02 — The alien world
@@ -41,7 +40,6 @@ for the assumptions, units, and controls. The 15-second native demo shows
 
 ![Orbit / 02: eight seconds on the alien surface followed by seven seconds of orbital motion](doc/assets/orbit-02.gif)
 
-[Watch the MP4](doc/assets/orbit-02.mp4) ·
 [Open the browser viewer](https://iivoilov.github.io/3-body-problem/doc/orbit-02.html)
 
 ## Native application
@@ -150,7 +148,7 @@ Mignard–Hut constant time lag model to investigate how dissipation changes orb
 resonance. See the [simulation results](doc/experiments/tides/RESULTS.md) for
 comparisons of resonance escape and quieter bounded motion.
 
-## What do we observe about resonance?
+## What do we observe about orbital resonance?
 
 **The ordinary circular run has not demonstrated spontaneous capture into a
 permanent synchronized state.** The period ratio and eccentricities vary, and
@@ -213,7 +211,7 @@ added when their interpreters are available. Graphics checks require a desktop
 display. Optional browser QA is provided by `tools/check-viewer.py` and requires
 Python Playwright, Pillow, and Chromium.
 
-To regenerate the 15-second MP4 and GIF on an X11 / WSLg desktop:
+To regenerate the 15-second GIF demos on an X11 / WSLg desktop:
 
 ```bash
 ./tools/record-demo.sh
