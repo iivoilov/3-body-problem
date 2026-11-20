@@ -1,14 +1,14 @@
 #include "render_utils.hpp" // GLEW before GLFW.
 #include <GLFW/glfw3.h>
 #include "alien_viewer.hpp"
-#include "alien_world.hpp"
+#include "alien_catalog.hpp"
 #include "hud.hpp"
 #include <iostream>
 
 namespace orbit {
 namespace {
 struct AlienApp {
-    AlienSimulation simulation;
+    CatalogSimulation simulation;
     Camera camera;
     bool surface = true, trails = true, showData = true, shadows = true;
     bool dragging = false, switchVersion = false;
@@ -16,7 +16,7 @@ struct AlienApp {
     float yaw = 2.93f, pitch = 0.035f;
     void reset() {
         simulation.reset(); camera = Camera{}; camera.distance = 19;
-        yaw = 2.93f; pitch = 0.035f;
+        yaw = catalogYaw(simulation); pitch = 0.035f;
     }
 };
 AlienApp& alienApp(GLFWwindow* window) { return *static_cast<AlienApp*>(glfwGetWindowUserPointer(window)); }
@@ -26,6 +26,11 @@ void key(GLFWwindow* window, int code, int, int action, int) {
     switch (code) {
         case GLFW_KEY_ESCAPE: glfwSetWindowShouldClose(window, GLFW_TRUE); break;
         case GLFW_KEY_1: state.switchVersion = true; glfwSetWindowShouldClose(window, GLFW_TRUE); break;
+        case GLFW_KEY_P: {
+            const auto found=std::find(alienPresetIds.begin(),alienPresetIds.end(),state.simulation.preset.id);
+            const auto index=static_cast<std::size_t>(found-alienPresetIds.begin());
+            state.simulation=CatalogSimulation(alienPresetIds[(index+1)%alienPresetIds.size()]); state.reset(); break;
+        }
         case GLFW_KEY_V: state.surface = !state.surface; break;
         case GLFW_KEY_SPACE:
             if (!state.simulation.collision) state.simulation.paused = !state.simulation.paused;
@@ -98,8 +103,9 @@ int runAlienViewer(const AlienViewerOptions& options) {
     std::cout << "Orbit / 02 / GPU: " << glGetString(GL_RENDERER) << '\n';
 
     AlienApp state;
+    state.simulation=CatalogSimulation(options.preset);
     state.reset(); state.surface=options.surface; state.simulation.speed=options.speed;
-    while (state.simulation.time+alienStep<=options.startTime+1e-12)
+    while (state.simulation.time+state.simulation.preset.step<=options.startTime+1e-12)
         if (!state.simulation.step()) throw std::runtime_error("Surface contact during fast-forward.");
     glfwSetWindowUserPointer(window,&state);
     glfwSetKeyCallback(window,key);
@@ -148,7 +154,7 @@ int runAlienViewer(const AlienViewerOptions& options) {
             positions[i]=(i<3 ? state.simulation.stars[i].position : state.simulation.planet.position).asFloat();
             extent=std::max(extent,length(positions[i]));
         }
-        const auto surfaceDirections=alienSkyDirections(state.simulation.stars,state.simulation.planet,state.simulation.time);
+        const auto surfaceDirections=catalogSkyDirections(state.simulation);
         const auto sample=state.simulation.measure();
         Vec3 forward,right,up,eye;
         if (state.surface) {
@@ -164,16 +170,16 @@ int runAlienViewer(const AlienViewerOptions& options) {
         sky.use(); sky.viewport(static_cast<float>(width),static_cast<float>(height));
         sky.set("cameraForward",forward); sky.set("cameraRight",right); sky.set("cameraUp",up);
         sky.set("fovScale",state.surface ? 0.62f : std::tan(pi/8));
-        sky.set("time",static_cast<float>(state.simulation.time));
+        sky.set("time",static_cast<float>(std::fmod(state.simulation.time,1024)));
         sky.set("surfaceView",state.surface ? 1 : 0); sky.set("shadowsEnabled",state.shadows ? 1 : 0);
         Vec3 angles;
-        const auto angle=[&](int i) { return std::clamp(static_cast<float>(stellarRadii[i]*14/length(state.simulation.stars[i].position-state.simulation.planet.position)),0.009f,0.065f); };
+        const auto angle=[&](int i) { return std::clamp(static_cast<float>(state.simulation.preset.radii[i]*14/length(state.simulation.stars[i].position-state.simulation.planet.position)),0.009f,0.065f); };
         angles={angle(0),angle(1),angle(2)};
         sky.set("sunAngles",angles);
         sky.set("sunPowers",Vec3{static_cast<float>(sample.contributions[0]),static_cast<float>(sample.contributions[1]),static_cast<float>(sample.contributions[2])});
         for (int i=0;i<3;++i) {
             sky.set(("sunDirections["+std::to_string(i)+"]").c_str(),surfaceDirections[i]);
-            sky.set(("sunColors["+std::to_string(i)+"]").c_str(),stellarColors[i]);
+            sky.set(("sunColors["+std::to_string(i)+"]").c_str(),state.simulation.preset.colors[i]);
         }
         glDisable(GL_DEPTH_TEST); glDepthMask(GL_FALSE); quad.draw(); glDepthMask(GL_TRUE); glEnable(GL_DEPTH_TEST);
         std::array<Vec3,4> bodyLabels{};
@@ -193,27 +199,27 @@ int runAlienViewer(const AlienViewerOptions& options) {
                 for (auto p:state.simulation.trails[i]) vertices.push_back({p,{}});
                 vertices.push_back({positions[i],{}});
                 trailMeshes[i]->update(vertices);
-                simple.set("color",i<3 ? stellarColors[i]*0.42f : Vec3{0.24f,0.65f,0.64f});
+                simple.set("color",i<3 ? state.simulation.preset.colors[i]*0.42f : Vec3{0.24f,0.65f,0.64f});
                 trailMeshes[i]->draw();
             }
             body.use(); body.set("viewProjection",vp); body.set("eye",eye);
-            body.set("time",static_cast<float>(state.simulation.time));
+            body.set("time",static_cast<float>(std::fmod(state.simulation.time,1024)));
             for (int i=0;i<3;++i) {
                 body.set(("starPositions["+std::to_string(i)+"]").c_str(),positions[i]);
-                body.set(("starColors["+std::to_string(i)+"]").c_str(),stellarColors[i]);
+                body.set(("starColors["+std::to_string(i)+"]").c_str(),state.simulation.preset.colors[i]);
             }
             for (int i=0;i<4;++i) {
-                const float radius=i<3 ? stellarDisplayRadii[i] : 0.13f;
+                const float radius=i<3 ? state.simulation.preset.displayRadii[i] : 0.13f;
                 body.set("model",bodyTransform(positions[i],radius,state.simulation.time,0.35));
-                body.set("baseColor",i<3 ? stellarColors[i] : Vec3{0.26f,0.45f,0.48f});
+                body.set("baseColor",i<3 ? state.simulation.preset.colors[i] : Vec3{0.26f,0.45f,0.48f});
                 body.set("starBody",i<3 ? 1 : 0); sphere.draw();
             }
             haloShader.use(); haloShader.set("viewProjection",vp);
             haloShader.set("cameraRight",right); haloShader.set("cameraUp",up);
             glEnable(GL_BLEND); glBlendFunc(GL_SRC_ALPHA,GL_ONE); glDepthMask(GL_FALSE);
             for (int i=0;i<3;++i) {
-                haloShader.set("center",positions[i]); haloShader.set("radius",stellarDisplayRadii[i]*6);
-                haloShader.set("color",stellarColors[i]); quad.draw();
+                haloShader.set("center",positions[i]); haloShader.set("radius",state.simulation.preset.displayRadii[i]*6);
+                haloShader.set("color",state.simulation.preset.colors[i]); quad.draw();
             }
             glDepthMask(GL_TRUE); glDisable(GL_BLEND);
         }

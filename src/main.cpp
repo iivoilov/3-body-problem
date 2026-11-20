@@ -132,7 +132,7 @@ void checkEclipse(const std::vector<unsigned char>& shadowed, const std::vector<
 struct Options {
     bool smoke = false, eclipse = false, resonance = false, orbit02 = false, surface = true;
     double startTime = 0, speed = defaultSpeed;
-    std::string capture, title = "3-body-problem | Orbit / 01";
+    std::string capture, title = "3-body-problem | Orbit / 01", preset="02-01";
 };
 Options parseOptions(int argc, char** argv) {
     Options options;
@@ -140,8 +140,10 @@ Options parseOptions(int argc, char** argv) {
         const std::string argument = argv[i];
         if (argument == "--orbit" && i+1 < argc) {
             const std::string version = argv[++i];
-            if (version != "01" && version != "02") throw std::runtime_error("--orbit must be 01 or 02.");
-            options.orbit02 = version == "02";
+            if (version != "01" && version != "02" && version != "02-01" && version != "02-02" && version != "02-03")
+                throw std::runtime_error("--orbit must be 01, 02, 02-01, 02-02, or 02-03.");
+            options.orbit02 = version != "01";
+            if (version.size()>2) options.preset=version;
         }
         else if (argument == "--view" && i+1 < argc) {
             const std::string view = argv[++i];
@@ -164,15 +166,15 @@ Options parseOptions(int argc, char** argv) {
             else options.speed = number;
         }
         else if (argument == "--help") {
-            std::cout << "Usage: three_body_problem [--orbit 01|02] [--view surface|orbit] [--resonance] [--time value] [--speed factor] [--eclipse]\n"
+            std::cout << "Usage: three_body_problem [--orbit 01|02|02-01|02-02|02-03] [--view surface|orbit] [--resonance] [--time value] [--speed factor] [--eclipse]\n"
                          "                    [--smoke-test] [--capture image.ppm]\n"
                          "No options: open Orbit / 01 (one star and two planets).\n"
-                         "--orbit 02: open the alien world; V switches between surface and orbital views.\n"
+                         "--orbit 02: open Orbit-02-01; use 02-02 or 02-03 for other worlds. P cycles worlds; V switches views.\n"
                          "1 / 2: switch between Orbit / 01 and Orbit / 02 in the native app.\n"
                          "--resonance: use the eccentric, phase-aligned 2:1 candidate (same initial 2.05 period ratio).\n"
                          "--eclipse: pause at the next alignment and focus on Ember's shadow.\n"
                          "--time: integrate forward (seconds in Orbit / 01; years in Orbit / 02).\n"
-                         "--speed: factor from 1/64 to 16; 1x = 4 seconds/s in 01 or 0.08 years/s in 02.\n"
+                         "--speed: factor from 1/64 to 16; 1x uses the selected orbit's documented playback rate.\n"
                          "--smoke-test: check normal rendering and compare eclipse shadows on/off.\n"
                          "--capture: render a hidden frame to a PPM image and exit.\n"
                          "--title: set the window title (useful for recording one specific window).\n"
@@ -381,7 +383,7 @@ int main(int argc, char** argv) {
         for (;;) {
             const int result = options.orbit02
                 ? runAlienViewer({options.smoke, options.surface, options.startTime, options.speed, options.capture,
-                                  options.title == "3-body-problem | Orbit / 01" ? "3-body-problem | Orbit / 02" : options.title})
+                                  options.title == "3-body-problem | Orbit / 01" ? "3-body-problem | Orbit / "+options.preset : options.title,options.preset})
                 : run(options);
             if (result == 0) return EXIT_SUCCESS;
             options.orbit02 = result == 2;

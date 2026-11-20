@@ -1,0 +1,49 @@
+{
+  "createdUTC": "2026-11-20T11:54:31.064042+00:00",
+  "gitBase": "7d5e66bfb52c5c27f67dbe17e02b99511dca2537",
+  "compiler": "c++ (Debian 12.2.0-14+deb12u1) 12.2.0",
+  "command": [
+    "./build-headless/orbit_catalog_export",
+    "doc/data"
+  ],
+  "sourceSHA256": {
+    "src/alien_catalog.hpp": "d99010199dc19516d402150b749488b12e8e3080570ece55c4cff6d54d15ba27",
+    "src/catalog_export.cpp": "d72fc8c405aa040c1b80fd195306b81efdf8217b7d8223df577e325a11ca9ad9",
+    "src/alien_world.hpp": "165a142dcc460c06a2ebfc29b0f2756aa7fb5a2e17c81a2f8bdeb7c4fccf3291",
+    "src/physics.hpp": "b30af01721f71b908602358a48ed197a43c2ffece29df123f053cbc5b288f34c",
+    "src/stability.hpp": "a35ce1ceaa2571cad69894248bf0561e926a05af3bec0a503338a4a58ef2d8bb",
+    "tools/export-catalog.py": "3032c6abe09c83f44d18d28b7ea132ea04d7f4657f23f6a9cf96b690669cb8e7"
+  },
+  "outputSHA256": {
+    "doc/data/orbit-02/catalog.json": "4c8ef0946f5b5862b668f00354a31e96cc432c1dc0bb99ebc429345bee3b0f1a",
+    "doc/data/orbit-02/manifest.json": "fe50e080c16af242ecd7eecaa55b8e4ed2eb46588b1ff4682d45353ce0c15866",
+    "doc/data/orbit-02/world.bin": "f45ebcd263facb5fcae199e95de84d08bf59bac1db4047dca54d2ac6f09286f6",
+    "doc/data/orbit-02-02/year-0/manifest.json": "44ebaf6960c9ef146cbb3157caf0f89f5bfd32e71162a521283775a0946fb422",
+    "doc/data/orbit-02-02/year-0/world.bin": "3e6058fadb2ef03f098efc4bffb59ad6e7ee6767f18830a2f518a3b8a7e735b2",
+    "doc/data/orbit-02-02/year-250000/manifest.json": "950778babe0e9c816c127a049037bc4c75094b20dae26f704680c5bf5268cb47",
+    "doc/data/orbit-02-02/year-250000/world.bin": "f6a8249391b838e61fe51c79ae25cf3de9d292727a37ff539e12b36dda8663cd",
+    "doc/data/orbit-02-02/year-500000/manifest.json": "6c361828a41aaeab197c0de5b334e2a1a2f2881ab11c953c1c28b91b4c217490",
+    "doc/data/orbit-02-02/year-500000/world.bin": "70816415f5dded5e5fda8d658c303e1cef24d824cdfa990096a29f39629be4f9",
+    "doc/data/orbit-02-02/year-750000/manifest.json": "dd065fd38ca281ae0f865005ab10aafc6a58794bda64f9358ab67a74df5e5f9c",
+    "doc/data/orbit-02-02/year-750000/world.bin": "8a8657513e0f86e0bb74884419f8c17566e147455339f4155a1e3aff32f04dda",
+    "doc/data/orbit-02-02/year-999936/manifest.json": "20c7eff52a504d8b680cdce3fed3f35e57fe627ca737dd724dae6e5d8c56cd8e",
+    "doc/data/orbit-02-02/year-999936/world.bin": "a33dff2abb13d72e3cecddc2aa9d8dd52914bab19c8844abfd4e31bac50098f1",
+    "doc/data/orbit-02-02/survey/manifest.json": "cf79d14f721c2ea3a0270222932384b6d24b3f80a430cc35b68cea97f3c4958a",
+    "doc/data/orbit-02-02/survey/world.bin": "862ad19598ae2f6d1469c6ca3c87942506b38e1c9e7b4a43fefc9946bc08b140",
+    "doc/data/orbit-02-02/verification.json": "33442b97d436c22519bdf36aefa8a18b33aa35301b88b0ca60ac262801fa675c",
+    "doc/data/orbit-02-03/year-0/manifest.json": "af0b51c31440a777b68daf9d079ad124336bd79dbd9b618f32b06ee2110ae83e",
+    "doc/data/orbit-02-03/year-0/world.bin": "ecd9d90c13c9f03ccee3ce2995d017f5a8dbc13c73ffaef83e212b5f4d229326",
+    "doc/data/orbit-02-03/year-250000/manifest.json": "a06e9d2767859e2688433f9b46786530e803de9fd9288aa338930cfc1f5c2c78",
+    "doc/data/orbit-02-03/year-250000/world.bin": "cbf73aeb1ec70de53c993679efc2bcd755a8127ce3abfa963f3b632ef8673afc",
+    "doc/data/orbit-02-03/year-500000/manifest.json": "422e0c866e627b8e905e47585eb549f1e586d0b72171ff3a59fd56fb66f4b065",
+    "doc/data/orbit-02-03/year-500000/world.bin": "4fc5d48416d7e3ea5d31b8097252234ac8f02a5142a5e3b57d992b011d07fb7e",
+    "doc/data/orbit-02-03/year-750000/manifest.json": "3fa6ecfed2a33db2681e4b8c89b2c701b418b283fc657668ad5c00714f58e64f",
+    "doc/data/orbit-02-03/year-750000/world.bin": "f3983c12d7df835272187f9f996e4087843213e3b2fd5aaf972bfc3cfe8f934b",
+    "doc/data/orbit-02-03/year-999936/manifest.json": "31b5491c9b3ebebcfc772269601fc227771e088eaee46d83ce3a28030dab6530",
+    "doc/data/orbit-02-03/year-999936/world.bin": "de40e7e15393c25d9b3820aff20facc4747d24f495f5b5cd46f64752e8862489",
+    "doc/data/orbit-02-03/survey/manifest.json": "476b1abc8d679bf2f1e65c97c1d62357c3ca537fd353d58e8cae118b6e98eea9",
+    "doc/data/orbit-02-03/survey/world.bin": "694a2d1bea4c679d6d90b1a34c0222171fe075dace0878f34ed1db5f5ba7aa83",
+    "doc/data/orbit-02-03/verification.json": "705e08a30061aa3846f1c8becf721d0974994dfff34810d3c7c2a8ecbec2f1dc"
+  },
+  "warning": "Finite integrations and sampled diagnostics; survey gaps are not interpolated. Orbit-02-01 is a separate original 36-year record."
+}

@@ -11,19 +11,22 @@ It uses the circular starting preset, initial simulated time 1000, and displayed
 The last GIF delay is rounded to a centisecond so the animation's total duration
 matches the 15-second source clip. The clip is not intended to loop seamlessly.
 
-`orbit-02.gif` joins two native alien-world recordings:
-**8 seconds of surface view followed by 7 seconds of orbital view**. The surface
-segment starts at year 0. The orbital segment starts at integrated year 0.64,
-with its trajectory history already populated. Both use 1× playback (0.08
-simulated year per real second).
+Each numbered alien world has its own native recording:
 
-- GIF: 960 × 600, 150 frames, 15.00-second loop, 96-color palette; the cut is at frame 80.
-- Source command: `./tools/record-demo.sh 02` from the repository root.
+| GIF | Simulated years / real second | Orbital segment starts at year |
+| --- | --- | --- |
+| `orbit-02-01.gif` | 0.08 | 0.64 |
+| `orbit-02-02.gif` | 2 | 16 |
+| `orbit-02-03.gif` | 0.8 | 6.4 |
 
-Both GIF demos have the same dimensions. Orbit / 02's 1440 × 900
-native client area is resized to 1280 × 800 while recording, preserving its
-aspect ratio. Its GIF uses 10 frames/second to limit the detailed terrain's
-file size. Orbit / 01's GIF uses 15 frames/second. Intermediate video files stay
-in a temporary directory and are deleted when recording finishes.
-Capture waits for the app's first completed frame, so startup frames do not
-introduce a blank image at the beginning or at the view transition.
+Each joins **8 seconds of terrain followed by 7 seconds of orbital view**.
+The surface application is launched at year 0. The orbital application starts at eight real
+seconds of that preset's playback, with its integrated history already populated.
+Use `./tools/record-demo.sh 02-01`, `02-02`, or `02-03`; `02` aliases `02-01`.
+
+All numbered-world GIFs are **960 × 600, 150 frames, exactly 15.00 seconds**,
+with a 96-colour palette and the cut at frame 80. The 1440 × 900 native client
+area is captured without window borders, resized while preserving aspect ratio,
+and encoded at 10 fps. Orbit / 01 remains the same width and height at 15 fps.
+Intermediate video files stay in a temporary directory and are deleted when
+recording finishes. Capture waits for the app's first completed frame.

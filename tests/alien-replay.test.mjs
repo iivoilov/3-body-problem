@@ -45,3 +45,34 @@ test('surface sky follows relative stellar positions and the chosen planetary ro
   const rotated = skyDirections(positions, manifest.rotationPeriod / 4);
   assert.ok(Math.hypot(...directions[0].map((value, i) => value - rotated[0][i])) > 0.5);
 });
+
+test('numbered detail records use absolute epoch times and interpolate only within their window', async () => {
+  for (const id of ['02-02', '02-03']) {
+    const base = new URL(`../doc/data/orbit-${id}/year-999936/`, import.meta.url);
+    const metadata = JSON.parse(await readFile(new URL('manifest.json', base), 'utf8'));
+    const bytes = await readFile(new URL('world.bin', base));
+    const track = new AlienTrajectory(metadata, bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset+bytes.byteLength));
+    assert.equal(track.startTime, 999936);
+    assert.equal(track.endTime, 1000000);
+    assert.equal(track.sample(0).time, 999936);
+    assert.equal(track.sample(1000001).time, 1000000);
+    const a = track.sample(track.startTime), b = track.sample(track.startTime+track.interval);
+    const middle = track.sample(track.startTime+track.interval/2);
+    for (let i=0;i<12;i++) assert.ok(Math.abs(middle.positions[i]-(a.positions[i]+b.positions[i])/2)<2e-6);
+  }
+});
+test('million-year survey holds computed snapshots without invented interpolation', async () => {
+  for (const id of ['02-02', '02-03']) {
+    const base = new URL(`../doc/data/orbit-${id}/survey/`, import.meta.url);
+    const metadata = JSON.parse(await readFile(new URL('manifest.json', base), 'utf8'));
+    const bytes = await readFile(new URL('world.bin', base));
+    const track = new AlienTrajectory(metadata, bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset+bytes.byteLength));
+    assert.equal(track.duration, 1000000);
+    assert.equal(track.interpolate, false);
+    assert.equal(track.sample(99).time, 0);
+    assert.deepEqual(track.sample(99).positions, track.sample(0).positions);
+    assert.equal(track.sample(101).time, 100);
+    assert.equal(track.sample(1000000).time, 1000000);
+    assert.ok(track.sample(1000000).positions.every(Number.isFinite));
+  }
+});

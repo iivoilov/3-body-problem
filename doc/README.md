@@ -1,6 +1,9 @@
 # 3-body-problem — Orbit / 01 WebGL replay
 
-For the alien-world simulation, open [Orbit / 02](orbit-02.html).
+For the numbered alien-world simulations, open [Orbit / 02](orbit-02.html).
+Choose Orbit-02-01, 02-02, or 02-03 and a recorded epoch. The stable worlds offer
+five dense 64-year windows plus a million-year survey of discrete snapshots.
+See the [orbit catalogue and per-world notes](ORBIT_02.md).
 Its [model and recording format](ORBIT_02.md) are separate from this viewer;
 the original Orbit / 01 datasets and format remain unchanged.
 

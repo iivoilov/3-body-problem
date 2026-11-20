@@ -1075,3 +1075,11 @@ noscript p {
   opacity:.45;
   cursor:default;
 }
+
+.orbit-picker {display:flex; flex-wrap:wrap; align-items:center; gap:16px 24px; margin:0 0 22px; padding:18px 20px; border:1px solid var(--line); border-radius:6px;}
+.orbit-picker label {display:flex; flex-wrap:wrap; align-items:center; gap:10px; font:10px ui-monospace,monospace; color:var(--muted);}
+.orbit-picker select {max-width:100%;}
+.orbit-picker a {font-size:11px; color:var(--amber);}
+.orbit-picker p {flex-basis:100%; font-size:11px; color:var(--muted);}
+.star-cards strong span[id] {font-size:13px; color:var(--text);}
+@media(max-width:740px) {.orbit-picker {padding:14px; gap:12px;} .orbit-picker label {width:100%;} .orbit-picker select {width:100%;}}

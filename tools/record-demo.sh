@@ -4,16 +4,20 @@ set -euo pipefail
 project_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
 output_dir="$project_dir/doc/assets"
 version="${1:-01}"
-if [[ "$version" != 01 && "$version" != 02 ]]; then
-    printf '%s\n' 'Usage: record-demo.sh [01|02]' >&2
+if [[ "$version" != 01 && "$version" != 02 && "$version" != 02-01 && "$version" != 02-02 && "$version" != 02-03 ]]; then
+    printf '%s\n' 'Usage: record-demo.sh [01|02|02-01|02-02|02-03]' >&2
     exit 1
 fi
+[[ "$version" == 02 ]] && version=02-01
+playback=0.08
+[[ "$version" == 02-02 ]] && playback=2
+[[ "$version" == 02-03 ]] && playback=0.8
 # Both versions use the same output dimensions. Keep the more detailed terrain
 # preview at 10 fps to limit GIF size; intermediate captures use 20 fps.
 gif_fps=15
 gif_colors=128
 gif_delay=7
-if [[ "$version" == 02 ]]; then
+if [[ "$version" == 02-* ]]; then
     gif_fps=10
     gif_colors=96
     gif_delay=10
@@ -70,11 +74,10 @@ record_segment() {
     stop_app
 }
 
-if [[ "$version" == 02 ]]; then
+if [[ "$version" == 02-* ]]; then
     record_segment surface 0 8 "$record_tmp/surface.mkv"
-    # At 1x, eight real seconds correspond to 0.64 simulated year. Start the
-    # orbital segment there with its actual integrated history already populated.
-    record_segment orbit 0.64 7 "$record_tmp/orbit.mkv"
+    # Continue at eight real seconds of this preset’s documented playback rate.
+    record_segment orbit "$(awk -v rate="$playback" 'BEGIN {print rate*8}')" 7 "$record_tmp/orbit.mkv"
     printf '%s\n' "file 'surface.mkv'" "file 'orbit.mkv'" >"$record_tmp/segments.txt"
     ffmpeg -hide_banner -loglevel warning -y -f concat -safe 0 -i "$record_tmp/segments.txt" \
         -c copy "$record_tmp/demo.mkv"

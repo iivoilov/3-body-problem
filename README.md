@@ -23,24 +23,48 @@ The demo records 15 seconds of the native circular preset at 1× playback.
 
 [Open the browser viewer](https://iivoilov.github.io/3-body-problem/doc/index.html)
 
-## Orbit / 02 — The alien world
+## Orbit / 02 — The alien worlds
 
-An imagined world moves among three suns. Watch its sky and canyon landscape
-change with the incoming light, then pull back to an orbital view of the three
-stars and the wandering planet. The browser companion offers a scrubbable
-36-year recording, stellar distances, incident-light history, and conservation
-measurements. That run includes a close stellar passage and the planet's
-subsequent departure from the inner system.
+Numbered configurations explore different three-sun worlds. Each has its own
+[discovery, tuning, and validation notes](doc/ORBIT_02.md), native demo, and web
+record. The planet is a massless test particle; terrain, exposure, colours, and
+enlarged stellar disks are artistic. All native demos below are **15 seconds,
+960 × 600: eight seconds of terrain followed by seven seconds of orbital view**.
 
-Stellar masses use measured Alpha Centauri references; the compact orbits,
-planet, enlarged disks, and terrain are fictional. The planet feels all three
-stars as a test particle. Read the [Orbit / 02 model and explanations](doc/ORBIT_02.md)
-for the assumptions, units, and controls. The 15-second native demo shows
-**8 seconds of terrain followed by 7 seconds of orbital view**.
+### Orbit-02-01 — The scattering world
 
-![Orbit / 02: eight seconds on the alien surface followed by seven seconds of orbital motion](doc/assets/orbit-02.gif)
+The original alien world uses measured Alpha Centauri reference masses and an
+invented compact arrangement. A close stellar passage changes the planet's
+illumination and sends it far outside the inner system. Its original 36-year
+record remains available. [Discovery, tuning, and tests](doc/orbits/Orbit-02-01.md)
+· [Web player](https://iivoilov.github.io/3-body-problem/doc/orbit-02.html?preset=02-01).
 
-[Open the browser viewer](https://iivoilov.github.io/3-body-problem/doc/orbit-02.html)
+![Orbit-02-01: terrain and orbital views of the original scattering world](doc/assets/orbit-02-01.gif)
+
+### Orbit-02-02 — The spatial sun dance
+
+Three equal solar-mass stars follow a published three-dimensional choreography;
+the planet orbits the whole triple, initially at 20 AU. The candidate passed four
+million-year research trials. Its web record includes a million-year survey and
+smooth windows at selected epochs. The assigned solar luminosities make this
+a cold dynamical world. [Discovery, tuning, and tests](doc/orbits/Orbit-02-02.md)
+· [Web player](https://iivoilov.github.io/3-body-problem/doc/orbit-02.html?preset=02-02).
+
+![Orbit-02-02: terrain beneath the moving suns and their spatial stellar dance](doc/assets/orbit-02-02.gif)
+
+### Orbit-02-03 — The inclined hierarchy
+
+A 4 AU binary, a 16 AU outer orbit, and a tilted planet around star A retain the
+original measured mass references. This compact candidate also passed four
+million-year trials. Its web record includes the same long survey and dense
+epoch windows. [Discovery, tuning, and tests](doc/orbits/Orbit-02-03.md)
+· [Web player](https://iivoilov.github.io/3-body-problem/doc/orbit-02.html?preset=02-03).
+
+![Orbit-02-03: terrain and orbital motion in the inclined stellar hierarchy](doc/assets/orbit-02-03.gif)
+
+The million-year surveys show **computed snapshots every 100 years**, with no
+interpolation or connecting trails across those gaps. Choose a 64-year detail
+window for smooth motion, including the final years of each long integration.
 
 ## Native application
 
@@ -58,11 +82,14 @@ Select either version explicitly:
 
 ```bash
 ./run.sh --orbit 01               # Original one-star/two-planet experiment
-./run.sh --orbit 02               # Alien world; V switches surface / orbital view
+./run.sh --orbit 02-01            # Original alien world (02 remains an alias)
+./run.sh --orbit 02-02            # Spatial stellar dance
+./run.sh --orbit 02-03            # Inclined hierarchy
 ```
 
-Press **1** or **2** to switch versions in the native app. Orbit / 02's 1× playback
-advances 0.08 simulated year per real second. Its light measurements are incident
+Press **1** or **2** to switch versions, **P** to cycle numbered alien worlds,
+and **V** to switch terrain/orbital views. Their 1× playback rates are 0.08, 2,
+and 0.8 simulated years per real second, respectively. Light measurements are incident
 flux, rather than a temperature or climate model.
 
 The launcher builds the app and checks the selected renderer. It prefers NVIDIA
@@ -179,6 +206,26 @@ relativity is not required to model those processes.
 
 ## Verification and reproducibility
 
+### Million-year stellar stability study
+
+The [compact-triple investigation](doc/STELLAR_STABILITY.md) compares coplanar
+and inclined three-star systems while requiring the planet to remain bound to
+its host. A 4 / 16 AU hierarchy passes one million years in four trials,
+including a finer timestep and small changes to initial angles. This research
+preserves Orbit-02-01 as a separate comparison.
+
+```bash
+cmake -S . -B build-headless -DCMAKE_BUILD_TYPE=Release -DORBIT_BUILD_VIEWER=OFF
+cmake --build build-headless --parallel 2
+python3 tools/run-stability-study.py --jobs 4
+```
+
+The follow-up [three-sun dance study](doc/SUN_DANCE.md) tests a published
+three-dimensional stellar choreography and shows the actual apparent sky
+motion from a planet orbiting the whole triple. Its 20 AU planet candidate
+passes four million-year trials; a separate animated research preview shows
+the motion alongside the native Orbit-02-02 demo.
+
 ### Headless tidal experiments
 
 A separate command-line experiment tests the **Mignard–Hut constant time lag**
@@ -215,7 +262,9 @@ To regenerate the 15-second GIF demos on an X11 / WSLg desktop:
 
 ```bash
 ./tools/record-demo.sh
-./tools/record-demo.sh 02          # Record the alien-world version
+./tools/record-demo.sh 02-01
+./tools/record-demo.sh 02-02
+./tools/record-demo.sh 02-03
 ```
 
 This requires FFmpeg and `xwininfo` (`ffmpeg` and `x11-utils` on Debian / Ubuntu).

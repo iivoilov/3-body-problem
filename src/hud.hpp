@@ -2,7 +2,7 @@
 
 #include "gpu.hpp"
 #include "scene.hpp"
-#include "alien_world.hpp"
+#include "alien_catalog.hpp"
 #include <string>
 #include <vector>
 
@@ -19,7 +19,7 @@ public:
     Hud& operator=(const Hud&) = delete;
     void draw(int width, int height, const Simulation& simulation, bool wireframe, bool orbits,
               bool shadows, float eclipseCoverage, bool showDiagnostics);
-    void drawAlien(int width, int height, const AlienSimulation& simulation, bool surface, bool trails,
+    void drawAlien(int width, int height, const CatalogSimulation& simulation, bool surface, bool trails,
                    bool showData, const std::array<Vec3, 4>& bodyLabels);
 private:
     void render(int width, int height);

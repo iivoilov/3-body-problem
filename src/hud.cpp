@@ -243,17 +243,17 @@ void Hud::draw(int width, int height, const Simulation& sim, bool wireframe, boo
     render(width, height);
 }
 
-void Hud::drawAlien(int width, int height, const AlienSimulation& sim, bool surface, bool trails,
+void Hud::drawAlien(int width, int height, const CatalogSimulation& sim, bool surface, bool trails,
                     bool showData, const std::array<Vec3, 4>& bodyLabels) {
     vertices_.clear();
     const float w = static_cast<float>(width), h = static_cast<float>(height);
     const Vec3 amber{1.0f,0.68f,0.36f}, dim{0.54f,0.56f,0.57f}, panel{0.027f,0.037f,0.043f};
     rect(0, 0, w, 88, panel);
     rect(28, 87, w-56, 1, {0.17f,0.18f,0.18f});
-    text(30, 23, "ORBIT / 02", 2.8f, white);
-    text(31, 57, "3-BODY-PROBLEM / THE ALIEN WORLD", 1.15f, dim);
+    text(30, 23, "ORBIT / "+sim.preset.id, 2.8f, white);
+    text(31, 57, sim.preset.title, 1.15f, dim);
     text(w-340, 28, surface ? "[ SURFACE ]   V ORBITAL" : "V SURFACE   [ ORBITAL ]", 1.4f, amber);
-    text(w-340, 57, "1 ORBIT / 01   SPACE PAUSE", 1.1f, dim);
+    text(w-340, 57, "1 ORBIT / 01   P NEXT WORLD", 1.1f, dim);
     text(32, h-302, "TRISOLARIS", 3.8f, white);
     text(34, h-260, "ONE WORLD. THREE SUNS.", 1.4f, amber);
     const auto sample = sim.measure();
@@ -263,9 +263,9 @@ void Hud::drawAlien(int width, int height, const AlienSimulation& sim, bool surf
     text(34, h-234, label, 1.2f, white);
     for (int i = 0; i < 3; ++i) {
         const float x = w-540 + i*170.0f;
-        rect(x, 112, 3, 29, stellarColors[i]);
-        text(x+12, 112, stellarNames[i], 1.3f, white);
-        std::snprintf(label,sizeof(label),"%.4F SOLAR MASSES",stellarMasses[i]);
+        rect(x, 112, 3, 29, sim.preset.colors[i]);
+        text(x+12, 112, sim.preset.names[i], 1.3f, white);
+        std::snprintf(label,sizeof(label),"%.4F SOLAR MASSES",sim.stars[i].mass);
         text(x+12, 133, label, 0.95f, white);
     }
     if (showData) {
@@ -296,14 +296,14 @@ void Hud::drawAlien(int width, int height, const AlienSimulation& sim, bool surf
                 px=x;py=y;first=false;
             }
         }
-        text(32,h-20,"MEASURED MASS RATIOS / INVENTED ORBITS / DISKS ENLARGED / PLANET IS A TEST PARTICLE",0.95f,dim);
+        text(32,h-20,"CHOSEN MASS RATIOS / INVENTED ORBITS / DISKS ENLARGED / PLANET IS A TEST PARTICLE",0.95f,dim);
     }
     text(32,h-(showData ? 202 : 30),surface ? "DRAG LOOK / V ORBIT / [ ] SPEED / R RESET / D DATA" :
          (trails ? "DRAG ROTATE / SCROLL ZOOM / V SURFACE / O TRAILS ON" : "DRAG ROTATE / SCROLL ZOOM / V SURFACE / O TRAILS OFF"),1.1f,white);
     if (!surface) for (std::size_t i=0;i<bodyLabels.size();++i) {
         const auto p=bodyLabels[i];
         if (p.z>0 && p.x>10 && p.x<w-100 && p.y>160 && p.y<h-(showData ? 205 : 40))
-            text(p.x+16,p.y-3,i<3 ? stellarNames[i] : "TRISOLARIS",1.15f,i<3 ? stellarColors[i] : teal);
+            text(p.x+16,p.y-3,i<3 ? sim.preset.names[i] : "TRISOLARIS",1.15f,i<3 ? sim.preset.colors[i] : teal);
     }
     render(width,height);
 }

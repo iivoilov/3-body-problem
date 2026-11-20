@@ -25,9 +25,9 @@ function playbackStatus() {
 }
 
 function setView(isSurface) {
-  surface = isSurface;
+  surface = isSurface && trajectory.interpolate;
   controls.enabled = !surface;
-  $('trails').disabled = surface;
+  $('trails').disabled = surface || !trajectory.interpolate;
   $('shadows').disabled = !surface;
   $('surface-view').setAttribute('aria-pressed', String(surface));
   $('orbit-view').setAttribute('aria-pressed', String(!surface));
@@ -38,7 +38,7 @@ function setView(isSurface) {
 }
 
 function jump(time) {
-  currentTime = Math.max(0, Math.min(trajectory.duration, time));
+  currentTime = trajectory.sample(time).time;
   playing = false;
   playbackStatus();
 }
@@ -145,7 +145,7 @@ function createScene(skyVertex, skyFragment, bodyVertex, bodyFragment) {
 function updateTrails(sample) {
   const first = Math.max(0, sample.frame - 4096);
   bodies.forEach((body, i) => {
-    body.trail.visible = !surface && $('trails').checked;
+    body.trail.visible = !surface && trajectory.interpolate && $('trails').checked;
     if (!body.trail.visible) return;
     let count = 0;
     if (body.trailFrame !== sample.frame) {
@@ -180,13 +180,18 @@ function drawChart() {
   const ctx = canvas.getContext('2d');
   ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   const left = 1, right = width-1, top = 5, bottom = height-8;
-  const x = time => left+(right-left)*time/trajectory.duration;
+  const x = time => left+(right-left)*(time-trajectory.startTime)/trajectory.duration;
   const y = value => bottom-(Math.log10(Math.max(value, 0.001))+3)/5*(bottom-top);
   ctx.strokeStyle = '#343737'; ctx.lineWidth = 1; ctx.setLineDash([3, 5]);
   ctx.beginPath(); ctx.moveTo(left,y(1)); ctx.lineTo(right,y(1)); ctx.stroke(); ctx.setLineDash([]);
+  if (!trajectory.interpolate) {
+    ctx.fillStyle='#deb281';
+    for (let frame=0;frame<trajectory.count;frame+=Math.max(1,Math.floor(trajectory.count/width)))
+      ctx.fillRect(x(trajectory.startTime+frame*trajectory.interval)-1,y(trajectory.value(frame,12))-1,2,2);
+  } else {
   ctx.beginPath();
   for (let frame = 0; frame < trajectory.count; frame += 24) {
-    const px = x(frame*trajectory.interval), py = y(trajectory.value(frame,12));
+    const px = x(trajectory.startTime+frame*trajectory.interval), py = y(trajectory.value(frame,12));
     if (!frame) ctx.moveTo(px,py); else ctx.lineTo(px,py);
   }
   ctx.strokeStyle = '#deb281'; ctx.lineWidth = 1.25; ctx.stroke();
@@ -194,15 +199,16 @@ function drawChart() {
   const fill = ctx.createLinearGradient(0,top,0,bottom);
   fill.addColorStop(0,'#d5a56c38'); fill.addColorStop(1,'#d5a56c00');
   ctx.fillStyle=fill; ctx.fill();
+  }
   const sample = trajectory.sample(currentTime);
-  ctx.strokeStyle = '#eee6d566'; ctx.beginPath(); ctx.moveTo(x(currentTime),top); ctx.lineTo(x(currentTime),bottom); ctx.stroke();
-  ctx.fillStyle = '#efd5b1'; ctx.beginPath(); ctx.arc(x(currentTime),y(sample.flux),2.5,0,2*Math.PI); ctx.fill();
+  ctx.strokeStyle = '#eee6d566'; ctx.beginPath(); ctx.moveTo(x(sample.time),top); ctx.lineTo(x(sample.time),bottom); ctx.stroke();
+  ctx.fillStyle = '#efd5b1'; ctx.beginPath(); ctx.arc(x(sample.time),y(sample.flux),2.5,0,2*Math.PI); ctx.fill();
 }
 
 function updateUi(sample, directions) {
-  $('time').value = currentTime;
-  $('year').textContent = currentTime.toFixed(3);
-  $('time-label').textContent = `${currentTime.toFixed(2)} / ${trajectory.duration.toFixed(2)} yr`;
+  $('time').value = sample.time;
+  $('year').textContent = sample.time.toFixed(3);
+  $('time-label').textContent = `${sample.time.toFixed(2)} / ${trajectory.endTime.toFixed(2)} yr`;
   $('flux').textContent = sample.flux.toFixed(3);
   $('nearest').textContent = sample.nearest.toFixed(3);
   $('separation').textContent = sample.separation.toFixed(3);
@@ -221,9 +227,9 @@ function updateUi(sample, directions) {
 function animate(timestamp) {
   const dt = previousTimestamp ? Math.min((timestamp-previousTimestamp)/1000,0.1) : 0;
   previousTimestamp = timestamp;
-  if (playing) currentTime = (currentTime+dt*speed*manifest.playbackScale)%trajectory.duration;
+  if (playing) currentTime = trajectory.startTime + (currentTime-trajectory.startTime+dt*speed*manifest.playbackScale)%trajectory.duration;
   const sample = trajectory.sample(currentTime);
-  const directions = skyDirections(sample.positions,currentTime,manifest.rotationPeriod);
+  const directions = skyDirections(sample.positions,sample.time,manifest.rotationPeriod,manifest.skyPhase ?? 0.57,manifest.observerAmplitude ?? 0.28,manifest.rotationDirection ?? 1);
   let extent = 8;
   bodies.forEach((body,i) => {
     body.mesh.position.fromArray(sample.positions,i*3);
@@ -231,7 +237,7 @@ function animate(timestamp) {
     body.mesh.rotation.y = -currentTime*0.35;
     extent = Math.max(extent,body.mesh.position.length());
     const uniforms = body.mesh.material.uniforms;
-    uniforms.time.value = currentTime;
+    uniforms.time.value = currentTime % 1024;
     uniforms.eye.value.copy(camera.position);
     for (let star = 0; star < 3; star++) uniforms.starPositions.value[star].fromArray(sample.positions,star*3);
     if (body.halo) { body.halo.position.copy(body.mesh.position); body.halo.visible = !surface; }
@@ -247,7 +253,7 @@ function animate(timestamp) {
   uniforms.fovScale.value = surface ? 0.62 / Math.min(camera.aspect/1.65,1) : Math.tan(THREE.MathUtils.degToRad(camera.fov)/2);
   uniforms.surfaceView.value = surface ? 1 : 0;
   uniforms.shadowsEnabled.value = $('shadows').checked ? 1 : 0;
-  uniforms.time.value = currentTime;
+  uniforms.time.value = currentTime % 1024;
   uniforms.sunPowers.value.fromArray(sample.contributions);
   const angles = manifest.stars.map((star,i) => {
     const distance = bodies[i].mesh.position.distanceTo(bodies[3].mesh.position);
@@ -269,15 +275,56 @@ function fail(error) {
 }
 
 async function initialize() {
-  const [data,binary,skyVertex,skyFragment,bodyVertex,bodyFragment] = await Promise.all([
-    resource('data/orbit-02/manifest.json','json'),resource('data/orbit-02/world.bin','binary'),
-    resource('shaders/alien-screen.vert'),resource('shaders/alien-sky.frag'),
+  const params=new URLSearchParams(location.search);
+  const catalog=await resource('data/orbit-02/catalog.json','json');
+  const preset=catalog.orbits.find(orbit=>orbit.id===(params.get('preset') ?? '02-01'));
+  if (!preset) throw new Error('Unknown orbit preset.');
+  const recordIndex=Number(params.get('record') ?? 0);
+  if (!Number.isInteger(recordIndex) || !preset.records[recordIndex]) throw new Error('Unknown recorded epoch.');
+  const record=preset.records[recordIndex];
+  const data=await resource(record.manifest,'json');
+  const binaryPath=new URL(data.file,new URL(record.manifest,import.meta.url));
+  const [binary,skyVertex,skyFragment,bodyVertex,bodyFragment] = await Promise.all([
+    resource(binaryPath,'binary'),resource('shaders/alien-screen.vert'),resource('shaders/alien-sky.frag'),
     resource('shaders/body.vert'),resource('shaders/alien-body.frag'),
   ]);
   manifest=data; trajectory=new AlienTrajectory(manifest,binary);
-  const params=new URLSearchParams(location.search);
-  const requestedTime=Number(params.get('time')??0);
-  currentTime=Number.isFinite(requestedTime) ? Math.max(0,Math.min(trajectory.duration,requestedTime)) : 0;
+  for (const orbit of catalog.orbits) $('preset').add(new Option(`Orbit-${orbit.id} · ${orbit.title}`,orbit.id));
+  $('preset').value=preset.id;
+  preset.records.forEach((entry,index)=>$('record').add(new Option(entry.label,String(index))));
+  $('record').value=String(recordIndex);
+  const navigate=(id,index)=>{
+    const next=new URLSearchParams({preset:id,record:String(index),view:surface?'surface':'orbit'});
+    if (!playing) next.set('paused','1');
+    location.search=next.toString();
+  };
+  $('preset').addEventListener('change',()=>navigate($('preset').value,0));
+  $('record').addEventListener('change',()=>navigate(preset.id,Number($('record').value)));
+  $('orbit-notes').href=preset.notes;
+  document.title=`Orbit-${preset.id} · ${preset.title} · 3-body-problem`;
+  $('record-title').textContent=record.label.toUpperCase();
+  $('record-caption').textContent=trajectory.interpolate
+    ? `Orbit-${preset.id} · smooth detail window, ${trajectory.startTime.toLocaleString()}–${trajectory.endTime.toLocaleString()} years.`
+    : `Million-year survey: computed snapshots ${trajectory.interval} years apart. Choose a detail window to watch the motion.`;
+  $('record-note').textContent=trajectory.interpolate?'C++ trajectories · playback loops within this window':'Survey snapshots · gaps are not interpolated';
+  $('chart-note').textContent=trajectory.interpolate?`${trajectory.duration} years · logarithmic scale`:`Flux snapshots every ${trajectory.interval} years · logarithmic scale`;
+  $('flux-chart').setAttribute('aria-label',$('chart-note').textContent);
+  $('time').min=trajectory.startTime; $('time').max=trajectory.endTime; $('time').step=trajectory.interval;
+  $('surface-view').disabled=!trajectory.interpolate;
+  $('mass-caption').textContent=`Orbit-${preset.id} · ${manifest.stars.map(star=>star.mass).join(' / ')} solar masses`;
+  $('preset-summary').textContent=preset.id==='02-02'
+    ? 'Three equal solar-mass stars use a published spatial choreography, with a cold circumsystem planet.'
+    : 'The stellar masses use measured Alpha Centauri references.';
+  manifest.stars.forEach((star,i)=>{
+    $(`mass-${i}`).textContent=star.mass.toFixed(4);
+    $(`star-reference-${i}`).textContent=star.name;
+    document.querySelectorAll('.star-cards h2')[i].lastChild.textContent=` ${star.name}`;
+    labels[i].querySelector('span').textContent=star.name;
+    document.querySelectorAll('.distance-rows>div>span')[i].lastChild.textContent=star.name;
+  });
+  yaw=manifest.surfaceYaw ?? 2.93;
+  const requestedTime=Number(params.get('time')??trajectory.startTime);
+  currentTime=Number.isFinite(requestedTime) ? trajectory.sample(requestedTime).time : trajectory.startTime;
   if (params.get('paused')==='1') playing=false;
   createScene(skyVertex,skyFragment,bodyVertex,bodyFragment);
   setView(params.get('view')!=='orbit');
@@ -287,20 +334,20 @@ async function initialize() {
     if(trajectory.value(frame,12)>trajectory.value(brightestFrame,12)) brightestFrame=frame;
   }
   $('play').addEventListener('click',()=>{playing=!playing;playbackStatus();});
-  $('restart').addEventListener('click',()=>{currentTime=0;yaw=2.93;pitch=0.035;dirty=true;});
+  $('restart').addEventListener('click',()=>{currentTime=trajectory.startTime;yaw=manifest.surfaceYaw ?? 2.93;pitch=0.035;dirty=true;});
   $('time').addEventListener('input',()=>jump(Number($('time').value)));
   $('speed').addEventListener('change',()=>{speed=Number($('speed').value);playbackStatus();});
   $('surface-view').addEventListener('click',()=>setView(true));
   $('orbit-view').addEventListener('click',()=>setView(false));
-  $('first-dawn').addEventListener('click',()=>jump(0));
-  $('encounter').addEventListener('click',()=>jump(encounterFrame*trajectory.interval));
-  $('brightest').addEventListener('click',()=>jump(brightestFrame*trajectory.interval));
-  $('remote').addEventListener('click',()=>jump(trajectory.duration));
+  $('first-dawn').addEventListener('click',()=>jump(trajectory.startTime));
+  $('encounter').addEventListener('click',()=>jump(trajectory.startTime+encounterFrame*trajectory.interval));
+  $('brightest').addEventListener('click',()=>jump(trajectory.startTime+brightestFrame*trajectory.interval));
+  $('remote').addEventListener('click',()=>jump(trajectory.endTime));
   document.addEventListener('keydown',event=>{
     if (['INPUT','SELECT','BUTTON','TEXTAREA','SUMMARY','A'].includes(document.activeElement?.tagName)) return;
     if(event.code==='Space'){event.preventDefault();playing=!playing;playbackStatus();}
     if(event.code==='KeyV') setView(!surface);
-    if(event.code==='KeyR'){jump(0);yaw=2.93;pitch=0.035;}
+    if(event.code==='KeyR'){jump(trajectory.startTime);yaw=manifest.surfaceYaw ?? 2.93;pitch=0.035;}
   });
   for(const id of ['play','restart','time']) $(id).disabled=false;
   $('status').textContent='';

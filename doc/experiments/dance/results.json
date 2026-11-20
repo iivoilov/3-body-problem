@@ -1,0 +1,989 @@
+{
+  "created_utc": "2026-11-20T11:21:37.170325+00:00",
+  "git_base": "7d5e66bfb52c5c27f67dbe17e02b99511dca2537",
+  "source": "https://arxiv.org/html/2508.08568v1#Sx1.T4",
+  "source_table": "Supplementary Table S4: Li & Liao O3(1.0)",
+  "source_sha256": {
+    "src/stellar_dance.cpp": "2fbd8d7f209bbb2fa5248e575090a4f3fe02be195b2c3530313eb641d60ea754",
+    "src/stability.hpp": "a35ce1ceaa2571cad69894248bf0561e926a05af3bec0a503338a4a58ef2d8bb",
+    "src/alien_world.hpp": "165a142dcc460c06a2ebfc29b0f2756aa7fb5a2e17c81a2f8bdeb7c4fccf3291",
+    "src/physics.hpp": "b30af01721f71b908602358a48ed197a43c2ffece29df123f053cbc5b288f34c",
+    "tools/run-dance-study.py": "c61f5b3aaaaa3188172a7a5dfdc63df1a6a1eabcfed34c5b8a68048c570f2843"
+  },
+  "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.36",
+  "compiler": "c++ (Debian 12.2.0-14+deb12u1) 12.2.0",
+  "units": {
+    "length": "AU",
+    "mass": "solar mass",
+    "time": "Julian year"
+  },
+  "limits": {
+    "stellar_span_AU": 100,
+    "planet_barycentre_distance_AU": 100,
+    "stellar_relative_energy_error": 0.0001,
+    "stellar_relative_angular_error": 1e-08
+  },
+  "check_interval_years": 0.0625,
+  "luminosities_solar": [
+    1,
+    1,
+    1
+  ],
+  "warning": "Finite numerical retention, not a proof or a climate model. Planet orbits the whole triple. Contact uses viewer reference radii. Preview records first 64 years; no periodic reset or replay is used in long integration.",
+  "runs": [
+    {
+      "family": "Li-Liao O3(1.0)",
+      "scale_AU": 4,
+      "planet_initial_radius_AU": 16,
+      "planet_phase_deg": 0,
+      "stellar_velocity_perturbation": 0,
+      "reference_stellar_period_years": 8.698291331281512,
+      "integrator": "Yoshida fourth-order composition of existing leapfrog",
+      "requested_years": 1000000,
+      "time": 8381.625,
+      "dt": 0.001953125,
+      "steps": 4291392,
+      "checks": 134107,
+      "passed": false,
+      "failure": "planet_exceeds_100_AU",
+      "wall_seconds": 0.84959574,
+      "max_star_span_AU": 8.000030939368228,
+      "min_star_separation_AU": 0.4231513674515904,
+      "min_planet_radius_AU": 11.464529887491539,
+      "max_planet_radius_AU": 100.00576110212158,
+      "min_planet_a_AU": 13.202107813066158,
+      "max_planet_a_AU": 149.8910970077269,
+      "max_planet_e": 0.9140252787644665,
+      "max_stellar_energy_error": 8.495439145236494e-06,
+      "max_stellar_angular_error": 1.9873279900880072e-12,
+      "max_barycentre_drift_AU": 1.6248938812549729e-09,
+      "min_flux_Earth": 0.00030010048610164676,
+      "max_flux_Earth": 0.025918619115944216,
+      "min_sky_separation_deg": 0.002145041678905931,
+      "max_sky_separation_deg": 38.955280420859346,
+      "min_planet_star_distance_AU": 7.889120003440842,
+      "final_scaled_position_return_error": 0.6652374953158072,
+      "initial_bodies": [
+        {
+          "mass": 1,
+          "position": [
+            -4,
+            -0.635837685707082,
+            0
+          ],
+          "velocity": [
+            1.2633503624280513,
+            0.6611328685417048,
+            0.5666080731847625
+          ]
+        },
+        {
+          "mass": 1,
+          "position": [
+            4,
+            -0.635837685707082,
+            0
+          ],
+          "velocity": [
+            1.2633503624280513,
+            -0.6611328685417048,
+            0.5666080731847625
+          ]
+        },
+        {
+          "mass": 1,
+          "position": [
+            0,
+            1.2716753714141642,
+            0
+          ],
+          "velocity": [
+            -2.5267007248561026,
+            0,
+            -1.133216146369525
+          ]
+        },
+        {
+          "mass": 0,
+          "position": [
+            16,
+            0,
+            0
+          ],
+          "velocity": [
+            0,
+            0.9305338777790909,
+            2.5566208172355998
+          ]
+        }
+      ],
+      "final_bodies": [
+        {
+          "mass": 1,
+          "position": [
+            -4.342978318032876,
+            1.0380170570307639,
+            -0.5526415539241188
+          ],
+          "velocity": [
+            0.2853665589131782,
+            0.18627049989104516,
+            -0.49533413442482277
+          ]
+        },
+        {
+          "mass": 1,
+          "position": [
+            2.265596811881053,
+            -0.6733320580113378,
+            0.8483873952066973
+          ],
+          "velocity": [
+            3.506670815711128,
+            0.2366223641803847,
+            4.030308879019945
+          ]
+        },
+        {
+          "mass": 1,
+          "position": [
+            2.077381506356957,
+            -0.36468500324848424,
+            -0.29574584369825807
+          ],
+          "velocity": [
+            -3.7920373746237996,
+            -0.4228928640722523,
+            -3.5349747445959587
+          ]
+        },
+        {
+          "mass": 0,
+          "position": [
+            -74.0546682003025,
+            -61.1357711089755,
+            -27.919094943709684
+          ],
+          "velocity": [
+            -0.8317167808528901,
+            -0.006320648141579203,
+            -0.22507662369620807
+          ]
+        }
+      ],
+      "trial": "radius-4-control",
+      "command": [
+        "./build-headless/stellar_dance",
+        "--years",
+        "1000000",
+        "--scale",
+        "4",
+        "--radius",
+        "4",
+        "--step",
+        "0.001953125",
+        "--phase",
+        "0",
+        "--perturb",
+        "0",
+        "--output",
+        "build-headless/dance-runs/radius-4-control.csv"
+      ]
+    },
+    {
+      "family": "Li-Liao O3(1.0)",
+      "scale_AU": 4,
+      "planet_initial_radius_AU": 20,
+      "planet_phase_deg": 0,
+      "stellar_velocity_perturbation": 0,
+      "reference_stellar_period_years": 8.698291331281512,
+      "integrator": "Yoshida fourth-order composition of existing leapfrog",
+      "requested_years": 1000000,
+      "time": 1000000,
+      "dt": 0.001953125,
+      "steps": 512000000,
+      "checks": 16000001,
+      "passed": true,
+      "failure": "none",
+      "wall_seconds": 99.919241321,
+      "max_star_span_AU": 8.000031990473975,
+      "min_star_separation_AU": 0.42314849654002296,
+      "min_planet_radius_AU": 17.853561024050965,
+      "max_planet_radius_AU": 20.065752714354858,
+      "min_planet_a_AU": 18.430287761418082,
+      "max_planet_a_AU": 20.56769893815983,
+      "max_planet_e": 0.11360456613872487,
+      "max_stellar_energy_error": 8.495697325571717e-06,
+      "max_stellar_angular_error": 1.629201692986422e-11,
+      "max_barycentre_drift_AU": 3.139066511723166e-06,
+      "min_flux_Earth": 0.007442437364155332,
+      "max_flux_Earth": 0.010087566209373665,
+      "min_sky_separation_deg": 0.000412642149304193,
+      "max_sky_separation_deg": 26.154596460072653,
+      "min_planet_star_distance_AU": 13.715983083486536,
+      "final_scaled_position_return_error": 0.5182913161966953,
+      "initial_bodies": [
+        {
+          "mass": 1,
+          "position": [
+            -4,
+            -0.635837685707082,
+            0
+          ],
+          "velocity": [
+            1.2633503624280513,
+            0.6611328685417048,
+            0.5666080731847625
+          ]
+        },
+        {
+          "mass": 1,
+          "position": [
+            4,
+            -0.635837685707082,
+            0
+          ],
+          "velocity": [
+            1.2633503624280513,
+            -0.6611328685417048,
+            0.5666080731847625
+          ]
+        },
+        {
+          "mass": 1,
+          "position": [
+            0,
+            1.2716753714141642,
+            0
+          ],
+          "velocity": [
+            -2.5267007248561026,
+            0,
+            -1.133216146369525
+          ]
+        },
+        {
+          "mass": 0,
+          "position": [
+            20,
+            0,
+            0
+          ],
+          "velocity": [
+            0,
+            0.8322948024322113,
+            2.2867111760119467
+          ]
+        }
+      ],
+      "final_bodies": [
+        {
+          "mass": 1,
+          "position": [
+            -4.114837223974828,
+            -1.0483392835820975,
+            -1.2331093779530908
+          ],
+          "velocity": [
+            -0.6510434915848631,
+            -0.22190401214164823,
+            0.420281187206653
+          ]
+        },
+        {
+          "mass": 1,
+          "position": [
+            2.862619718489915,
+            0.08727459409731812,
+            1.575274243154686
+          ],
+          "velocity": [
+            -2.4761062583353945,
+            1.124879241227941,
+            -1.18733676225958
+          ]
+        },
+        {
+          "mass": 1,
+          "position": [
+            1.252222681344667,
+            0.9610698525045919,
+            -0.34217080130716215
+          ],
+          "velocity": [
+            3.1271497499312852,
+            -0.9029752290774744,
+            0.7670555750444763
+          ]
+        },
+        {
+          "mass": 0,
+          "position": [
+            19.94290477948985,
+            1.079288231007098,
+            -0.7693137143503559
+          ],
+          "velocity": [
+            -0.16448219192182403,
+            1.152863932938163,
+            -2.1289617556946787
+          ]
+        }
+      ],
+      "trial": "radius-5-baseline",
+      "command": [
+        "./build-headless/stellar_dance",
+        "--years",
+        "1000000",
+        "--scale",
+        "4",
+        "--radius",
+        "5",
+        "--step",
+        "0.001953125",
+        "--phase",
+        "0",
+        "--perturb",
+        "0",
+        "--output",
+        "build-headless/dance-runs/radius-5-baseline.csv"
+      ]
+    },
+    {
+      "family": "Li-Liao O3(1.0)",
+      "scale_AU": 4,
+      "planet_initial_radius_AU": 20,
+      "planet_phase_deg": 0,
+      "stellar_velocity_perturbation": 0,
+      "reference_stellar_period_years": 8.698291331281512,
+      "integrator": "Yoshida fourth-order composition of existing leapfrog",
+      "requested_years": 1000000,
+      "time": 1000000,
+      "dt": 0.0009765625,
+      "steps": 1024000000,
+      "checks": 16000001,
+      "passed": true,
+      "failure": "none",
+      "wall_seconds": 197.937823808,
+      "max_star_span_AU": 8.000002002482612,
+      "min_star_separation_AU": 0.42315475132566616,
+      "min_planet_radius_AU": 17.853986175272862,
+      "max_planet_radius_AU": 20.065529272859138,
+      "min_planet_a_AU": 18.430384396318935,
+      "max_planet_a_AU": 20.567539690195417,
+      "max_planet_e": 0.11359299430879337,
+      "max_stellar_energy_error": 5.33221296898819e-07,
+      "max_stellar_angular_error": 2.13126185054018e-11,
+      "max_barycentre_drift_AU": 3.4248001112312297e-06,
+      "min_flux_Earth": 0.0074422374283370386,
+      "max_flux_Earth": 0.0100874343719871,
+      "min_sky_separation_deg": 0.000812194560054948,
+      "max_sky_separation_deg": 26.154345087600362,
+      "min_planet_star_distance_AU": 13.715411393534948,
+      "final_scaled_position_return_error": 0.5170890094059231,
+      "initial_bodies": [
+        {
+          "mass": 1,
+          "position": [
+            -4,
+            -0.635837685707082,
+            0
+          ],
+          "velocity": [
+            1.2633503624280513,
+            0.6611328685417048,
+            0.5666080731847625
+          ]
+        },
+        {
+          "mass": 1,
+          "position": [
+            4,
+            -0.635837685707082,
+            0
+          ],
+          "velocity": [
+            1.2633503624280513,
+            -0.6611328685417048,
+            0.5666080731847625
+          ]
+        },
+        {
+          "mass": 1,
+          "position": [
+            0,
+            1.2716753714141642,
+            0
+          ],
+          "velocity": [
+            -2.5267007248561026,
+            0,
+            -1.133216146369525
+          ]
+        },
+        {
+          "mass": 0,
+          "position": [
+            20,
+            0,
+            0
+          ],
+          "velocity": [
+            0,
+            0.8322948024322113,
+            2.2867111760119467
+          ]
+        }
+      ],
+      "final_bodies": [
+        {
+          "mass": 1,
+          "position": [
+            -2.721611158957226,
+            -0.04784543642568206,
+            -1.5159431995482857
+          ],
+          "velocity": [
+            -2.768264152145877,
+            -1.3846342051039275,
+            -1.1719323735483083
+          ]
+        },
+        {
+          "mass": 1,
+          "position": [
+            4.099808231625672,
+            -0.9682269365698273,
+            1.4284334893628292
+          ],
+          "velocity": [
+            -0.5485398659473254,
+            0.31109238948009865,
+            0.3886111701138855
+          ]
+        },
+        {
+          "mass": 1,
+          "position": [
+            -1.3781903096910288,
+            1.0160680404527744,
+            0.08750330280595138
+          ],
+          "velocity": [
+            3.316804018112815,
+            1.07354181562634,
+            0.7833212034249855
+          ]
+        },
+        {
+          "mass": 0,
+          "position": [
+            19.806008832174093,
+            -0.4462651156878356,
+            2.264177362875078
+          ],
+          "velocity": [
+            0.26586883652659615,
+            1.3189102763196814,
+            -2.035018233710028
+          ]
+        }
+      ],
+      "trial": "radius-5-half-step",
+      "command": [
+        "./build-headless/stellar_dance",
+        "--years",
+        "1000000",
+        "--scale",
+        "4",
+        "--radius",
+        "5",
+        "--step",
+        "0.0009765625",
+        "--phase",
+        "0",
+        "--perturb",
+        "0",
+        "--output",
+        "build-headless/dance-runs/radius-5-half-step.csv"
+      ]
+    },
+    {
+      "family": "Li-Liao O3(1.0)",
+      "scale_AU": 4,
+      "planet_initial_radius_AU": 20,
+      "planet_phase_deg": 0,
+      "stellar_velocity_perturbation": 1e-06,
+      "reference_stellar_period_years": 8.698291331281512,
+      "integrator": "Yoshida fourth-order composition of existing leapfrog",
+      "requested_years": 1000000,
+      "time": 1000000,
+      "dt": 0.001953125,
+      "steps": 512000000,
+      "checks": 16000001,
+      "passed": true,
+      "failure": "none",
+      "wall_seconds": 100.086458868,
+      "max_star_span_AU": 8.000035069932062,
+      "min_star_separation_AU": 0.4231479839630461,
+      "min_planet_radius_AU": 17.85375152643488,
+      "max_planet_radius_AU": 20.06574305235793,
+      "min_planet_a_AU": 18.43028848871346,
+      "max_planet_a_AU": 20.56739433291366,
+      "max_planet_e": 0.1135980720306343,
+      "max_stellar_energy_error": 8.495787255652562e-06,
+      "max_stellar_angular_error": 1.4492007146319072e-11,
+      "max_barycentre_drift_AU": 2.0954067772243047e-06,
+      "min_flux_Earth": 0.007442365541806044,
+      "max_flux_Earth": 0.010087112054747804,
+      "min_sky_separation_deg": 0.001564956147773561,
+      "max_sky_separation_deg": 26.15380724990195,
+      "min_planet_star_distance_AU": 13.714742177211193,
+      "final_scaled_position_return_error": 0.4974493980704238,
+      "initial_bodies": [
+        {
+          "mass": 1,
+          "position": [
+            -4,
+            -0.635837685707082,
+            0
+          ],
+          "velocity": [
+            1.2633503624280513,
+            0.6611335296745733,
+            0.5666080731847625
+          ]
+        },
+        {
+          "mass": 1,
+          "position": [
+            4,
+            -0.635837685707082,
+            0
+          ],
+          "velocity": [
+            1.2633503624280513,
+            -0.6611335296745733,
+            0.5666080731847625
+          ]
+        },
+        {
+          "mass": 1,
+          "position": [
+            0,
+            1.2716753714141642,
+            0
+          ],
+          "velocity": [
+            -2.5267007248561026,
+            0,
+            -1.133216146369525
+          ]
+        },
+        {
+          "mass": 0,
+          "position": [
+            20,
+            0,
+            0
+          ],
+          "velocity": [
+            0,
+            0.8322948024322113,
+            2.2867111760119467
+          ]
+        }
+      ],
+      "final_bodies": [
+        {
+          "mass": 1,
+          "position": [
+            -4.042807563361868,
+            -0.9919164703805372,
+            -1.3542925165420172
+          ],
+          "velocity": [
+            -0.7725375046725763,
+            -0.3100935406432999,
+            0.36230572211002726
+          ]
+        },
+        {
+          "mass": 1,
+          "position": [
+            3.033845331056981,
+            -0.08041550912524378,
+            1.6484373872521607
+          ],
+          "velocity": [
+            -2.224973127950704,
+            1.0487868404660166,
+            -0.8261644974716863
+          ]
+        },
+        {
+          "mass": 1,
+          "position": [
+            1.008963201215293,
+            1.0723330789061314,
+            -0.2941387576832702
+          ],
+          "velocity": [
+            2.9975106326178227,
+            -0.7386932998227302,
+            0.46385877537016906
+          ]
+        },
+        {
+          "mass": 0,
+          "position": [
+            19.942622434080754,
+            1.0516024586113835,
+            -0.6785849777891787
+          ],
+          "velocity": [
+            -0.15344244054996373,
+            1.162275137560035,
+            -2.125339444563192
+          ]
+        }
+      ],
+      "trial": "radius-5-perturbed-stars",
+      "command": [
+        "./build-headless/stellar_dance",
+        "--years",
+        "1000000",
+        "--scale",
+        "4",
+        "--radius",
+        "5",
+        "--step",
+        "0.001953125",
+        "--phase",
+        "0",
+        "--perturb",
+        "1e-06",
+        "--output",
+        "build-headless/dance-runs/radius-5-perturbed-stars.csv"
+      ]
+    },
+    {
+      "family": "Li-Liao O3(1.0)",
+      "scale_AU": 4,
+      "planet_initial_radius_AU": 20,
+      "planet_phase_deg": 90,
+      "stellar_velocity_perturbation": 0,
+      "reference_stellar_period_years": 8.698291331281512,
+      "integrator": "Yoshida fourth-order composition of existing leapfrog",
+      "requested_years": 1000000,
+      "time": 1000000,
+      "dt": 0.001953125,
+      "steps": 512000000,
+      "checks": 16000001,
+      "passed": true,
+      "failure": "none",
+      "wall_seconds": 99.919390422,
+      "max_star_span_AU": 8.000031990473975,
+      "min_star_separation_AU": 0.42314849654002296,
+      "min_planet_radius_AU": 19.974474851605155,
+      "max_planet_radius_AU": 20.76477192931359,
+      "min_planet_a_AU": 19.919010290510005,
+      "max_planet_a_AU": 21.623944465317685,
+      "max_planet_e": 0.06776694332878261,
+      "max_stellar_energy_error": 8.495697325571717e-06,
+      "max_stellar_angular_error": 1.629201692986422e-11,
+      "max_barycentre_drift_AU": 3.139066511723166e-06,
+      "min_flux_Earth": 0.006942871667078883,
+      "max_flux_Earth": 0.007942148693909,
+      "min_sky_separation_deg": 0.0005965837664669594,
+      "max_sky_separation_deg": 23.20503127028528,
+      "min_planet_star_distance_AU": 15.851238219910519,
+      "final_scaled_position_return_error": 0.5182913161966953,
+      "initial_bodies": [
+        {
+          "mass": 1,
+          "position": [
+            -4,
+            -0.635837685707082,
+            0
+          ],
+          "velocity": [
+            1.2633503624280513,
+            0.6611328685417048,
+            0.5666080731847625
+          ]
+        },
+        {
+          "mass": 1,
+          "position": [
+            4,
+            -0.635837685707082,
+            0
+          ],
+          "velocity": [
+            1.2633503624280513,
+            -0.6611328685417048,
+            0.5666080731847625
+          ]
+        },
+        {
+          "mass": 1,
+          "position": [
+            0,
+            1.2716753714141642,
+            0
+          ],
+          "velocity": [
+            -2.5267007248561026,
+            0,
+            -1.133216146369525
+          ]
+        },
+        {
+          "mass": 0,
+          "position": [
+            1.2246467991473533e-15,
+            6.840402866513374,
+            18.79385241571817
+          ],
+          "velocity": [
+            -2.433467205584167,
+            5.096335828727931e-17,
+            1.400206761138755e-16
+          ]
+        }
+      ],
+      "final_bodies": [
+        {
+          "mass": 1,
+          "position": [
+            -4.114837223974828,
+            -1.0483392835820975,
+            -1.2331093779530908
+          ],
+          "velocity": [
+            -0.6510434915848631,
+            -0.22190401214164823,
+            0.420281187206653
+          ]
+        },
+        {
+          "mass": 1,
+          "position": [
+            2.862619718489915,
+            0.08727459409731812,
+            1.575274243154686
+          ],
+          "velocity": [
+            -2.4761062583353945,
+            1.124879241227941,
+            -1.18733676225958
+          ]
+        },
+        {
+          "mass": 1,
+          "position": [
+            1.252222681344667,
+            0.9610698525045919,
+            -0.34217080130716215
+          ],
+          "velocity": [
+            3.1271497499312852,
+            -0.9029752290774744,
+            0.7670555750444763
+          ]
+        },
+        {
+          "mass": 0,
+          "position": [
+            -6.0988594456397935,
+            17.35995903718208,
+            8.037241603792156
+          ],
+          "velocity": [
+            -2.2951052285808116,
+            -0.539295597178932,
+            -0.5790494948889466
+          ]
+        }
+      ],
+      "trial": "radius-5-phase-90",
+      "command": [
+        "./build-headless/stellar_dance",
+        "--years",
+        "1000000",
+        "--scale",
+        "4",
+        "--radius",
+        "5",
+        "--step",
+        "0.001953125",
+        "--phase",
+        "90",
+        "--perturb",
+        "0",
+        "--output",
+        "build-headless/dance-runs/radius-5-phase-90.csv"
+      ]
+    },
+    {
+      "family": "Li-Liao O3(1.0)",
+      "scale_AU": 4,
+      "planet_initial_radius_AU": 24,
+      "planet_phase_deg": 0,
+      "stellar_velocity_perturbation": 0,
+      "reference_stellar_period_years": 8.698291331281512,
+      "integrator": "Yoshida fourth-order composition of existing leapfrog",
+      "requested_years": 1000000,
+      "time": 1000000,
+      "dt": 0.001953125,
+      "steps": 512000000,
+      "checks": 16000001,
+      "passed": true,
+      "failure": "none",
+      "wall_seconds": 99.251668362,
+      "max_star_span_AU": 8.000031990473975,
+      "min_star_separation_AU": 0.42314849654002296,
+      "min_planet_radius_AU": 22.306338452052955,
+      "max_planet_radius_AU": 24.01491388901159,
+      "min_planet_a_AU": 22.772328566383575,
+      "max_planet_a_AU": 24.29414465452641,
+      "max_planet_e": 0.07337472069279936,
+      "max_stellar_energy_error": 8.495697325571717e-06,
+      "max_stellar_angular_error": 1.629201692986422e-11,
+      "max_barycentre_drift_AU": 3.139066511723166e-06,
+      "min_flux_Earth": 0.005176979646537816,
+      "max_flux_Earth": 0.006345358853146943,
+      "min_sky_separation_deg": 0.0009442979687898949,
+      "max_sky_separation_deg": 20.914380980836228,
+      "min_planet_star_distance_AU": 18.00626969600865,
+      "final_scaled_position_return_error": 0.5182913161966953,
+      "initial_bodies": [
+        {
+          "mass": 1,
+          "position": [
+            -4,
+            -0.635837685707082,
+            0
+          ],
+          "velocity": [
+            1.2633503624280513,
+            0.6611328685417048,
+            0.5666080731847625
+          ]
+        },
+        {
+          "mass": 1,
+          "position": [
+            4,
+            -0.635837685707082,
+            0
+          ],
+          "velocity": [
+            1.2633503624280513,
+            -0.6611328685417048,
+            0.5666080731847625
+          ]
+        },
+        {
+          "mass": 1,
+          "position": [
+            0,
+            1.2716753714141642,
+            0
+          ],
+          "velocity": [
+            -2.5267007248561026,
+            0,
+            -1.133216146369525
+          ]
+        },
+        {
+          "mass": 0,
+          "position": [
+            24,
+            0,
+            0
+          ],
+          "velocity": [
+            0,
+            0.7597777296440462,
+            2.087472156001516
+          ]
+        }
+      ],
+      "final_bodies": [
+        {
+          "mass": 1,
+          "position": [
+            -4.114837223974828,
+            -1.0483392835820975,
+            -1.2331093779530908
+          ],
+          "velocity": [
+            -0.6510434915848631,
+            -0.22190401214164823,
+            0.420281187206653
+          ]
+        },
+        {
+          "mass": 1,
+          "position": [
+            2.862619718489915,
+            0.08727459409731812,
+            1.575274243154686
+          ],
+          "velocity": [
+            -2.4761062583353945,
+            1.124879241227941,
+            -1.18733676225958
+          ]
+        },
+        {
+          "mass": 1,
+          "position": [
+            1.252222681344667,
+            0.9610698525045919,
+            -0.34217080130716215
+          ],
+          "velocity": [
+            3.1271497499312852,
+            -0.9029752290774744,
+            0.7670555750444763
+          ]
+        },
+        {
+          "mass": 0,
+          "position": [
+            19.75802219254876,
+            -5.91903201651301,
+            9.219956643991598
+          ],
+          "velocity": [
+            -0.9511654272870892,
+            -2.0058698881264614,
+            0.7953420161827017
+          ]
+        }
+      ],
+      "trial": "radius-6-baseline",
+      "command": [
+        "./build-headless/stellar_dance",
+        "--years",
+        "1000000",
+        "--scale",
+        "4",
+        "--radius",
+        "6",
+        "--step",
+        "0.001953125",
+        "--phase",
+        "0",
+        "--perturb",
+        "0",
+        "--output",
+        "build-headless/dance-runs/radius-6-baseline.csv"
+      ]
+    }
+  ]
+}

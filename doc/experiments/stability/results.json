@@ -1,0 +1,2033 @@
+{
+  "created_utc": "2026-11-20T10:05:51.668160+00:00",
+  "git_base": "7d5e66bfb52c5c27f67dbe17e02b99511dca2537",
+  "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.36",
+  "compiler": "c++ (Debian 12.2.0-14+deb12u1) 12.2.0",
+  "source_sha256": {
+    "src/stability.hpp": "a35ce1ceaa2571cad69894248bf0561e926a05af3bec0a503338a4a58ef2d8bb",
+    "src/stability_experiment.cpp": "8bbe5173b66da502e4d83d8e6e79273331d1bd89b4d89935016dc5de03728a02",
+    "src/alien_world.hpp": "165a142dcc460c06a2ebfc29b0f2756aa7fb5a2e17c81a2f8bdeb7c4fccf3291",
+    "src/physics.hpp": "b30af01721f71b908602358a48ed197a43c2ffece29df123f053cbc5b288f34c",
+    "tools/run-stability-study.py": "fae452a1f3f1fba9b2078eaab39ae3aed508876b098ec789bb07a013cbf881ad"
+  },
+  "integrator": "Existing pairwise Newtonian kick-drift-kick leapfrog; independent stars and massless planet",
+  "units": {
+    "length": "AU",
+    "mass": "solar mass",
+    "time": "Julian year"
+  },
+  "check_interval_years": 0.125,
+  "checkpoint_interval_years": 128,
+  "limits": {
+    "stellar_span_AU": 100,
+    "semimajor_axis_factor": [
+      0.5,
+      2
+    ],
+    "planet_host_distance_AU": 5,
+    "stellar_energy_error": 0.0001,
+    "stellar_angular_error": 1e-08
+  },
+  "warning": "Finite sampled diagnostics, not a stability proof. Trials stop at the first failure; a planet failure does not prove stellar disruption. Conservation checks exclude the massless planet.",
+  "wall_seconds": 194.9084794859973,
+  "runs": [
+    {
+      "preset": "coplanar-24",
+      "requested_years": 1000000,
+      "time": 1000000,
+      "dt": 0.001953125,
+      "phase_offset_deg": 0,
+      "inclination_offset_deg": 0,
+      "steps": 512000000,
+      "checks": 8000001,
+      "wall_seconds": 29.673807712,
+      "passed": true,
+      "failure": "none",
+      "equal_masses": false,
+      "initial_mutual_inclination_deg": 0,
+      "initial_planet_inclination_deg": 0,
+      "initial_inner_a": 3.999999999999999,
+      "initial_outer_a": 23.999999999999993,
+      "initial_planet_a": 0.8999999999999998,
+      "max_star_span_AU": 28.44961332784717,
+      "min_star_separation_AU": 3.782610027739578,
+      "max_stellar_energy_error": 2.3463005574297666e-07,
+      "max_stellar_angular_error": 1.6710874328349908e-12,
+      "max_stellar_momentum": 9.84017088207456e-12,
+      "max_barycentre_drift_AU": 2.4963873662099893e-06,
+      "min_inner_a": 3.9963640180979847,
+      "max_inner_a": 4.002218640017203,
+      "max_inner_e": 0.05464960408340389,
+      "min_outer_a": 23.96540432704858,
+      "max_outer_a": 24.072470679868847,
+      "max_outer_e": 0.10800421550210663,
+      "min_planet_a": 0.8934670647148168,
+      "max_planet_a": 0.947453300529261,
+      "max_planet_e": 0.09108944817976394,
+      "min_planet_distance_AU": 0.8382363994696489,
+      "max_planet_distance_AU": 0.9739835937975759,
+      "min_mutual_i_deg": 0,
+      "max_mutual_i_deg": 0,
+      "min_planet_i_deg": 0,
+      "max_planet_i_deg": 0,
+      "min_flux_Earth": 1.6259583487706948,
+      "max_flux_Earth": 2.1627453312868066,
+      "initial_bodies": [
+        {
+          "mass": 1.0788,
+          "position": [
+            -0.5772813650063753,
+            0,
+            -0.6700877795211437
+          ],
+          "velocity": [
+            0.06463959771323549,
+            0,
+            -2.0387482904621774
+          ]
+        },
+        {
+          "mass": 0.9092,
+          "position": [
+            3.2227186349936243,
+            0,
+            -0.6700877795211437
+          ],
+          "velocity": [
+            0.06463959771323549,
+            0,
+            2.6180873447636777
+          ]
+        },
+        {
+          "mass": 0.1221,
+          "position": [
+            -18.897007750756153,
+            0,
+            10.91019251177751
+          ],
+          "velocity": [
+            -1.052444883324424,
+            0,
+            -1.4820913850003201
+          ]
+        },
+        {
+          "mass": 0,
+          "position": [
+            -0.18903122094181474,
+            0,
+            -1.5026929003564273
+          ],
+          "velocity": [
+            6.107979093206519,
+            0,
+            0.9403922145536563
+          ]
+        }
+      ],
+      "trial": "baseline",
+      "command": [
+        "./build-headless/stellar_stability",
+        "coplanar-24",
+        "--years",
+        "1000000",
+        "--step",
+        "0.001953125",
+        "--phase",
+        "0",
+        "--inclination-offset",
+        "0",
+        "--output",
+        "build-headless/stability-runs/coplanar-24-baseline.csv"
+      ]
+    },
+    {
+      "preset": "current",
+      "requested_years": 1000000,
+      "time": 3,
+      "dt": 0.001953125,
+      "phase_offset_deg": 0,
+      "inclination_offset_deg": 0,
+      "steps": 1536,
+      "checks": 25,
+      "wall_seconds": 0.000105394,
+      "passed": false,
+      "failure": "stellar_semimajor_axis_outside_factor_two",
+      "equal_masses": false,
+      "initial_mutual_inclination_deg": 6.6293228484229205,
+      "initial_planet_inclination_deg": 0,
+      "initial_inner_a": 4.000000000000001,
+      "initial_outer_a": 4.997604462378001,
+      "initial_planet_a": 0.9000000000000007,
+      "max_star_span_AU": 7.326296082922057,
+      "min_star_separation_AU": 1.144246545790247,
+      "max_stellar_energy_error": 1.3322506306698063e-05,
+      "max_stellar_angular_error": 1.4538699609622302e-15,
+      "max_stellar_momentum": 1.6162779083677384e-14,
+      "max_barycentre_drift_AU": 1.1109754812487663e-14,
+      "min_inner_a": 3.9798962865671683,
+      "max_inner_a": 5.381908454613813,
+      "max_inner_e": 0.29509478020091323,
+      "min_outer_a": 4.2612652745604205,
+      "max_outer_a": 35.26578415278377,
+      "max_outer_e": 0.9773386012136884,
+      "min_planet_a": 0.8790328485150565,
+      "max_planet_a": 0.9187684529790592,
+      "max_planet_e": 0.1952160494526966,
+      "min_planet_distance_AU": 0.7314032053599203,
+      "max_planet_distance_AU": 1.049447672356044,
+      "min_mutual_i_deg": 4.078667100478669,
+      "max_mutual_i_deg": 8.128401032369192,
+      "min_planet_i_deg": 0,
+      "max_planet_i_deg": 1.097946321309033,
+      "min_flux_Earth": 1.3901444871495936,
+      "max_flux_Earth": 2.8617627546922617,
+      "initial_bodies": [
+        {
+          "mass": 1.0788,
+          "position": [
+            -1.7425794232720144,
+            -0.03761196151841145,
+            -0.3471873370930288
+          ],
+          "velocity": [
+            0.17938012416473154,
+            0.008679683427325719,
+            -1.985316001578928
+          ]
+        },
+        {
+          "mass": 0.9092,
+          "position": [
+            2.2574205767279856,
+            -0.03761196151841145,
+            -0.3471873370930288
+          ],
+          "velocity": [
+            0.17938012416473154,
+            0.008679683427325719,
+            2.4442182345869523
+          ]
+        },
+        {
+          "mass": 0.1221,
+          "position": [
+            -1.4132031657267428,
+            0.6123880384815885,
+            5.652812662906971
+          ],
+          "velocity": [
+            -2.9206198758352686,
+            -0.14132031657267427,
+            -0.65949481067248
+          ]
+        },
+        {
+          "mass": 0,
+          "position": [
+            -2.48079890283077,
+            -0.03761196151841145,
+            -1.0854068166517845
+          ],
+          "velocity": [
+            4.318659438283451,
+            0.008679683427325719,
+            -6.124595315697647
+          ]
+        }
+      ],
+      "trial": "baseline",
+      "command": [
+        "./build-headless/stellar_stability",
+        "current",
+        "--years",
+        "1000000",
+        "--step",
+        "0.001953125",
+        "--phase",
+        "0",
+        "--inclination-offset",
+        "0",
+        "--output",
+        "build-headless/stability-runs/current-baseline.csv"
+      ]
+    },
+    {
+      "preset": "current",
+      "requested_years": 1000000,
+      "time": 3,
+      "dt": 6.103515625e-05,
+      "phase_offset_deg": 0,
+      "inclination_offset_deg": 0,
+      "steps": 49152,
+      "checks": 25,
+      "wall_seconds": 0.00274231,
+      "passed": false,
+      "failure": "stellar_semimajor_axis_outside_factor_two",
+      "equal_masses": false,
+      "initial_mutual_inclination_deg": 6.6293228484229205,
+      "initial_planet_inclination_deg": 0,
+      "initial_inner_a": 4.000000000000001,
+      "initial_outer_a": 4.997604462378001,
+      "initial_planet_a": 0.9000000000000007,
+      "max_star_span_AU": 7.326293561040062,
+      "min_star_separation_AU": 1.1442299987915683,
+      "max_stellar_energy_error": 1.3011544964474288e-08,
+      "max_stellar_angular_error": 1.309231556105624e-14,
+      "max_stellar_momentum": 8.769293295225479e-14,
+      "max_barycentre_drift_AU": 7.963723703128e-14,
+      "min_inner_a": 3.9798962942321094,
+      "max_inner_a": 5.3818756617632415,
+      "max_inner_e": 0.2950925624619197,
+      "min_outer_a": 4.2612679832619635,
+      "max_outer_a": 35.26348422814733,
+      "max_outer_e": 0.9773363192172702,
+      "min_planet_a": 0.8790336128315265,
+      "max_planet_a": 0.9187767144313738,
+      "max_planet_e": 0.19534730854204213,
+      "min_planet_distance_AU": 0.731319460320312,
+      "max_planet_distance_AU": 1.0493804443649262,
+      "min_mutual_i_deg": 4.078691040455349,
+      "max_mutual_i_deg": 8.128395330844537,
+      "min_planet_i_deg": 0,
+      "max_planet_i_deg": 1.0979116082710174,
+      "min_flux_Earth": 1.3900705192678273,
+      "max_flux_Earth": 2.862404839671322,
+      "initial_bodies": [
+        {
+          "mass": 1.0788,
+          "position": [
+            -1.7425794232720144,
+            -0.03761196151841145,
+            -0.3471873370930288
+          ],
+          "velocity": [
+            0.17938012416473154,
+            0.008679683427325719,
+            -1.985316001578928
+          ]
+        },
+        {
+          "mass": 0.9092,
+          "position": [
+            2.2574205767279856,
+            -0.03761196151841145,
+            -0.3471873370930288
+          ],
+          "velocity": [
+            0.17938012416473154,
+            0.008679683427325719,
+            2.4442182345869523
+          ]
+        },
+        {
+          "mass": 0.1221,
+          "position": [
+            -1.4132031657267428,
+            0.6123880384815885,
+            5.652812662906971
+          ],
+          "velocity": [
+            -2.9206198758352686,
+            -0.14132031657267427,
+            -0.65949481067248
+          ]
+        },
+        {
+          "mass": 0,
+          "position": [
+            -2.48079890283077,
+            -0.03761196151841145,
+            -1.0854068166517845
+          ],
+          "velocity": [
+            4.318659438283451,
+            0.008679683427325719,
+            -6.124595315697647
+          ]
+        }
+      ],
+      "trial": "viewer-step",
+      "command": [
+        "./build-headless/stellar_stability",
+        "current",
+        "--years",
+        "1000000",
+        "--step",
+        "6.103515625e-05",
+        "--phase",
+        "0",
+        "--inclination-offset",
+        "0",
+        "--output",
+        "build-headless/stability-runs/current-viewer-step.csv"
+      ]
+    },
+    {
+      "preset": "high-inclination-24",
+      "requested_years": 1000000,
+      "time": 6881.125,
+      "dt": 0.001953125,
+      "phase_offset_deg": 0,
+      "inclination_offset_deg": 0,
+      "steps": 3523136,
+      "checks": 55050,
+      "wall_seconds": 0.204966707,
+      "passed": false,
+      "failure": "planet_outside_retention_envelope",
+      "equal_masses": false,
+      "initial_mutual_inclination_deg": 59.99999999999999,
+      "initial_planet_inclination_deg": 9.999999999999977,
+      "initial_inner_a": 3.999999999999999,
+      "initial_outer_a": 23.999999999999993,
+      "initial_planet_a": 0.8999999999999998,
+      "max_star_span_AU": 28.349340491105654,
+      "min_star_separation_AU": 2.8619588256594355,
+      "max_stellar_energy_error": 1.7356077420982993e-06,
+      "max_stellar_angular_error": 1.2115861518311732e-13,
+      "max_stellar_momentum": 4.841225078825144e-13,
+      "max_barycentre_drift_AU": 7.217365926101969e-10,
+      "min_inner_a": 3.9964959199370975,
+      "max_inner_a": 4.002051149115319,
+      "max_inner_e": 0.28466451414704225,
+      "min_outer_a": 23.922467636076192,
+      "max_outer_a": 24.206563523170864,
+      "max_outer_e": 0.1035558220830229,
+      "min_planet_a": 0.2871693803641454,
+      "max_planet_a": 1.0176363494708063,
+      "max_planet_e": 0.9361484370306424,
+      "min_planet_distance_AU": 0.33590155503614444,
+      "max_planet_distance_AU": 1.547735659299453,
+      "min_mutual_i_deg": 53.798924438188784,
+      "max_mutual_i_deg": 60.35582088228102,
+      "min_planet_i_deg": 9.497640226800865,
+      "max_planet_i_deg": 40.58273868652052,
+      "min_flux_Earth": 0.8265607320466256,
+      "max_flux_Earth": 13.39609485749616,
+      "initial_bodies": [
+        {
+          "mass": 1.0788,
+          "position": [
+            -0.9256176458171467,
+            -1.051884453835157,
+            -0.1726120144052793
+          ],
+          "velocity": [
+            0.07539125822737229,
+            0.03246720244417357,
+            -2.0541032529946097
+          ]
+        },
+        {
+          "mass": 0.9092,
+          "position": [
+            2.874382354182853,
+            -1.051884453835157,
+            -0.1726120144052793
+          ],
+          "velocity": [
+            0.07539125822737229,
+            0.03246720244417357,
+            2.6027323822312454
+          ]
+        },
+        {
+          "mass": 0.1221,
+          "position": [
+            -13.225488289234338,
+            17.12650527620223,
+            2.8104232976060217
+          ],
+          "velocity": [
+            -1.2275005844063565,
+            -0.5286224280017777,
+            -1.2320859344313149
+          ]
+        },
+        {
+          "mass": 0,
+          "position": [
+            -0.5466412691129385,
+            -1.2017905907761675,
+            -0.9959433678802105
+          ],
+          "velocity": [
+            6.095454719779117,
+            -0.34377906252049606,
+            0.9483132859627621
+          ]
+        }
+      ],
+      "trial": "baseline",
+      "command": [
+        "./build-headless/stellar_stability",
+        "high-inclination-24",
+        "--years",
+        "1000000",
+        "--step",
+        "0.001953125",
+        "--phase",
+        "0",
+        "--inclination-offset",
+        "0",
+        "--output",
+        "build-headless/stability-runs/high-inclination-24-baseline.csv"
+      ]
+    },
+    {
+      "preset": "high-inclination-24",
+      "requested_years": 1000000,
+      "time": 6727.625,
+      "dt": 0.0009765625,
+      "phase_offset_deg": 0,
+      "inclination_offset_deg": 0,
+      "steps": 6889088,
+      "checks": 53822,
+      "wall_seconds": 0.394469246,
+      "passed": false,
+      "failure": "planet_not_bound_to_A",
+      "equal_masses": false,
+      "initial_mutual_inclination_deg": 59.99999999999999,
+      "initial_planet_inclination_deg": 9.999999999999977,
+      "initial_inner_a": 3.999999999999999,
+      "initial_outer_a": 23.999999999999993,
+      "initial_planet_a": 0.8999999999999998,
+      "max_star_span_AU": 28.349335743683735,
+      "min_star_separation_AU": 2.898837561349833,
+      "max_stellar_energy_error": 3.9929214832141336e-07,
+      "max_stellar_angular_error": 2.2462766876394299e-13,
+      "max_stellar_momentum": 8.166506501570983e-13,
+      "max_barycentre_drift_AU": 1.5125771307403597e-09,
+      "min_inner_a": 3.996492191374728,
+      "max_inner_a": 4.001998875659958,
+      "max_inner_e": 0.2755429593602827,
+      "min_outer_a": 23.922475222161054,
+      "max_outer_a": 24.206564945718217,
+      "max_outer_e": 0.10355588577334895,
+      "min_planet_a": -1.8008354850301573,
+      "max_planet_a": 1.7076383956666017,
+      "max_planet_e": 1.0731336284318351,
+      "min_planet_distance_AU": 0.45336704726456645,
+      "max_planet_distance_AU": 2.5340326659322034,
+      "min_mutual_i_deg": 54.3472258313179,
+      "max_mutual_i_deg": 60.35570400129585,
+      "min_planet_i_deg": 6.7305170677937545,
+      "max_planet_i_deg": 48.766547494041454,
+      "min_flux_Earth": 0.7690778673577674,
+      "max_flux_Earth": 7.357241998136002,
+      "initial_bodies": [
+        {
+          "mass": 1.0788,
+          "position": [
+            -0.9256176458171467,
+            -1.051884453835157,
+            -0.1726120144052793
+          ],
+          "velocity": [
+            0.07539125822737229,
+            0.03246720244417357,
+            -2.0541032529946097
+          ]
+        },
+        {
+          "mass": 0.9092,
+          "position": [
+            2.874382354182853,
+            -1.051884453835157,
+            -0.1726120144052793
+          ],
+          "velocity": [
+            0.07539125822737229,
+            0.03246720244417357,
+            2.6027323822312454
+          ]
+        },
+        {
+          "mass": 0.1221,
+          "position": [
+            -13.225488289234338,
+            17.12650527620223,
+            2.8104232976060217
+          ],
+          "velocity": [
+            -1.2275005844063565,
+            -0.5286224280017777,
+            -1.2320859344313149
+          ]
+        },
+        {
+          "mass": 0,
+          "position": [
+            -0.5466412691129385,
+            -1.2017905907761675,
+            -0.9959433678802105
+          ],
+          "velocity": [
+            6.095454719779117,
+            -0.34377906252049606,
+            0.9483132859627621
+          ]
+        }
+      ],
+      "trial": "half-step",
+      "command": [
+        "./build-headless/stellar_stability",
+        "high-inclination-24",
+        "--years",
+        "1000000",
+        "--step",
+        "0.0009765625",
+        "--phase",
+        "0",
+        "--inclination-offset",
+        "0",
+        "--output",
+        "build-headless/stability-runs/high-inclination-24-half-step.csv"
+      ]
+    },
+    {
+      "preset": "inclined-12",
+      "requested_years": 1000000,
+      "time": 678439.625,
+      "dt": 0.001953125,
+      "phase_offset_deg": 0,
+      "inclination_offset_deg": 0,
+      "steps": 347361088,
+      "checks": 5427518,
+      "wall_seconds": 20.173518659,
+      "passed": false,
+      "failure": "stellar_semimajor_axis_outside_factor_two",
+      "equal_masses": false,
+      "initial_mutual_inclination_deg": 20.00000000000001,
+      "initial_planet_inclination_deg": 10.000000000000012,
+      "initial_inner_a": 3.999999999999999,
+      "initial_outer_a": 11.999999999999991,
+      "initial_planet_a": 0.8999999999999998,
+      "max_star_span_AU": 30.03720499977955,
+      "min_star_separation_AU": 3.0943619534502735,
+      "max_stellar_energy_error": 9.265841970396062e-07,
+      "max_stellar_angular_error": 1.0799063626590329e-12,
+      "max_stellar_momentum": 3.601808258958088e-12,
+      "max_barycentre_drift_AU": 2.358095355407247e-07,
+      "min_inner_a": 3.815891580349104,
+      "max_inner_a": 4.033691728270386,
+      "max_inner_e": 0.21301495952369479,
+      "min_outer_a": 11.60912947804998,
+      "max_outer_a": 24.097236661575696,
+      "max_outer_e": 0.6371522581096335,
+      "min_planet_a": 0.8679825340814132,
+      "max_planet_a": 0.9849801537797068,
+      "max_planet_e": 0.17892309833811962,
+      "min_planet_distance_AU": 0.7550783813227797,
+      "max_planet_distance_AU": 1.0311504004375045,
+      "min_mutual_i_deg": 16.90703950490847,
+      "max_mutual_i_deg": 21.06339821451685,
+      "min_planet_i_deg": 8.959873039511871,
+      "max_planet_i_deg": 12.981589277448673,
+      "min_flux_Earth": 1.4542120091685786,
+      "max_flux_Earth": 2.6721584279111177,
+      "initial_bodies": [
+        {
+          "mass": 1.0788,
+          "position": [
+            -1.1786016530180732,
+            -0.2077108073796713,
+            -0.3050424301439091
+          ],
+          "velocity": [
+            0.09324816053695108,
+            0.01813347006829688,
+            -2.003662495192577
+          ]
+        },
+        {
+          "mass": 0.9092,
+          "position": [
+            2.621398346981927,
+            -0.2077108073796713,
+            -0.3050424301439091
+          ],
+          "velocity": [
+            0.09324816053695108,
+            0.01813347006829688,
+            2.653173140033278
+          ]
+        },
+        {
+          "mass": 0.1221,
+          "position": [
+            -9.106469400491978,
+            3.3818925886223306,
+            4.96662040234309
+          ],
+          "velocity": [
+            -1.5182419586196458,
+            -0.29524437752476823,
+            -2.053349050814948
+          ]
+        },
+        {
+          "mass": 0,
+          "position": [
+            -0.7996252763138649,
+            -0.3576169443206818,
+            -1.1283737836188403
+          ],
+          "velocity": [
+            6.113311622088696,
+            -0.3581127948963727,
+            0.9987540437647948
+          ]
+        }
+      ],
+      "trial": "baseline",
+      "command": [
+        "./build-headless/stellar_stability",
+        "inclined-12",
+        "--years",
+        "1000000",
+        "--step",
+        "0.001953125",
+        "--phase",
+        "0",
+        "--inclination-offset",
+        "0",
+        "--output",
+        "build-headless/stability-runs/inclined-12-baseline.csv"
+      ]
+    },
+    {
+      "preset": "inclined-12",
+      "requested_years": 1000000,
+      "time": 806840,
+      "dt": 0.0009765625,
+      "phase_offset_deg": 0,
+      "inclination_offset_deg": 0,
+      "steps": 826204160,
+      "checks": 6454721,
+      "wall_seconds": 46.910514742,
+      "passed": false,
+      "failure": "stellar_semimajor_axis_outside_factor_two",
+      "equal_masses": false,
+      "initial_mutual_inclination_deg": 20.00000000000001,
+      "initial_planet_inclination_deg": 10.000000000000012,
+      "initial_inner_a": 3.999999999999999,
+      "initial_outer_a": 11.999999999999991,
+      "initial_planet_a": 0.8999999999999998,
+      "max_star_span_AU": 35.80973556705788,
+      "min_star_separation_AU": 3.21753367713524,
+      "max_stellar_energy_error": 1.6527162036545255e-07,
+      "max_stellar_angular_error": 2.677857920090626e-12,
+      "max_stellar_momentum": 5.592326264473403e-12,
+      "max_barycentre_drift_AU": 8.548354636943835e-07,
+      "min_inner_a": 3.8145928338781903,
+      "max_inner_a": 4.030026986907011,
+      "max_inner_e": 0.1671703154793965,
+      "min_outer_a": 11.678844456356572,
+      "max_outer_a": 24.12020472475899,
+      "max_outer_e": 0.674185569591283,
+      "min_planet_a": 0.87672527024441,
+      "max_planet_a": 0.960718640067029,
+      "max_planet_e": 0.1198372807004945,
+      "min_planet_distance_AU": 0.8230485013881245,
+      "max_planet_distance_AU": 0.980757856447033,
+      "min_mutual_i_deg": 17.877468154671792,
+      "max_mutual_i_deg": 21.14231659039386,
+      "min_planet_i_deg": 8.445085716657896,
+      "max_planet_i_deg": 12.483594436009607,
+      "min_flux_Earth": 1.604947161382045,
+      "max_flux_Earth": 2.252620663046014,
+      "initial_bodies": [
+        {
+          "mass": 1.0788,
+          "position": [
+            -1.1786016530180732,
+            -0.2077108073796713,
+            -0.3050424301439091
+          ],
+          "velocity": [
+            0.09324816053695108,
+            0.01813347006829688,
+            -2.003662495192577
+          ]
+        },
+        {
+          "mass": 0.9092,
+          "position": [
+            2.621398346981927,
+            -0.2077108073796713,
+            -0.3050424301439091
+          ],
+          "velocity": [
+            0.09324816053695108,
+            0.01813347006829688,
+            2.653173140033278
+          ]
+        },
+        {
+          "mass": 0.1221,
+          "position": [
+            -9.106469400491978,
+            3.3818925886223306,
+            4.96662040234309
+          ],
+          "velocity": [
+            -1.5182419586196458,
+            -0.29524437752476823,
+            -2.053349050814948
+          ]
+        },
+        {
+          "mass": 0,
+          "position": [
+            -0.7996252763138649,
+            -0.3576169443206818,
+            -1.1283737836188403
+          ],
+          "velocity": [
+            6.113311622088696,
+            -0.3581127948963727,
+            0.9987540437647948
+          ]
+        }
+      ],
+      "trial": "half-step",
+      "command": [
+        "./build-headless/stellar_stability",
+        "inclined-12",
+        "--years",
+        "1000000",
+        "--step",
+        "0.0009765625",
+        "--phase",
+        "0",
+        "--inclination-offset",
+        "0",
+        "--output",
+        "build-headless/stability-runs/inclined-12-half-step.csv"
+      ]
+    },
+    {
+      "preset": "inclined-16",
+      "requested_years": 1000000,
+      "time": 1000000,
+      "dt": 0.001953125,
+      "phase_offset_deg": 0,
+      "inclination_offset_deg": 0,
+      "steps": 512000000,
+      "checks": 8000001,
+      "wall_seconds": 30.028833846,
+      "passed": true,
+      "failure": "none",
+      "equal_masses": false,
+      "initial_mutual_inclination_deg": 20.000000000000032,
+      "initial_planet_inclination_deg": 10.000000000000012,
+      "initial_inner_a": 3.999999999999999,
+      "initial_outer_a": 15.999999999999995,
+      "initial_planet_a": 0.8999999999999996,
+      "max_star_span_AU": 19.676690138343567,
+      "min_star_separation_AU": 3.7634602706705063,
+      "max_stellar_energy_error": 2.368281346131822e-07,
+      "max_stellar_angular_error": 2.636393392234603e-12,
+      "max_stellar_momentum": 3.979378978465218e-12,
+      "max_barycentre_drift_AU": 7.695946390458973e-07,
+      "min_inner_a": 3.9865057512069035,
+      "max_inner_a": 4.008522443627424,
+      "max_inner_e": 0.06001689520640545,
+      "min_outer_a": 15.910479307792029,
+      "max_outer_a": 16.23100931226437,
+      "max_outer_e": 0.12021331700060457,
+      "min_planet_a": 0.89340440011362,
+      "max_planet_a": 0.947223954492301,
+      "max_planet_e": 0.09056473525659361,
+      "min_planet_distance_AU": 0.8392200141189395,
+      "max_planet_distance_AU": 0.9737740198046715,
+      "min_mutual_i_deg": 19.82138099952785,
+      "max_mutual_i_deg": 20.39428918628898,
+      "min_planet_i_deg": 9.631769024734547,
+      "max_planet_i_deg": 10.932079464832453,
+      "min_flux_Earth": 1.6255268022794815,
+      "max_flux_Earth": 2.1579144834651802,
+      "initial_bodies": [
+        {
+          "mass": 1.0788,
+          "position": [
+            -0.9921663891347615,
+            -0.2769477431728951,
+            -0.4067232401918788
+          ],
+          "velocity": [
+            0.08075527588116922,
+            0.01570404573790984,
+            -2.020558519376504
+          ]
+        },
+        {
+          "mass": 0.9092,
+          "position": [
+            2.8078336108652384,
+            -0.2769477431728951,
+            -0.4067232401918788
+          ],
+          "velocity": [
+            0.08075527588116922,
+            0.01570404573790984,
+            2.636277115849351
+          ]
+        },
+        {
+          "mass": 0.1221,
+          "position": [
+            -12.141959200655974,
+            4.509190118163108,
+            6.622160536457454
+          ],
+          "velocity": [
+            -1.314836105256056,
+            -0.2556891312609727,
+            -1.7782524408424092
+          ]
+        },
+        {
+          "mass": 0,
+          "position": [
+            -0.6131900124305534,
+            -0.42685388011390557,
+            -1.23005459366681
+          ],
+          "velocity": [
+            6.100818737432914,
+            -0.3605422192267598,
+            0.9818580195808679
+          ]
+        }
+      ],
+      "trial": "baseline",
+      "command": [
+        "./build-headless/stellar_stability",
+        "inclined-16",
+        "--years",
+        "1000000",
+        "--step",
+        "0.001953125",
+        "--phase",
+        "0",
+        "--inclination-offset",
+        "0",
+        "--output",
+        "build-headless/stability-runs/inclined-16-baseline.csv"
+      ]
+    },
+    {
+      "preset": "inclined-16",
+      "requested_years": 1000000,
+      "time": 1000000,
+      "dt": 0.0009765625,
+      "phase_offset_deg": 0,
+      "inclination_offset_deg": 0,
+      "steps": 1024000000,
+      "checks": 8000001,
+      "wall_seconds": 59.073230082,
+      "passed": true,
+      "failure": "none",
+      "equal_masses": false,
+      "initial_mutual_inclination_deg": 20.000000000000032,
+      "initial_planet_inclination_deg": 10.000000000000012,
+      "initial_inner_a": 3.999999999999999,
+      "initial_outer_a": 15.999999999999995,
+      "initial_planet_a": 0.8999999999999996,
+      "max_star_span_AU": 19.675115453237822,
+      "min_star_separation_AU": 3.7634738969064223,
+      "max_stellar_energy_error": 5.920298699362847e-08,
+      "max_stellar_angular_error": 1.1448292120832686e-12,
+      "max_stellar_momentum": 9.490241319486866e-12,
+      "max_barycentre_drift_AU": 2.0595866332558525e-06,
+      "min_inner_a": 3.9865082226730157,
+      "max_inner_a": 4.008518454877025,
+      "max_inner_e": 0.060025216124757544,
+      "min_outer_a": 15.910562828564247,
+      "max_outer_a": 16.23101722181702,
+      "max_outer_e": 0.12021558483074753,
+      "min_planet_a": 0.8931801057004517,
+      "max_planet_a": 0.9476673834567435,
+      "max_planet_e": 0.09403064087074876,
+      "min_planet_distance_AU": 0.8358140345518152,
+      "max_planet_distance_AU": 0.976430105449327,
+      "min_mutual_i_deg": 19.821252244856645,
+      "max_mutual_i_deg": 20.39389079190361,
+      "min_planet_i_deg": 9.630584577827024,
+      "max_planet_i_deg": 10.929966314165657,
+      "min_flux_Earth": 1.6173985485336304,
+      "max_flux_Earth": 2.1756831825759426,
+      "initial_bodies": [
+        {
+          "mass": 1.0788,
+          "position": [
+            -0.9921663891347615,
+            -0.2769477431728951,
+            -0.4067232401918788
+          ],
+          "velocity": [
+            0.08075527588116922,
+            0.01570404573790984,
+            -2.020558519376504
+          ]
+        },
+        {
+          "mass": 0.9092,
+          "position": [
+            2.8078336108652384,
+            -0.2769477431728951,
+            -0.4067232401918788
+          ],
+          "velocity": [
+            0.08075527588116922,
+            0.01570404573790984,
+            2.636277115849351
+          ]
+        },
+        {
+          "mass": 0.1221,
+          "position": [
+            -12.141959200655974,
+            4.509190118163108,
+            6.622160536457454
+          ],
+          "velocity": [
+            -1.314836105256056,
+            -0.2556891312609727,
+            -1.7782524408424092
+          ]
+        },
+        {
+          "mass": 0,
+          "position": [
+            -0.6131900124305534,
+            -0.42685388011390557,
+            -1.23005459366681
+          ],
+          "velocity": [
+            6.100818737432914,
+            -0.3605422192267598,
+            0.9818580195808679
+          ]
+        }
+      ],
+      "trial": "half-step",
+      "command": [
+        "./build-headless/stellar_stability",
+        "inclined-16",
+        "--years",
+        "1000000",
+        "--step",
+        "0.0009765625",
+        "--phase",
+        "0",
+        "--inclination-offset",
+        "0",
+        "--output",
+        "build-headless/stability-runs/inclined-16-half-step.csv"
+      ]
+    },
+    {
+      "preset": "inclined-16",
+      "requested_years": 1000000,
+      "time": 1000000,
+      "dt": 0.001953125,
+      "phase_offset_deg": -1,
+      "inclination_offset_deg": -1,
+      "steps": 512000000,
+      "checks": 8000001,
+      "wall_seconds": 29.930103308,
+      "passed": true,
+      "failure": "none",
+      "equal_masses": false,
+      "initial_mutual_inclination_deg": 18.999999999999975,
+      "initial_planet_inclination_deg": 10.000000000000012,
+      "initial_inner_a": 3.999999999999999,
+      "initial_outer_a": 15.99999999999999,
+      "initial_planet_a": 0.8999999999999997,
+      "max_star_span_AU": 19.667778366628774,
+      "min_star_separation_AU": 3.764143662819081,
+      "max_stellar_energy_error": 2.3661165620078815e-07,
+      "max_stellar_angular_error": 8.197804593634606e-13,
+      "max_stellar_momentum": 5.428793385315279e-12,
+      "max_barycentre_drift_AU": 1.4330413602088724e-06,
+      "min_inner_a": 3.986656412453017,
+      "max_inner_a": 4.008727149504989,
+      "max_inner_e": 0.059913594695645674,
+      "min_outer_a": 15.910687106263445,
+      "max_outer_a": 16.227270744377737,
+      "max_outer_e": 0.12026754312468244,
+      "min_planet_a": 0.8936167570912973,
+      "max_planet_a": 0.947835124671841,
+      "max_planet_e": 0.09322725540123993,
+      "min_planet_distance_AU": 0.8366768684079936,
+      "max_planet_distance_AU": 0.9764289949376417,
+      "min_mutual_i_deg": 18.83454493603861,
+      "max_mutual_i_deg": 19.38139659569339,
+      "min_planet_i_deg": 9.63205714273657,
+      "max_planet_i_deg": 10.907298898845792,
+      "min_flux_Earth": 1.617754203643354,
+      "max_flux_Earth": 2.1709016027348387,
+      "initial_bodies": [
+        {
+          "mass": 1.0788,
+          "position": [
+            -0.9987885943677206,
+            -0.2652962523196286,
+            -0.42304125102801843
+          ],
+          "velocity": [
+            0.08253151808118106,
+            0.014262518705209528,
+            -2.021420799372032
+          ]
+        },
+        {
+          "mass": 0.9092,
+          "position": [
+            2.801211405632279,
+            -0.2652962523196286,
+            -0.42304125102801843
+          ],
+          "velocity": [
+            0.08253151808118106,
+            0.014262518705209528,
+            2.635414835853823
+          ]
+        },
+        {
+          "mass": 0.1221,
+          "position": [
+            -12.034138201449398,
+            4.319483616801161,
+            6.887846085533995
+          ],
+          "velocity": [
+            -1.34375641232914,
+            -0.23221856827155238,
+            -1.7642130253542037
+          ]
+        },
+        {
+          "mass": 0,
+          "position": [
+            -0.6342052937036853,
+            -0.4142831924045085,
+            -1.2533933507090407
+          ],
+          "velocity": [
+            6.151197144503789,
+            -0.3815205860064813,
+            0.8729045633399681
+          ]
+        }
+      ],
+      "trial": "phase-minus",
+      "command": [
+        "./build-headless/stellar_stability",
+        "inclined-16",
+        "--years",
+        "1000000",
+        "--step",
+        "0.001953125",
+        "--phase",
+        "-1",
+        "--inclination-offset",
+        "-1",
+        "--output",
+        "build-headless/stability-runs/inclined-16-phase-minus.csv"
+      ]
+    },
+    {
+      "preset": "inclined-16",
+      "requested_years": 1000000,
+      "time": 1000000,
+      "dt": 0.001953125,
+      "phase_offset_deg": 1,
+      "inclination_offset_deg": 1,
+      "steps": 512000000,
+      "checks": 8000001,
+      "wall_seconds": 29.74708641,
+      "passed": true,
+      "failure": "none",
+      "equal_masses": false,
+      "initial_mutual_inclination_deg": 21,
+      "initial_planet_inclination_deg": 10.000000000000012,
+      "initial_inner_a": 3.999999999999999,
+      "initial_outer_a": 15.999999999999995,
+      "initial_planet_a": 0.8999999999999997,
+      "max_star_span_AU": 19.685066356796476,
+      "min_star_separation_AU": 3.762728581352751,
+      "max_stellar_energy_error": 2.3707488988550356e-07,
+      "max_stellar_angular_error": 1.2942817886063695e-12,
+      "max_stellar_momentum": 6.843274489043943e-12,
+      "max_barycentre_drift_AU": 1.377384214633095e-06,
+      "min_inner_a": 3.9863689668080196,
+      "max_inner_a": 4.0082978917029095,
+      "max_inner_e": 0.060149695743614916,
+      "min_outer_a": 15.910312665222504,
+      "max_outer_a": 16.234454250348083,
+      "max_outer_e": 0.12013312134138793,
+      "min_planet_a": 0.892909012947709,
+      "max_planet_a": 0.9464927436268709,
+      "max_planet_e": 0.08769375530303711,
+      "min_planet_distance_AU": 0.8415135167230904,
+      "max_planet_distance_AU": 0.9712660356811976,
+      "min_mutual_i_deg": 20.80757311636552,
+      "max_mutual_i_deg": 21.40622686475111,
+      "min_planet_i_deg": 9.636148754463152,
+      "max_planet_i_deg": 10.95648712744996,
+      "min_flux_Earth": 1.6338766358679095,
+      "max_flux_Earth": 2.1465717990852715,
+      "initial_bodies": [
+        {
+          "mass": 1.0788,
+          "position": [
+            -0.9858321230868945,
+            -0.28825423251532795,
+            -0.3901049486297639
+          ],
+          "velocity": [
+            0.07898014143618147,
+            0.01720379179783201,
+            -2.019761691070499
+          ]
+        },
+        {
+          "mass": 0.9092,
+          "position": [
+            2.814167876913105,
+            -0.28825423251532795,
+            -0.3901049486297639
+          ],
+          "velocity": [
+            0.07898014143618147,
+            0.01720379179783201,
+            2.637073944155356
+          ]
+        },
+        {
+          "mass": 0.1221,
+          "position": [
+            -12.245092049985699,
+            4.693279395908862,
+            6.3515858957900955
+          ],
+          "velocity": [
+            -1.285933834358139,
+            -0.2801076010981985,
+            -1.7912261891826013
+          ]
+        },
+        {
+          "mass": 0,
+          "position": [
+            -0.5925914512306518,
+            -0.4390322364966184,
+            -1.2061647325582139
+          ],
+          "velocity": [
+            6.04854918242637,
+            -0.3393811274348381,
+            1.0898523566998275
+          ]
+        }
+      ],
+      "trial": "phase-plus",
+      "command": [
+        "./build-headless/stellar_stability",
+        "inclined-16",
+        "--years",
+        "1000000",
+        "--step",
+        "0.001953125",
+        "--phase",
+        "1",
+        "--inclination-offset",
+        "1",
+        "--output",
+        "build-headless/stability-runs/inclined-16-phase-plus.csv"
+      ]
+    },
+    {
+      "preset": "inclined-24",
+      "requested_years": 1000000,
+      "time": 1000000,
+      "dt": 0.001953125,
+      "phase_offset_deg": 0,
+      "inclination_offset_deg": 0,
+      "steps": 512000000,
+      "checks": 8000001,
+      "wall_seconds": 29.934126193,
+      "passed": true,
+      "failure": "none",
+      "equal_masses": false,
+      "initial_mutual_inclination_deg": 20.000000000000032,
+      "initial_planet_inclination_deg": 10.000000000000012,
+      "initial_inner_a": 3.999999999999999,
+      "initial_outer_a": 23.999999999999993,
+      "initial_planet_a": 0.8999999999999998,
+      "max_star_span_AU": 28.493769489195692,
+      "min_star_separation_AU": 3.771163868777823,
+      "max_stellar_energy_error": 2.3936205908257216e-07,
+      "max_stellar_angular_error": 1.2875495075045228e-12,
+      "max_stellar_momentum": 1.3758897393355104e-11,
+      "max_barycentre_drift_AU": 3.838071865784922e-06,
+      "min_inner_a": 3.9963816959817002,
+      "max_inner_a": 4.0021697208004205,
+      "max_inner_e": 0.05746005864461506,
+      "min_outer_a": 23.97031180236503,
+      "max_outer_a": 24.09604919850185,
+      "max_outer_e": 0.10738928583157452,
+      "min_planet_a": 0.8934230329842868,
+      "max_planet_a": 0.9465590272945815,
+      "max_planet_e": 0.08345890009561331,
+      "min_planet_distance_AU": 0.8455933411772895,
+      "max_planet_distance_AU": 0.9688223110999321,
+      "min_mutual_i_deg": 19.878303618707005,
+      "max_mutual_i_deg": 20.195137785488317,
+      "min_planet_i_deg": 9.629516922340924,
+      "max_planet_i_deg": 10.593162201580897,
+      "min_flux_Earth": 1.641476196741451,
+      "max_flux_Earth": 2.1257814835614006,
+      "initial_bodies": [
+        {
+          "mass": 1.0788,
+          "position": [
+            -0.6192958613681383,
+            -0.4154216147593426,
+            -0.6100848602878182
+          ],
+          "velocity": [
+            0.06593640664884992,
+            0.012822299651736011,
+            -2.0406003255587004
+          ]
+        },
+        {
+          "mass": 0.9092,
+          "position": [
+            3.1807041386318615,
+            -0.4154216147593426,
+            -0.6100848602878182
+          ],
+          "velocity": [
+            0.06593640664884992,
+            0.012822299651736011,
+            2.6162353096671547
+          ]
+        },
+        {
+          "mass": 0.1221,
+          "position": [
+            -18.212938800983956,
+            6.763785177244661,
+            9.93324080468618
+          ],
+          "velocity": [
+            -1.0735591844218972,
+            -0.20876930145496472,
+            -1.4519370379742105
+          ]
+        },
+        {
+          "mass": 0,
+          "position": [
+            -0.2403194846639301,
+            -0.5653277517003531,
+            -1.4334162137627495
+          ],
+          "velocity": [
+            6.085999868200595,
+            -0.3634239653129336,
+            0.9618162133986714
+          ]
+        }
+      ],
+      "trial": "baseline",
+      "command": [
+        "./build-headless/stellar_stability",
+        "inclined-24",
+        "--years",
+        "1000000",
+        "--step",
+        "0.001953125",
+        "--phase",
+        "0",
+        "--inclination-offset",
+        "0",
+        "--output",
+        "build-headless/stability-runs/inclined-24-baseline.csv"
+      ]
+    },
+    {
+      "preset": "inclined-24",
+      "requested_years": 1000000,
+      "time": 1000000,
+      "dt": 0.0009765625,
+      "phase_offset_deg": 0,
+      "inclination_offset_deg": 0,
+      "steps": 1024000000,
+      "checks": 8000001,
+      "wall_seconds": 59.287749116,
+      "passed": true,
+      "failure": "none",
+      "equal_masses": false,
+      "initial_mutual_inclination_deg": 20.000000000000032,
+      "initial_planet_inclination_deg": 10.000000000000012,
+      "initial_inner_a": 3.999999999999999,
+      "initial_outer_a": 23.999999999999993,
+      "initial_planet_a": 0.8999999999999998,
+      "max_star_span_AU": 28.492966710729963,
+      "min_star_separation_AU": 3.771052972044373,
+      "max_stellar_energy_error": 5.985087658857982e-08,
+      "max_stellar_angular_error": 2.060639092787585e-12,
+      "max_stellar_momentum": 6.323198645319498e-12,
+      "max_barycentre_drift_AU": 7.772024108295025e-07,
+      "min_inner_a": 3.9963809452050434,
+      "max_inner_a": 4.002173122957403,
+      "max_inner_e": 0.057502994130377114,
+      "min_outer_a": 23.970314449627292,
+      "max_outer_a": 24.096025745560866,
+      "max_outer_e": 0.10740154038158817,
+      "min_planet_a": 0.8934436890602349,
+      "max_planet_a": 0.9466454394493485,
+      "max_planet_e": 0.08351155410746064,
+      "min_planet_distance_AU": 0.8454192466076771,
+      "max_planet_distance_AU": 0.9687322527754244,
+      "min_mutual_i_deg": 19.87821754809272,
+      "max_mutual_i_deg": 20.19515170117836,
+      "min_planet_i_deg": 9.62751984548488,
+      "max_planet_i_deg": 10.593049595990736,
+      "min_flux_Earth": 1.641322633804794,
+      "max_flux_Earth": 2.1264680646311094,
+      "initial_bodies": [
+        {
+          "mass": 1.0788,
+          "position": [
+            -0.6192958613681383,
+            -0.4154216147593426,
+            -0.6100848602878182
+          ],
+          "velocity": [
+            0.06593640664884992,
+            0.012822299651736011,
+            -2.0406003255587004
+          ]
+        },
+        {
+          "mass": 0.9092,
+          "position": [
+            3.1807041386318615,
+            -0.4154216147593426,
+            -0.6100848602878182
+          ],
+          "velocity": [
+            0.06593640664884992,
+            0.012822299651736011,
+            2.6162353096671547
+          ]
+        },
+        {
+          "mass": 0.1221,
+          "position": [
+            -18.212938800983956,
+            6.763785177244661,
+            9.93324080468618
+          ],
+          "velocity": [
+            -1.0735591844218972,
+            -0.20876930145496472,
+            -1.4519370379742105
+          ]
+        },
+        {
+          "mass": 0,
+          "position": [
+            -0.2403194846639301,
+            -0.5653277517003531,
+            -1.4334162137627495
+          ],
+          "velocity": [
+            6.085999868200595,
+            -0.3634239653129336,
+            0.9618162133986714
+          ]
+        }
+      ],
+      "trial": "half-step",
+      "command": [
+        "./build-headless/stellar_stability",
+        "inclined-24",
+        "--years",
+        "1000000",
+        "--step",
+        "0.0009765625",
+        "--phase",
+        "0",
+        "--inclination-offset",
+        "0",
+        "--output",
+        "build-headless/stability-runs/inclined-24-half-step.csv"
+      ]
+    },
+    {
+      "preset": "inclined-24",
+      "requested_years": 1000000,
+      "time": 1000000,
+      "dt": 0.001953125,
+      "phase_offset_deg": -1,
+      "inclination_offset_deg": -1,
+      "steps": 512000000,
+      "checks": 8000001,
+      "wall_seconds": 29.589932077,
+      "passed": true,
+      "failure": "none",
+      "equal_masses": false,
+      "initial_mutual_inclination_deg": 18.999999999999993,
+      "initial_planet_inclination_deg": 10.000000000000012,
+      "initial_inner_a": 3.999999999999999,
+      "initial_outer_a": 23.99999999999999,
+      "initial_planet_a": 0.8999999999999997,
+      "max_star_span_AU": 28.487421187498132,
+      "min_star_separation_AU": 3.7722301779974283,
+      "max_stellar_energy_error": 2.389280299920772e-07,
+      "max_stellar_angular_error": 2.2966585432127617e-12,
+      "max_stellar_momentum": 6.7747077612490035e-12,
+      "max_barycentre_drift_AU": 1.3808788187699373e-06,
+      "min_inner_a": 3.9964269087102817,
+      "max_inner_a": 4.002222790179758,
+      "max_inner_e": 0.05722221976386323,
+      "min_outer_a": 23.96959664677951,
+      "max_outer_a": 24.093574417871935,
+      "max_outer_e": 0.10739343580679682,
+      "min_planet_a": 0.893825629375109,
+      "max_planet_a": 0.947221066612208,
+      "max_planet_e": 0.08438296604002825,
+      "min_planet_distance_AU": 0.8450404416054446,
+      "max_planet_distance_AU": 0.9696277437571212,
+      "min_mutual_i_deg": 18.88696774865352,
+      "max_mutual_i_deg": 19.1884395748274,
+      "min_planet_i_deg": 9.626723782593922,
+      "max_planet_i_deg": 10.582334988920861,
+      "min_flux_Earth": 1.6377941860280303,
+      "max_flux_Earth": 2.1283562888480434,
+      "initial_bodies": [
+        {
+          "mass": 1.0788,
+          "position": [
+            -0.6292291692175769,
+            -0.3979443784794429,
+            -0.6345618765420276
+          ],
+          "velocity": [
+            0.06738670233205912,
+            0.011645297758221316,
+            -2.0413043742268515
+          ]
+        },
+        {
+          "mass": 0.9092,
+          "position": [
+            3.170770830782423,
+            -0.3979443784794429,
+            -0.6345618765420276
+          ],
+          "velocity": [
+            0.06738670233205912,
+            0.011645297758221316,
+            2.6155312609990036
+          ]
+        },
+        {
+          "mass": 0.1221,
+          "position": [
+            -18.0512073021741,
+            6.479225425201741,
+            10.33176912830099
+          ],
+          "velocity": [
+            -1.09717251626645,
+            -0.1896056670216542,
+            -1.440473903229867
+          ]
+        },
+        {
+          "mass": 0,
+          "position": [
+            -0.26464586855354155,
+            -0.5469313185643228,
+            -1.4649139762230499
+          ],
+          "velocity": [
+            6.136052328754667,
+            -0.3841378069534695,
+            0.8530209884851487
+          ]
+        }
+      ],
+      "trial": "phase-minus",
+      "command": [
+        "./build-headless/stellar_stability",
+        "inclined-24",
+        "--years",
+        "1000000",
+        "--step",
+        "0.001953125",
+        "--phase",
+        "-1",
+        "--inclination-offset",
+        "-1",
+        "--output",
+        "build-headless/stability-runs/inclined-24-phase-minus.csv"
+      ]
+    },
+    {
+      "preset": "inclined-24",
+      "requested_years": 1000000,
+      "time": 1000000,
+      "dt": 0.001953125,
+      "phase_offset_deg": 1,
+      "inclination_offset_deg": 1,
+      "steps": 512000000,
+      "checks": 8000001,
+      "wall_seconds": 29.378313542,
+      "passed": true,
+      "failure": "none",
+      "equal_masses": false,
+      "initial_mutual_inclination_deg": 21.000000000000018,
+      "initial_planet_inclination_deg": 10.000000000000012,
+      "initial_inner_a": 3.999999999999999,
+      "initial_outer_a": 23.99999999999998,
+      "initial_planet_a": 0.8999999999999995,
+      "max_star_span_AU": 28.49942025869153,
+      "min_star_separation_AU": 3.769967952044351,
+      "max_stellar_energy_error": 2.3980641322356454e-07,
+      "max_stellar_angular_error": 1.0363770338597693e-12,
+      "max_stellar_momentum": 6.710166930077747e-12,
+      "max_barycentre_drift_AU": 1.9087030085295827e-06,
+      "min_inner_a": 3.9963379893619284,
+      "max_inner_a": 4.002123563182314,
+      "max_inner_e": 0.057762246373117734,
+      "min_outer_a": 23.97091088674629,
+      "max_outer_a": 24.098446829171113,
+      "max_outer_e": 0.10736934365054923,
+      "min_planet_a": 0.8930257736889754,
+      "max_planet_a": 0.9460186543141731,
+      "max_planet_e": 0.08265718199991581,
+      "min_planet_distance_AU": 0.8458987476308885,
+      "max_planet_distance_AU": 0.9675621807560718,
+      "min_mutual_i_deg": 20.86901364738674,
+      "max_mutual_i_deg": 21.201452272766552,
+      "min_planet_i_deg": 9.626923997616602,
+      "max_planet_i_deg": 10.598431704080765,
+      "min_flux_Earth": 1.6448077552554397,
+      "max_flux_Earth": 2.1241281693279976,
+      "initial_bodies": [
+        {
+          "mass": 1.0788,
+          "position": [
+            -0.609794462296338,
+            -0.43238134877299195,
+            -0.5851574229446458
+          ],
+          "velocity": [
+            0.06448701544383038,
+            0.01404683718192229,
+            -2.039949717971261
+          ]
+        },
+        {
+          "mass": 0.9092,
+          "position": [
+            3.1902055377036618,
+            -0.43238134877299195,
+            -0.5851574229446458
+          ],
+          "velocity": [
+            0.06448701544383038,
+            0.01404683718192229,
+            2.616885917254594
+          ]
+        },
+        {
+          "mass": 0.1221,
+          "position": [
+            -18.367638074978544,
+            7.0399190938632925,
+            9.527378843685144
+          ],
+          "velocity": [
+            -1.0499605790527011,
+            -0.2287068985885464,
+            -1.462530059135794
+          ]
+        },
+        {
+          "mass": 0,
+          "position": [
+            -0.21655379044009537,
+            -0.5831593527542823,
+            -1.4012172068730957
+          ],
+          "velocity": [
+            6.034056056434019,
+            -0.3425380820507478,
+            1.0696643297990653
+          ]
+        }
+      ],
+      "trial": "phase-plus",
+      "command": [
+        "./build-headless/stellar_stability",
+        "inclined-24",
+        "--years",
+        "1000000",
+        "--step",
+        "0.001953125",
+        "--phase",
+        "1",
+        "--inclination-offset",
+        "1",
+        "--output",
+        "build-headless/stability-runs/inclined-24-phase-plus.csv"
+      ]
+    },
+    {
+      "preset": "inclined-32",
+      "requested_years": 1000000,
+      "time": 1000000,
+      "dt": 0.001953125,
+      "phase_offset_deg": 0,
+      "inclination_offset_deg": 0,
+      "steps": 512000000,
+      "checks": 8000001,
+      "wall_seconds": 29.727784837,
+      "passed": true,
+      "failure": "none",
+      "equal_masses": false,
+      "initial_mutual_inclination_deg": 19.999999999999975,
+      "initial_planet_inclination_deg": 10.000000000000012,
+      "initial_inner_a": 3.999999999999999,
+      "initial_outer_a": 31.999999999999982,
+      "initial_planet_a": 0.8999999999999996,
+      "max_star_span_AU": 37.3025123991988,
+      "min_star_separation_AU": 3.7711758620659332,
+      "max_stellar_energy_error": 2.4196186942682793e-07,
+      "max_stellar_angular_error": 1.4227043666598486e-12,
+      "max_stellar_momentum": 5.5547746634838045e-12,
+      "max_barycentre_drift_AU": 6.557800508940415e-07,
+      "min_inner_a": 3.9985290192627567,
+      "max_inner_a": 4.000865443555108,
+      "max_inner_e": 0.05731494224238315,
+      "min_outer_a": 31.978664367059356,
+      "max_outer_a": 32.057981657834645,
+      "max_outer_e": 0.10423520150090675,
+      "min_planet_a": 0.8934318343074965,
+      "max_planet_a": 0.9465216607459057,
+      "max_planet_e": 0.08233527732091524,
+      "min_planet_distance_AU": 0.8466824565411023,
+      "max_planet_distance_AU": 0.967811689273057,
+      "min_mutual_i_deg": 19.89806223270213,
+      "max_mutual_i_deg": 20.127216247712862,
+      "min_planet_i_deg": 9.634854042106989,
+      "max_planet_i_deg": 10.524428198632824,
+      "min_flux_Earth": 1.644076890961798,
+      "max_flux_Earth": 2.1202758203305545,
+      "initial_bodies": [
+        {
+          "mass": 1.0788,
+          "position": [
+            -0.24642533360151497,
+            -0.5538954863457902,
+            -0.8134464803837576
+          ],
+          "velocity": [
+            0.0571026031921652,
+            0.011104437233339745,
+            -2.052547618834247
+          ]
+        },
+        {
+          "mass": 0.9092,
+          "position": [
+            3.553574666398485,
+            -0.5538954863457902,
+            -0.8134464803837576
+          ],
+          "velocity": [
+            0.0571026031921652,
+            0.011104437233339745,
+            2.604288016391608
+          ]
+        },
+        {
+          "mass": 0.1221,
+          "position": [
+            -24.283918401311947,
+            9.018380236326216,
+            13.244321072914907
+          ],
+          "velocity": [
+            -0.9297295261754662,
+            -0.180799518590331,
+            -1.2574143595811973
+          ]
+        },
+        {
+          "mass": 0,
+          "position": [
+            0.13255104310269322,
+            -0.7038016232868007,
+            -1.6367778338586887
+          ],
+          "velocity": [
+            6.07716606474391,
+            -0.36514182773132986,
+            0.9498689201231247
+          ]
+        }
+      ],
+      "trial": "baseline",
+      "command": [
+        "./build-headless/stellar_stability",
+        "inclined-32",
+        "--years",
+        "1000000",
+        "--step",
+        "0.001953125",
+        "--phase",
+        "0",
+        "--inclination-offset",
+        "0",
+        "--output",
+        "build-headless/stability-runs/inclined-32-baseline.csv"
+      ]
+    },
+    {
+      "preset": "solar-triplet-24",
+      "requested_years": 1000000,
+      "time": 1000000,
+      "dt": 0.001953125,
+      "phase_offset_deg": 0,
+      "inclination_offset_deg": 0,
+      "steps": 512000000,
+      "checks": 8000001,
+      "wall_seconds": 29.439286348,
+      "passed": true,
+      "failure": "none",
+      "equal_masses": true,
+      "initial_mutual_inclination_deg": 20.00000000000001,
+      "initial_planet_inclination_deg": 10.000000000000048,
+      "initial_inner_a": 4.000000000000002,
+      "initial_outer_a": 23.999999999999993,
+      "initial_planet_a": 0.7499999999999996,
+      "max_star_span_AU": 28.381862457015895,
+      "min_star_separation_AU": 3.7546844317358987,
+      "max_stellar_energy_error": 1.9206299377211483e-07,
+      "max_stellar_angular_error": 5.0464857890326185e-12,
+      "max_stellar_momentum": 6.057712583594353e-12,
+      "max_barycentre_drift_AU": 9.764130305783134e-07,
+      "min_inner_a": 3.970046462132017,
+      "max_inner_a": 4.017417494126922,
+      "max_inner_e": 0.06337306492263821,
+      "min_outer_a": 23.970906721695915,
+      "max_outer_a": 24.107746787890786,
+      "max_outer_e": 0.106707794741869,
+      "min_planet_a": 0.7467685195745052,
+      "max_planet_a": 0.773034208830611,
+      "max_planet_e": 0.05470253192679801,
+      "min_planet_distance_AU": 0.7214522174902597,
+      "max_planet_distance_AU": 0.7877605042061159,
+      "min_mutual_i_deg": 19.787378431682857,
+      "max_mutual_i_deg": 20.492538752358893,
+      "min_planet_i_deg": 9.628897014189967,
+      "max_planet_i_deg": 11.923796723361319,
+      "min_flux_Earth": 1.6827625035739628,
+      "max_flux_Earth": 1.9652128833498408,
+      "initial_bodies": [
+        {
+          "mass": 1,
+          "position": [
+            4.543850128094608,
+            -2.393068930668001,
+            -3.514441888324666
+          ],
+          "velocity": [
+            0.45289810449893575,
+            0.08807266732801086,
+            -1.7229118117125186
+          ]
+        },
+        {
+          "mass": 1,
+          "position": [
+            8.343850128094608,
+            -2.393068930668001,
+            -3.514441888324666
+          ],
+          "velocity": [
+            0.45289810449893575,
+            0.08807266732801086,
+            2.947957513695722
+          ]
+        },
+        {
+          "mass": 1,
+          "position": [
+            -12.887700256189216,
+            4.786137861336002,
+            7.028883776649332
+          ],
+          "velocity": [
+            -0.9057962089978715,
+            -0.17614533465602172,
+            -1.2250457019832033
+          ]
+        },
+        {
+          "mass": 0,
+          "position": [
+            4.859663775348115,
+            -2.5179907114521765,
+            -4.200551349553775
+          ],
+          "velocity": [
+            6.802130501949058,
+            -0.30874623502912835,
+            1.4436728067948887
+          ]
+        }
+      ],
+      "trial": "baseline",
+      "command": [
+        "./build-headless/stellar_stability",
+        "solar-triplet-24",
+        "--years",
+        "1000000",
+        "--step",
+        "0.001953125",
+        "--phase",
+        "0",
+        "--inclination-offset",
+        "0",
+        "--output",
+        "build-headless/stability-runs/solar-triplet-24-baseline.csv"
+      ]
+    },
+    {
+      "preset": "solar-triplet-24",
+      "requested_years": 1000000,
+      "time": 1000000,
+      "dt": 0.0009765625,
+      "phase_offset_deg": 0,
+      "inclination_offset_deg": 0,
+      "steps": 1024000000,
+      "checks": 8000001,
+      "wall_seconds": 59.003751945,
+      "passed": true,
+      "failure": "none",
+      "equal_masses": true,
+      "initial_mutual_inclination_deg": 20.00000000000001,
+      "initial_planet_inclination_deg": 10.000000000000048,
+      "initial_inner_a": 4.000000000000002,
+      "initial_outer_a": 23.999999999999993,
+      "initial_planet_a": 0.7499999999999996,
+      "max_star_span_AU": 28.382772804161345,
+      "min_star_separation_AU": 3.754734284863834,
+      "max_stellar_energy_error": 4.800916971808273e-08,
+      "max_stellar_angular_error": 3.1816205592351216e-12,
+      "max_stellar_momentum": 1.0267935894610252e-11,
+      "max_barycentre_drift_AU": 1.125890294806662e-06,
+      "min_inner_a": 3.970039566088122,
+      "max_inner_a": 4.0174077455803205,
+      "max_inner_e": 0.06336966683984283,
+      "min_outer_a": 23.970904197408558,
+      "max_outer_a": 24.10778675797691,
+      "max_outer_e": 0.10671053759635608,
+      "min_planet_a": 0.746780775585256,
+      "max_planet_a": 0.7728997110986208,
+      "max_planet_e": 0.052359310225683915,
+      "min_planet_distance_AU": 0.7229889312279939,
+      "max_planet_distance_AU": 0.7864346724235485,
+      "min_mutual_i_deg": 19.7871379115521,
+      "max_mutual_i_deg": 20.49238079177862,
+      "min_planet_i_deg": 9.632060275703356,
+      "max_planet_i_deg": 11.920275999681188,
+      "min_flux_Earth": 1.6878711460451625,
+      "max_flux_Earth": 1.9562680728309414,
+      "initial_bodies": [
+        {
+          "mass": 1,
+          "position": [
+            4.543850128094608,
+            -2.393068930668001,
+            -3.514441888324666
+          ],
+          "velocity": [
+            0.45289810449893575,
+            0.08807266732801086,
+            -1.7229118117125186
+          ]
+        },
+        {
+          "mass": 1,
+          "position": [
+            8.343850128094608,
+            -2.393068930668001,
+            -3.514441888324666
+          ],
+          "velocity": [
+            0.45289810449893575,
+            0.08807266732801086,
+            2.947957513695722
+          ]
+        },
+        {
+          "mass": 1,
+          "position": [
+            -12.887700256189216,
+            4.786137861336002,
+            7.028883776649332
+          ],
+          "velocity": [
+            -0.9057962089978715,
+            -0.17614533465602172,
+            -1.2250457019832033
+          ]
+        },
+        {
+          "mass": 0,
+          "position": [
+            4.859663775348115,
+            -2.5179907114521765,
+            -4.200551349553775
+          ],
+          "velocity": [
+            6.802130501949058,
+            -0.30874623502912835,
+            1.4436728067948887
+          ]
+        }
+      ],
+      "trial": "half-step",
+      "command": [
+        "./build-headless/stellar_stability",
+        "solar-triplet-24",
+        "--years",
+        "1000000",
+        "--step",
+        "0.0009765625",
+        "--phase",
+        "0",
+        "--inclination-offset",
+        "0",
+        "--output",
+        "build-headless/stability-runs/solar-triplet-24-half-step.csv"
+      ]
+    }
+  ]
+}
