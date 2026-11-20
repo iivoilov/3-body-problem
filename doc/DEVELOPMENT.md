@@ -1,4 +1,4 @@
-# Orbit / 01
+# 3-body-problem — Orbit / 01 development guide
 
 This is the longer development and learning guide. Run its commands from the
 repository root. See [the main README](../README.md) for the publication overview,
@@ -56,7 +56,7 @@ the NVIDIA RTX 4080 path passes the graphics tests.
 To choose software rendering explicitly after building, run the executable directly:
 
 ```bash
-LIBGL_ALWAYS_SOFTWARE=1 ./build/solar_system
+LIBGL_ALWAYS_SOFTWARE=1 ./build/three_body_problem
 ```
 
 The dependencies are a C++17 compiler, CMake, OpenGL development files, GLFW 3.3+,
@@ -72,7 +72,7 @@ To build and run directly, without the launcher's renderer check:
 ```bash
 cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug
 cmake --build build --parallel 2
-./build/solar_system
+./build/three_body_problem
 ```
 
 Keep the source directory available: the executable loads readable GLSL files
@@ -358,10 +358,10 @@ ctest --test-dir build --output-on-failure
 ./build/physics_tests
 ./build/diagnostics_tests
 ./build/resonance_tests
-LIBGL_ALWAYS_SOFTWARE=1 ./build/solar_system --smoke-test
-LIBGL_ALWAYS_SOFTWARE=1 ./build/solar_system --capture /tmp/solar-system.ppm
+LIBGL_ALWAYS_SOFTWARE=1 ./build/three_body_problem --smoke-test
+LIBGL_ALWAYS_SOFTWARE=1 ./build/three_body_problem --capture /tmp/three-body-problem.ppm
 ./run.sh --resonance --time 1000 --capture /tmp/orbit-data.ppm
-env -u LIBGL_ALWAYS_SOFTWARE MESA_D3D12_DEFAULT_ADAPTER_NAME=NVIDIA ./build/solar_system --eclipse
+env -u LIBGL_ALWAYS_SOFTWARE MESA_D3D12_DEFAULT_ADAPTER_NAME=NVIDIA ./build/three_body_problem --eclipse
 ```
 
 The scene tests cover playback controls, camera limits, model/view matrices,
@@ -397,19 +397,12 @@ working graphical display. Add `--eclipse --capture /tmp/eclipse.ppm` to capture
 the paused eclipse view. The PPM capture can be
 opened with an image viewer or converted to PNG.
 
-## Later: the gas-in-a-cube experiment
+## Project direction
 
-Keep this as a separate next step. The sphere renderer, camera, and input concepts
-will carry over. That project would need particle positions, velocities and masses,
-elastic collisions with each other and the walls, a fixed physics time step, and
-measurements of mixing and density. Temperature sets a velocity distribution;
-gravity adds acceleration. Two colours can track particles initially placed in the
-left and right halves of the box.
-
-Finite-size colliding spheres form a **hard-sphere gas model**, an approximation to
-an ideal gas. A Brownian-motion experiment would additionally track a larger or
-heavier particle being struck by the smaller gas particles. Those physics choices
-are intentionally left out of this first graphics lesson.
+Orbit / 01 remains the one-star/two-planet experiment described here.
+[Orbit / 02](ORBIT_02.md) adds a separate three-star simulation and alien-world
+surface view inspired by *The Three-Body Problem*, preserving both versions. Gas-in-a-box work has its own
+sibling project directory, `../gas-in-a-box/` relative to the repository root.
 
 ## References
 

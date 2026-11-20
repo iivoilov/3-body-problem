@@ -120,6 +120,11 @@ p {
   color:var(--muted);
 }
 
+.version-link {
+  white-space:nowrap;
+  font-size:.875rem;
+}
+
 .explorer {
   border:1px solid var(--line);
   border-radius:14px;

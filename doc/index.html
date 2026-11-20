@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Explore a recorded Newtonian three-body simulation in WebGL, with eclipse shadows and orbital diagnostics.">
-  <title>Orbit / 01 — Three-body explorer</title>
+  <title>3-body-problem — Orbit / 01</title>
   <link rel="icon" href="data:,">
   <link rel="stylesheet" href="viewer.css">
   <script type="importmap">
@@ -15,8 +15,9 @@
 <body>
   <header class="page-header">
     <a class="wordmark" href="./" aria-label="Orbit 01 home">ORBIT <span>/ 01</span></a>
-    <div class="header-copy"><h1>Three-body explorer</h1><p>Native physics. Recorded trajectories. A different point of view.</p></div>
+    <div class="header-copy"><h1>3-body-problem</h1><p>Native physics. Recorded trajectories. A different point of view.</p></div>
     <span class="replay-tag">WebGL replay</span>
+    <a class="version-link" href="orbit-02.html">Orbit / 02 ↗</a>
   </header>
   <main>
     <section class="explorer" aria-label="Interactive orbital replay">
@@ -53,7 +54,7 @@
       <div class="explanation-copy"><p>All three bodies attract each other. The initial period ratio is 2.05, and the total initial linear momentum is zero. The circular starting state develops perturbations; it has not demonstrated spontaneous capture into a permanent, motionless 2:1 lock.</p><p>The optional candidate starts with chosen eccentricities and phases. Its angles stayed bounded in a finite native test. Oscillation around a resonant configuration is called libration; it does not have to disappear for a phase relationship to remain bounded. These plots are diagnostic evidence, not a universal “resonance percentage.”</p><p>This viewer replays <strong id="data-duration">2048</strong> simulated seconds of exported data. Positions are interpolated between recorded samples. Changing speed or camera does not run a new physics calculation. To change masses or initial conditions, use the native application and regenerate the data.</p><p class="references"><a href="DEVELOPMENT.md">Native code walkthrough</a><a href="README.md">Viewer and data format</a><a href="vendor/LICENSE.three">Three.js license</a></p></div>
     </section>
   </main>
-  <footer>Orbit / 01 · An OpenGL learning project with a Three.js companion viewer.</footer>
+  <footer>3-body-problem · Orbit / 01 · A Newtonian gravity project with a Three.js companion viewer.</footer>
   <noscript><p class="error">JavaScript and WebGL 2 are required for this viewer. The native demo is available as a GIF and MP4 in the repository.</p></noscript>
   <script>
     if (location.protocol === 'file:') {

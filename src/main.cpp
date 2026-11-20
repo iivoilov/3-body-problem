@@ -1,13 +1,13 @@
 #include "gpu.hpp" // GLEW must be included before GLFW.
+#include "render_utils.hpp"
+#include "alien_viewer.hpp"
 #include <GLFW/glfw3.h>
 #include "hud.hpp"
 #include "scene.hpp"
 #include "eclipse.hpp"
 #include <cstdlib>
-#include <fstream>
 #include <iomanip>
 #include <iostream>
-#include <random>
 #include <string>
 
 using namespace orbit;
@@ -19,6 +19,7 @@ struct App {
     bool wireframe = false, orbits = true, dragging = false;
     bool shadows = true, eclipseFocus = false;
     bool showDiagnostics = true;
+    bool switchVersion = false;
     double lastX = 0, lastY = 0;
     void reset() {
         simulation.reset();
@@ -53,6 +54,7 @@ void onKey(GLFWwindow* window, int key, int, int action, int) {
     if (action != GLFW_PRESS) return;
     auto& state = app(window);
     switch (key) {
+        case GLFW_KEY_2: state.switchVersion = true; glfwSetWindowShouldClose(window, GLFW_TRUE); break;
         case GLFW_KEY_ESCAPE: glfwSetWindowShouldClose(window, GLFW_TRUE); break;
         case GLFW_KEY_SPACE:
             if (!state.simulation.collision) state.simulation.paused = !state.simulation.paused;
@@ -87,86 +89,12 @@ void onCursor(GLFWwindow* window, double x, double y) {
 }
 void onScroll(GLFWwindow* window, double, double y) { app(window).camera.zoom(static_cast<float>(y)); }
 
-Mesh makeSphere() {
-    constexpr unsigned rings = 40, segments = 64;
-    std::vector<Vertex> vertices;
-    std::vector<unsigned> indices;
-    for (unsigned y = 0; y <= rings; ++y) {
-        const float latitude = pi * y / rings;
-        for (unsigned x = 0; x <= segments; ++x) {
-            const float longitude = 2 * pi * x / segments;
-            const Vec3 p{std::sin(latitude) * std::cos(longitude), std::cos(latitude),
-                         std::sin(latitude) * std::sin(longitude)};
-            vertices.push_back({p, p}); // On a unit sphere, the position is also the surface normal.
-        }
-    }
-    for (unsigned y = 0; y < rings; ++y)
-        for (unsigned x = 0; x < segments; ++x) {
-            const unsigned a = y * (segments + 1) + x, b = a + segments + 1;
-            indices.insert(indices.end(), {a, a + 1, b, a + 1, b + 1, b});
-        }
-    return Mesh(vertices, indices, GL_TRIANGLES);
-}
-Mesh makeStars() {
-    std::mt19937 random(42); // Reproducible sky for screenshots and experiments.
-    std::uniform_real_distribution<float> unit(-1, 1);
-    std::vector<Vertex> vertices;
-    for (int i = 0; i < 1600; ++i) {
-        const float y = unit(random), angle = (unit(random) + 1) * pi;
-        const float radius = std::sqrt(1 - y * y);
-        vertices.push_back({Vec3{radius * std::cos(angle), y, radius * std::sin(angle)} * 90, {}});
-    }
-    return Mesh(vertices, {}, GL_POINTS);
-}
-
 void drawBody(const Mesh& sphere, const Shader& shader, Vec3 position, float radius,
               double time, Vec3 color, int kind) {
     shader.set("model", bodyTransform(position, radius, time, spinRates[kind]));
     shader.set("baseColor", color);
     shader.set("bodyKind", kind);
     sphere.draw();
-}
-
-// Hidden windows do not have a reliable default framebuffer on every window system.
-// Give smoke tests and captures their own color/depth storage instead.
-class OffscreenTarget {
-public:
-    OffscreenTarget(bool enabled, int width, int height) {
-        if (!enabled) return;
-        glGenFramebuffers(1, &framebuffer_);
-        glBindFramebuffer(GL_FRAMEBUFFER, framebuffer_);
-        glGenRenderbuffers(1, &color_);
-        glBindRenderbuffer(GL_RENDERBUFFER, color_);
-        glRenderbufferStorage(GL_RENDERBUFFER, GL_RGB8, width, height);
-        glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_RENDERBUFFER, color_);
-        glGenRenderbuffers(1, &depth_);
-        glBindRenderbuffer(GL_RENDERBUFFER, depth_);
-        glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT24, width, height);
-        glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, depth_);
-        if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
-            release();
-            throw std::runtime_error("Cannot create the offscreen framebuffer.");
-        }
-    }
-    ~OffscreenTarget() { release(); }
-    OffscreenTarget(const OffscreenTarget&) = delete;
-    OffscreenTarget& operator=(const OffscreenTarget&) = delete;
-private:
-    GLuint framebuffer_ = 0, color_ = 0, depth_ = 0;
-    void release() {
-        glDeleteRenderbuffers(1, &depth_);
-        glDeleteRenderbuffers(1, &color_);
-        glDeleteFramebuffers(1, &framebuffer_);
-    }
-};
-
-std::vector<unsigned char> readFrame(int width, int height) {
-    std::vector<unsigned char> pixels(static_cast<std::size_t>(width) * height * 3);
-    glPixelStorei(GL_PACK_ALIGNMENT, 1);
-    glReadBuffer(GL_COLOR_ATTACHMENT0);
-    glReadPixels(0, 0, width, height, GL_RGB, GL_UNSIGNED_BYTE, pixels.data());
-    if (glGetError() != GL_NO_ERROR) throw std::runtime_error("Cannot read rendered pixels.");
-    return pixels;
 }
 
 void checkFrame(const std::vector<unsigned char>& pixels, int width, int height, int sidebar, int dataHeight) {
@@ -183,16 +111,6 @@ void checkFrame(const std::vector<unsigned char>& pixels, int width, int height,
     if (warm < 100 || blue < 30)
         throw std::runtime_error("Graphics smoke test failed: sun or blue planet missing (warm pixels: "
                                  + std::to_string(warm) + ", blue pixels: " + std::to_string(blue) + ").");
-}
-
-void writeCapture(const std::string& path, int width, int height, const std::vector<unsigned char>& pixels) {
-    std::ofstream file(path, std::ios::binary);
-    if (!file) throw std::runtime_error("Cannot write capture: " + path);
-    file << "P6\n" << width << ' ' << height << "\n255\n";
-    for (int row = height - 1; row >= 0; --row)
-        file.write(reinterpret_cast<const char*>(pixels.data() + static_cast<std::size_t>(row) * width * 3), width * 3);
-    if (!file) throw std::runtime_error("Failed writing capture: " + path);
-    std::cout << "Captured " << path << '\n';
 }
 
 void checkEclipse(const std::vector<unsigned char>& shadowed, const std::vector<unsigned char>& unshadowed,
@@ -212,15 +130,25 @@ void checkEclipse(const std::vector<unsigned char>& shadowed, const std::vector<
 }
 
 struct Options {
-    bool smoke = false, eclipse = false, resonance = false;
+    bool smoke = false, eclipse = false, resonance = false, orbit02 = false, surface = true;
     double startTime = 0, speed = defaultSpeed;
-    std::string capture, title = "Orbit / 01 - Solar System";
+    std::string capture, title = "3-body-problem | Orbit / 01";
 };
 Options parseOptions(int argc, char** argv) {
     Options options;
     for (int i = 1; i < argc; ++i) {
         const std::string argument = argv[i];
-        if (argument == "--smoke-test") options.smoke = true;
+        if (argument == "--orbit" && i+1 < argc) {
+            const std::string version = argv[++i];
+            if (version != "01" && version != "02") throw std::runtime_error("--orbit must be 01 or 02.");
+            options.orbit02 = version == "02";
+        }
+        else if (argument == "--view" && i+1 < argc) {
+            const std::string view = argv[++i];
+            if (view != "surface" && view != "orbit") throw std::runtime_error("--view must be surface or orbit.");
+            options.surface = view == "surface";
+        }
+        else if (argument == "--smoke-test") options.smoke = true;
         else if (argument == "--eclipse") options.eclipse = true;
         else if (argument == "--resonance") options.resonance = true;
         else if (argument == "--capture" && i + 1 < argc) options.capture = argv[++i];
@@ -236,13 +164,15 @@ Options parseOptions(int argc, char** argv) {
             else options.speed = number;
         }
         else if (argument == "--help") {
-            std::cout << "Usage: solar_system [--resonance] [--time seconds] [--speed factor] [--eclipse]\n"
+            std::cout << "Usage: three_body_problem [--orbit 01|02] [--view surface|orbit] [--resonance] [--time value] [--speed factor] [--eclipse]\n"
                          "                    [--smoke-test] [--capture image.ppm]\n"
-                         "No options: open the interactive solar system.\n"
+                         "No options: open Orbit / 01 (one star and two planets).\n"
+                         "--orbit 02: open the alien world; V switches between surface and orbital views.\n"
+                         "1 / 2: switch between Orbit / 01 and Orbit / 02 in the native app.\n"
                          "--resonance: use the eccentric, phase-aligned 2:1 candidate (same initial 2.05 period ratio).\n"
                          "--eclipse: pause at the next alignment and focus on Ember's shadow.\n"
-                         "--time: integrate from the initial state to this simulated time before showing it.\n"
-                         "--speed: playback factor, from 1/64 to 16 (default 1; 1x = 4 simulated seconds/real second).\n"
+                         "--time: integrate forward (seconds in Orbit / 01; years in Orbit / 02).\n"
+                         "--speed: factor from 1/64 to 16; 1x = 4 seconds/s in 01 or 0.08 years/s in 02.\n"
                          "--smoke-test: check normal rendering and compare eclipse shadows on/off.\n"
                          "--capture: render a hidden frame to a PPM image and exit.\n"
                          "--title: set the window title (useful for recording one specific window).\n"
@@ -431,16 +361,34 @@ int run(const Options& options) {
             if (options.smoke && frame == 4) checkEclipse(eclipseFrame, pixels, width, height, sidebar, dataHeight);
         }
         glfwSwapBuffers(window);
+        if (!hidden && frame == 0) {
+            glFinish();
+            std::cout << "First frame ready.\n" << std::flush;
+        }
         ++frame;
         if (hidden && finalFrame) break;
     }
     if (options.smoke) std::cout << "Graphics smoke test passed: shading, wireframe, camera, orbit toggle, eclipse shadows.\n";
-    return EXIT_SUCCESS;
+    return state.switchVersion ? 2 : EXIT_SUCCESS;
 }
 } // namespace
 
 int main(int argc, char** argv) {
-    try { return run(parseOptions(argc, argv)); }
+    try {
+        auto options = parseOptions(argc, argv);
+        if (options.orbit02 && (options.resonance || options.eclipse))
+            throw std::runtime_error("--resonance and --eclipse belong to Orbit / 01.");
+        for (;;) {
+            const int result = options.orbit02
+                ? runAlienViewer({options.smoke, options.surface, options.startTime, options.speed, options.capture,
+                                  options.title == "3-body-problem | Orbit / 01" ? "3-body-problem | Orbit / 02" : options.title})
+                : run(options);
+            if (result == 0) return EXIT_SUCCESS;
+            options.orbit02 = result == 2;
+            options.startTime = 0;
+            options.eclipse = false;
+        }
+    }
     catch (const std::exception& error) {
         std::cerr << "Error: " << error.what() << '\n';
         return EXIT_FAILURE;

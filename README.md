@@ -1,19 +1,48 @@
-# Orbit / 01
+# 3-body-problem
 
-This project was inspired by [the news about season 2 of Netflix's *3 Body Problem*](https://www.netflix.com/tudum/articles/3-body-problem-renewed).
+A C++ / OpenGL project dedicated to Newtonian three-body dynamics, inspired by
+Liu Cixin's *The Three-Body Problem* and [the news about season 2 of Netflix's
+*3 Body Problem*](https://www.netflix.com/tudum/articles/3-body-problem-renewed).
 
-A small C++ / OpenGL project for learning graphics through a Newtonian three-body
-simulation: one star, two planets, mutual gravity, eclipse shadows, and orbital
-diagnostics. A companion Three.js viewer replays exported simulation data in a browser.
+Two complementary experiments explore how mutual gravity shapes different
+worlds. Both run as native applications, with companion Three.js viewers that
+replay trajectories exported by the C++ solver.
 
-![15-second recording of the native OpenGL app, including the orbital scene and diagnostic plots](doc/assets/orbit-lab.gif)
+## Orbit / 01 — The solar study
 
-[Download the 15-second MP4](doc/assets/orbit-lab.mp4) ·
-[WebGL viewer](https://iivoilov.github.io/3-body-problem/doc/index.html) ·
-[Code walkthrough](doc/DEVELOPMENT.md)
+One moving star and two planets interact through mutual gravity. Trajectory
+trails, eclipse shadows, and orbital measurements reveal how their paths evolve
+and help investigate a possible 2:1 resonance.
 
-The GIF shows the native app's client area, with the circular preset at 1× playback.
-It is a screen recording, not a render of the browser viewer.
+Choose a nearly circular starting state or an eccentric resonance candidate.
+The [Orbit / 01 explanations and code walkthrough](doc/DEVELOPMENT.md) describe
+the physics, controls, eclipses, and interpretation of the diagnostic plots.
+The demo records 15 seconds of the native circular preset at 1× playback.
+
+![Orbit / 01: native orbital simulation with eclipse shadows and diagnostics](doc/assets/orbit-01.gif)
+
+[Watch the MP4](doc/assets/orbit-01.mp4) ·
+[Open the browser viewer](https://iivoilov.github.io/3-body-problem/doc/index.html)
+
+## Orbit / 02 — The alien world
+
+An imagined world moves among three suns. Watch its sky and canyon landscape
+change with the incoming light, then pull back to an orbital view of the three
+stars and the wandering planet. The browser companion offers a scrubbable
+36-year recording, stellar distances, incident-light history, and conservation
+measurements. That run includes a close stellar passage and the planet's
+subsequent departure from the inner system.
+
+Stellar masses use measured Alpha Centauri references; the compact orbits,
+planet, enlarged disks, and terrain are fictional. The planet feels all three
+stars as a test particle. Read the [Orbit / 02 model and explanations](doc/ORBIT_02.md)
+for the assumptions, units, and controls. The 15-second native demo shows
+**8 seconds of terrain followed by 7 seconds of orbital view**.
+
+![Orbit / 02: eight seconds on the alien surface followed by seven seconds of orbital motion](doc/assets/orbit-02.gif)
+
+[Watch the MP4](doc/assets/orbit-02.mp4) ·
+[Open the browser viewer](https://iivoilov.github.io/3-body-problem/doc/orbit-02.html)
 
 ## Native application
 
@@ -27,6 +56,17 @@ sudo apt install build-essential cmake libgl1-mesa-dev libglfw3-dev libglew-dev
 ./run.sh
 ```
 
+Select either version explicitly:
+
+```bash
+./run.sh --orbit 01               # Original one-star/two-planet experiment
+./run.sh --orbit 02               # Alien world; V switches surface / orbital view
+```
+
+Press **1** or **2** to switch versions in the native app. Orbit / 02's 1× playback
+advances 0.08 simulated year per real second. Its light measurements are incident
+flux, rather than a temperature or climate model.
+
 The launcher builds the app and checks the selected renderer. It prefers NVIDIA
 on WSLg and falls back to Mesa software rendering if the graphics check fails.
 Another adapter can be selected with `MESA_D3D12_DEFAULT_ADAPTER_NAME=Intel ./run.sh`.
@@ -36,12 +76,14 @@ To build and run directly:
 ```bash
 cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
 cmake --build build --parallel 2
-./build/solar_system
+./build/three_body_problem
 ```
 
 The default preset starts with nearly circular orbits and an outer/inner period
 ratio of **2.05**. Displayed **1×** advances **four simulated seconds per real second**.
 All three bodies move; total initial linear momentum is zero in the barycentric frame.
+The controls and physical parameters below describe **Orbit / 01**. See the
+[Orbit / 02 controls, units, and reproduction commands](doc/ORBIT_02.md) for the new version.
 
 ```bash
 ./run.sh --resonance              # Chosen eccentricities and phases: a resonance candidate
@@ -66,7 +108,9 @@ available, and reconfigure CMake after moving it.
 python3 -m http.server 8000 --directory doc
 ```
 
-Open **http://localhost:8000**. The page provides camera controls, playback speed,
+Open **http://localhost:8000** for Orbit / 01, or
+**http://localhost:8000/orbit-02.html** for the alien world. Both pages have links
+to switch versions. Orbit / 01 provides camera controls, playback speed,
 a scrubber, both starting presets, trails, shadows, and recorded diagnostics.
 Three.js **0.187.0** and OrbitControls are bundled locally with their MIT license;
 the viewer makes no CDN requests and requires no npm build.
@@ -173,6 +217,7 @@ To regenerate the 15-second MP4 and GIF on an X11 / WSLg desktop:
 
 ```bash
 ./tools/record-demo.sh
+./tools/record-demo.sh 02          # Record the alien-world version
 ```
 
 This requires FFmpeg and `xwininfo` (`ffmpeg` and `x11-utils` on Debian / Ubuntu).
@@ -183,6 +228,9 @@ integration, and diagnostics in more detail. See [third-party notices](THIRD_PAR
 for bundled library attribution.
 
 To prepare a clean source ZIP for publication, run `python3 tools/package-source.py`.
-The archive is written to `dist/orbit-lab-source.zip` and contains the source,
+The archive is written to `dist/3-body-problem-source.zip` and contains the source,
 documentation, viewer, data, and demo media. Local builds and workspace settings
 are excluded.
+
+The local project directory is `3-body-problem`. The gas-in-a-box experiment has
+its own sibling directory, `../gas-in-a-box/`, and is outside this project's scope.

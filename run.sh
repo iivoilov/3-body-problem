@@ -15,7 +15,7 @@ cmake --build "$build_dir" --parallel 2
 if [[ -z "${LIBGL_ALWAYS_SOFTWARE:-}" ]]; then
     probe_log="$(mktemp)"
     trap 'rm -f -- "$probe_log"' EXIT
-    if ! "$build_dir/solar_system" --smoke-test >"$probe_log" 2>&1; then
+    if ! "$build_dir/three_body_problem" --smoke-test >"$probe_log" 2>&1; then
         cat "$probe_log" >&2
         printf '%s\n' 'Default graphics check failed; trying Mesa software rendering.' >&2
         export LIBGL_ALWAYS_SOFTWARE=1
@@ -23,4 +23,4 @@ if [[ -z "${LIBGL_ALWAYS_SOFTWARE:-}" ]]; then
     rm -f -- "$probe_log"
     trap - EXIT
 fi
-exec "$build_dir/solar_system" "$@"
+exec "$build_dir/three_body_problem" "$@"

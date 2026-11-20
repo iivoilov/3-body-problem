@@ -1,0 +1,13 @@
+#version 330 core
+layout(location = 0) in vec3 position;
+uniform mat4 viewProjection;
+uniform vec3 cameraRight;
+uniform vec3 cameraUp;
+uniform vec3 center;
+uniform float radius;
+out vec2 uv;
+void main() {
+    uv = position.xy;
+    vec3 world = center + (cameraRight*position.x+cameraUp*position.y)*radius;
+    gl_Position = viewProjection*vec4(world,1.0);
+}

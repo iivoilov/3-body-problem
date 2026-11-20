@@ -1,0 +1,17 @@
+{
+  "format":"orbit-02-trajectory", "version":1, "encoding":"float32-le",
+  "file":"world.bin", "fieldsPerFrame":20, "frameCount":18433,
+  "duration":36, "sampleInterval":0.001953125,
+  "physicsStep":6.103515625e-05, "playbackScale":0.080000000000000002,
+  "G":39.478417604357432, "rotationPeriod":1.6000000000000001,
+  "units":{"length":"AU","mass":"solar mass","time":"Julian year","flux":"Earth incident flux"},
+  "description":"Invented compact triple with measured Alpha Centauri mass ratios and a massless planet. Not a reconstruction of Alpha Centauri or canonical fictional orbits. Disks and planet enlarged for visibility.",
+  "fields":["alpha.x","alpha.y","alpha.z","beta.x","beta.y","beta.z","proxima.x","proxima.y","proxima.z","planet.x","planet.y","planet.z","flux","nearestSun","closestStellarPair","stellarEnergyError","stellarAngularError","alphaFlux","betaFlux","proximaFlux"],
+  "sources":["https://doi.org/10.3847/1538-3881/abfaff","https://www.eso.org/public/archives/releases/sciencepapers/eso2202/eso2202a.pdf"],
+  "stars":[
+    {"name":"ALPHA","mass":1.0788,"radius":0.0056620000000000004,"displayRadius":0.34000000357627869,"luminosity":1.5059,"color":[1,0.80000001192092896,0.47999998927116394],"position":[-1.7425794232720144,-0.037611961518411452,-0.34718733709302879],"velocity":[0.17938012416473154,0.0086796834273257188,-1.985316001578928]},
+    {"name":"BETA","mass":0.90920000000000001,"radius":0.0039950000000000003,"displayRadius":0.27000001072883606,"luminosity":0.49809999999999999,"color":[1,0.43000000715255737,0.15999999642372131],"position":[2.2574205767279856,-0.037611961518411452,-0.34718733709302879],"velocity":[0.17938012416473154,0.0086796834273257188,2.4442182345869523]},
+    {"name":"PROXIMA","mass":0.1221,"radius":0.00065600000000000001,"displayRadius":0.18000000715255737,"luminosity":0.0016000000000000001,"color":[1,0.12999999523162842,0.064999997615814209],"position":[-1.4132031657267428,0.61238803848158851,5.652812662906971],"velocity":[-2.9206198758352686,-0.14132031657267427,-0.65949481067247995]}
+  ],
+  "planet":{"name":"Trisolaris","mass":0,"testParticle":true,"radius":4.2635000000000001e-05,"displayRadius":0.13,"position":[-2.4807989028307702,-0.037611961518411452,-1.0854068166517845],"velocity":[4.3186594382834507,0.0086796834273257188,-6.1245953156976469]}
+}

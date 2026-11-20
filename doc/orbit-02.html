@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Walk beneath three suns. Explore a fictional alien world with a native Newtonian simulation, a moving sky, and an orbital view.">
+  <title>Orbit / 02 — The alien world · 3-body-problem</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="alien.css">
+  <script type="importmap">{"imports":{"three":"./vendor/three.module.js","three/addons/controls/OrbitControls.js":"./vendor/OrbitControls.js"}}</script>
+  <script type="module" src="alien-viewer.mjs"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="./"><span class="brand-symbol" aria-hidden="true">◌</span>3-body-problem</a>
+    <nav aria-label="Simulation version"><a href="index.html">Orbit / 01</a><a href="orbit-02.html" aria-current="page">Orbit / 02 <span class="live-dot"></span></a></nav>
+    <a class="notes-link" href="ORBIT_02.md">Field notes <span aria-hidden="true">↗</span></a>
+  </header>
+  <main>
+    <section class="introduction">
+      <div><p class="eyebrow">ORBIT / 02 <span>—</span> THE ALIEN WORLD</p><h1>A sky that never<br>belongs to one sun.</h1></div>
+      <div class="intro-copy"><p>A world caught between three stars.<br>A quiet dawn can become something else entirely.</p><p class="subtle">Inspired by Liu Cixin’s <cite>The Three-Body Problem</cite>.<br>Explore the sky, then pull back to see the gravity behind it.</p></div>
+    </section>
+
+    <section class="experience" aria-label="Interactive three-star world">
+      <div class="world-wrap">
+        <div id="world" role="img" aria-label="Alien landscape beneath three moving suns"></div>
+        <div class="scene-top"><span class="scene-location"><span class="live-dot"></span><span id="location">TRISOLARIS / SURFACE OBSERVATION</span></span><div class="view-switch" role="group" aria-label="Camera view"><button id="surface-view" aria-pressed="true" type="button">Surface</button><button id="orbit-view" aria-pressed="false" type="button">Orbital</button></div></div>
+        <div class="sun-label" data-body="0">α <span>ALPHA</span></div><div class="sun-label" data-body="1">β <span>BETA</span></div><div class="sun-label" data-body="2">C <span>PROXIMA</span></div><div class="sun-label planet-label" data-body="3">◎ <span>TRISOLARIS</span></div>
+        <div class="scene-bottom"><div><span class="eyebrow" id="sky-caption">THE FIRST DAWN</span><p id="sky-state">Three suns above the horizon.</p></div><p id="camera-hint">Drag to look around</p></div>
+        <p id="status" role="status" aria-live="polite">Preparing the observation…</p>
+      </div>
+
+      <div class="transport">
+        <div class="playback"><button id="play" class="primary" type="button" disabled>Pause</button><button id="restart" class="quiet" type="button" disabled aria-label="Restart the observation">↺ <span>Restart</span></button><span class="divider"></span><label class="speed-label">Speed <select id="speed"><option value="0.25">0.25×</option><option value="0.5">0.5×</option><option value="1" selected>1×</option><option value="2">2×</option><option value="4">4×</option><option value="8">8×</option></select></label><label class="toggle"><input id="trails" type="checkbox" checked> Trails <span class="orbit-only-note">(orbital)</span></label><label class="toggle"><input id="shadows" type="checkbox" checked> Terrain shadows</label><span class="clock"><span class="subtle">YEAR</span> <output id="year" for="time">0.000</output></span></div>
+        <label class="timeline-label" for="time"><span>THE 36-YEAR RECORD</span><span id="time-label">0.00 / 36.00 yr</span></label><input id="time" type="range" min="0" max="36" step="0.001953125" value="0" disabled aria-label="Simulation time in years">
+        <div class="chapters"><span>Jump to</span><button id="first-dawn" type="button">First dawn</button><button id="encounter" type="button">Stellar encounter</button><button id="brightest" type="button">Strongest light</button><button id="remote" type="button">Distant world</button><span class="record-note">C++ trajectories · replay loops at 36 years</span></div>
+      </div>
+    </section>
+
+    <section class="readings" aria-label="Simulation measurements">
+      <article><p class="eyebrow">01 / INCIDENT LIGHT</p><p class="reading"><span id="flux">—</span><span class="unit">× Earth</span></p><p>Light received from all three stars.<br>Earth’s incident flux is 1.</p><canvas id="flux-chart" aria-label="Incident flux across the full 36-year recording, on a logarithmic scale" role="img"></canvas><span class="chart-note">36 years · logarithmic scale</span></article>
+      <article><p class="eyebrow">02 / NEAREST SUN</p><p class="reading"><span id="nearest">—</span><span class="unit">AU</span></p><p>The planet’s distance to its nearest star.<br>One AU is the Earth–Sun distance.</p><div class="distance-rows"><div><span><i class="alpha-color"></i>Alpha</span><output id="distance-0">—</output></div><div><span><i class="beta-color"></i>Beta</span><output id="distance-1">—</output></div><div><span><i class="proxima-color"></i>Proxima</span><output id="distance-2">—</output></div></div></article>
+      <article><p class="eyebrow">03 / STELLAR ENCOUNTER</p><p class="reading"><span id="separation">—</span><span class="unit">AU</span></p><p>Separation of the closest pair of stars.<br>Every star responds to both companions.</p><div class="integrator-readings"><div><span>Stellar energy error</span><output id="energy">—</output></div><div><span>Angular momentum error</span><output id="angular">—</output></div><p>Errors are relative to the starting state.</p></div></article>
+    </section>
+
+    <section class="stars-section" aria-label="The three stars"><div class="section-heading"><p class="eyebrow">THE THREE SUNS</p><p>Real mass ratios. An imagined arrangement.</p></div><div class="star-cards">
+      <article><div class="star-orb alpha-orb" aria-hidden="true"></div><div><h2><span>α</span> Alpha</h2><p>Alpha Centauri A reference</p><strong>1.0788 <span>solar masses</span></strong></div><span class="star-number">01</span></article>
+      <article><div class="star-orb beta-orb" aria-hidden="true"></div><div><h2><span>β</span> Beta</h2><p>Alpha Centauri B reference</p><strong>0.9092 <span>solar masses</span></strong></div><span class="star-number">02</span></article>
+      <article><div class="star-orb proxima-orb" aria-hidden="true"></div><div><h2><span>C</span> Proxima</h2><p>Proxima Centauri reference</p><strong>0.1221 <span>solar masses</span></strong></div><span class="star-number">03</span></article>
+    </div></section>
+
+    <section class="model-note"><div><p class="eyebrow">FICTION, WITH PHYSICS</p><h2>An imagined world.<br>A measurable sky.</h2></div><div><p>The stellar masses come from measurements of Alpha Centauri. The compact orbits, planet, slow rotation, atmosphere, and terrain are imagined. This is an interpretation of the novel’s premise, rather than a reconstruction of its world or the real Alpha Centauri system.</p><p>Three stars interact through Newtonian gravity. The planet feels all three, with its own gravitational influence neglected. Surface sunlight follows their recorded positions. The landscape and enlarged stellar disks are artistic; incident light is an inverse-square measurement, not a temperature or climate prediction.</p><details><summary>How the observation is made</summary><p>The C++ solver uses AU, solar masses, and Julian years, with a fixed 1/16384-year leapfrog step. The browser interpolates a 36-year recording. Camera controls and playback speed change the view; they do not change the integrated trajectory. Stellar conservation checks exclude the massless planet.</p><p>Sources: <a href="https://doi.org/10.3847/1538-3881/abfaff">Akeson et al. (2021)</a> and <a href="https://www.eso.org/public/archives/releases/sciencepapers/eso2202/eso2202a.pdf">Faria et al. (2022)</a>. See the <a href="ORBIT_02.md">model and reproducibility notes</a>.</p></details></div></section>
+  </main>
+  <footer><span>ORBIT / 02 <span class="subtle">— 3-body-problem</span></span><span>A fictional world, explored through gravity.</span><a href="index.html">Return to Orbit / 01 ↗</a></footer>
+  <noscript><p>JavaScript and WebGL 2 are required. Run the native version with <code>./run.sh --orbit 02</code>.</p></noscript>
+</body>
+</html>

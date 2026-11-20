@@ -1,4 +1,8 @@
-# WebGL replay viewer
+# 3-body-problem — Orbit / 01 WebGL replay
+
+For the alien-world simulation, open [Orbit / 02](orbit-02.html).
+Its [model and recording format](ORBIT_02.md) are separate from this viewer;
+the original Orbit / 01 datasets and format remain unchanged.
 
 Run from the repository root:
 
@@ -39,6 +43,9 @@ It produces `manifest.json`, `circular.bin`, and `resonance.bin` using the same
 `Simulation` class as the desktop application.
 
 ## Binary contract, version 1
+
+The schema identifier `orbit-lab-trajectory` is retained for compatibility with
+existing Orbit / 01 recordings; it is a file-format identifier, not the project name.
 
 - Encoding: IEEE-754 float32, **little-endian**, no header inside the binary files.
 - 16385 frames, including both endpoints, at 0.125-simulated-second spacing.

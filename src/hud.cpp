@@ -186,7 +186,7 @@ void Hud::draw(int width, int height, const Simulation& sim, bool wireframe, boo
     rect(0, 0, panelWidth, static_cast<float>(height), {0.035f, 0.050f, 0.078f});
     rect(panelWidth - 1, 0, 1, static_cast<float>(height), {0.12f, 0.17f, 0.22f});
     text(24, 30, "ORBIT / 01", 3, white);
-    text(24, 66, "AN OPENGL LEARNING LAB", 1.4f, muted);
+    text(24, 66, "3-BODY-PROBLEM", 1.4f, muted);
     rect(24, 100, 222, 1, {0.14f, 0.19f, 0.25f});
     text(24, 122, "NEWTONIAN GRAVITY", 1.6f, teal);
     text(24, 151, "1 STAR / 2 PLANETS", 1.5f, white);
@@ -225,6 +225,7 @@ void Hud::draw(int width, int height, const Simulation& sim, bool wireframe, boo
     text(24, controlsY + 147, "E ECLIPSE  S SHADOWS", 1.3f, teal);
     text(24, controlsY + 167, "N STEP WHILE PAUSED", 1.3f, muted);
     text(panelWidth + 28, 28, "THE SOLAR STUDY", 1.5f, white);
+    text(static_cast<float>(width)-172, 28, "2 ORBIT / 02", 1.3f, teal);
     std::snprintf(status, sizeof(status), "3 BODY / START RATIO %.2F / %s", initialPeriodRatio,
                   sim.resonanceCandidate ? "RESONANCE CANDIDATE" : "CIRCULAR START");
     text(panelWidth + 28, 52, status, 1.2f, muted);
@@ -239,6 +240,75 @@ void Hud::draw(int width, int height, const Simulation& sim, bool wireframe, boo
     text(panelWidth + 28, static_cast<float>(height) - (showDiagnostics ? diagnosticsHeight : 0) - 32, mode, 1.3f, muted);
     if (showDiagnostics) diagnostics(width, height, sim.diagnostics);
 
+    render(width, height);
+}
+
+void Hud::drawAlien(int width, int height, const AlienSimulation& sim, bool surface, bool trails,
+                    bool showData, const std::array<Vec3, 4>& bodyLabels) {
+    vertices_.clear();
+    const float w = static_cast<float>(width), h = static_cast<float>(height);
+    const Vec3 amber{1.0f,0.68f,0.36f}, dim{0.54f,0.56f,0.57f}, panel{0.027f,0.037f,0.043f};
+    rect(0, 0, w, 88, panel);
+    rect(28, 87, w-56, 1, {0.17f,0.18f,0.18f});
+    text(30, 23, "ORBIT / 02", 2.8f, white);
+    text(31, 57, "3-BODY-PROBLEM / THE ALIEN WORLD", 1.15f, dim);
+    text(w-340, 28, surface ? "[ SURFACE ]   V ORBITAL" : "V SURFACE   [ ORBITAL ]", 1.4f, amber);
+    text(w-340, 57, "1 ORBIT / 01   SPACE PAUSE", 1.1f, dim);
+    text(32, h-302, "TRISOLARIS", 3.8f, white);
+    text(34, h-260, "ONE WORLD. THREE SUNS.", 1.4f, amber);
+    const auto sample = sim.measure();
+    char label[128];
+    std::snprintf(label,sizeof(label),"YEAR %.3F / %s / %.3G X",sim.time,
+                  sim.collision ? "CONTACT" : sim.paused ? "PAUSED" : "RUNNING",sim.speed);
+    text(34, h-234, label, 1.2f, white);
+    for (int i = 0; i < 3; ++i) {
+        const float x = w-540 + i*170.0f;
+        rect(x, 112, 3, 29, stellarColors[i]);
+        text(x+12, 112, stellarNames[i], 1.3f, white);
+        std::snprintf(label,sizeof(label),"%.4F SOLAR MASSES",stellarMasses[i]);
+        text(x+12, 133, label, 0.95f, white);
+    }
+    if (showData) {
+        const float top = h-178;
+        rect(0,top,w,178,panel);
+        rect(28,top,w-56,1,{0.17f,0.18f,0.18f});
+        const float cell = (w-64)/3;
+        const std::array<const char*,3> headings{{"INCIDENT LIGHT / EARTH = 1", "NEAREST SUN / AU", "STELLAR ENERGY ERROR"}};
+        const std::array<double,3> values{{sample.flux,sample.nearest,sample.energyError}};
+        for (int i=0;i<3;++i) {
+            const float x=32+i*cell;
+            text(x,top+18,headings[i],1.1f,dim);
+            std::snprintf(label,sizeof(label),i==2 ? "%.2E" : "%.3F",values[i]);
+            text(x,top+43,label,2.7f,i==0 ? amber : white);
+            if(i>0) rect(x-15,top+17,1,67,{0.17f,0.18f,0.18f});
+        }
+        text(32,top+91,"LIGHT HISTORY",0.95f,dim);
+        if(sim.history.size()>1) {
+            double high=0.1;
+            for(const auto& entry:sim.history) high=std::max(high,entry.flux);
+            const double duration=sim.history.back().time-sim.history.front().time;
+            float px=32,py=top+140;
+            bool first=true;
+            for(const auto& entry:sim.history) {
+                const float x=32+(w-64)*static_cast<float>((entry.time-sim.history.front().time)/duration);
+                const float y=top+141-34*static_cast<float>(entry.flux/high);
+                if(!first) line(px,py,x,y,1.4f,amber);
+                px=x;py=y;first=false;
+            }
+        }
+        text(32,h-20,"MEASURED MASS RATIOS / INVENTED ORBITS / DISKS ENLARGED / PLANET IS A TEST PARTICLE",0.95f,dim);
+    }
+    text(32,h-(showData ? 202 : 30),surface ? "DRAG LOOK / V ORBIT / [ ] SPEED / R RESET / D DATA" :
+         (trails ? "DRAG ROTATE / SCROLL ZOOM / V SURFACE / O TRAILS ON" : "DRAG ROTATE / SCROLL ZOOM / V SURFACE / O TRAILS OFF"),1.1f,white);
+    if (!surface) for (std::size_t i=0;i<bodyLabels.size();++i) {
+        const auto p=bodyLabels[i];
+        if (p.z>0 && p.x>10 && p.x<w-100 && p.y>160 && p.y<h-(showData ? 205 : 40))
+            text(p.x+16,p.y-3,i<3 ? stellarNames[i] : "TRISOLARIS",1.15f,i<3 ? stellarColors[i] : teal);
+    }
+    render(width,height);
+}
+
+void Hud::render(int width, int height) {
     glDisable(GL_DEPTH_TEST);
     shader_.use();
     shader_.viewport(static_cast<float>(width), static_cast<float>(height));
