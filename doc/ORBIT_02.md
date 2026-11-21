@@ -201,7 +201,6 @@ contains **20 fields** (80 bytes):
 `world.bin` is **1,474,640 bytes**. Positions interpolate between recorded
 frames; diagnostics hold their recorded values. The browser evaluates no
 gravitational forces. Orbit / 01's existing files and format are unchanged.
-Gas-in-a-box work remains in its separate sibling project.
 
 ## Numbered records and reproduction
 

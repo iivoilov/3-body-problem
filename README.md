@@ -278,6 +278,3 @@ To prepare a clean source ZIP for publication, run `python3 tools/package-source
 The archive is written to `dist/3-body-problem-source.zip` and contains the source,
 documentation, viewer, data, and demo media. Local builds and workspace settings
 are excluded.
-
-The local project directory is `3-body-problem`. The gas-in-a-box experiment has
-its own sibling directory, `../gas-in-a-box/`, and is outside this project's scope.

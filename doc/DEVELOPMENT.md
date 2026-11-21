@@ -401,8 +401,7 @@ opened with an image viewer or converted to PNG.
 
 Orbit / 01 remains the one-star/two-planet experiment described here.
 [Orbit / 02](ORBIT_02.md) adds a separate three-star simulation and alien-world
-surface view inspired by *The Three-Body Problem*, preserving both versions. Gas-in-a-box work has its own
-sibling project directory, `../gas-in-a-box/` relative to the repository root.
+surface view inspired by *The Three-Body Problem*, preserving both versions.
 
 ## References
 
